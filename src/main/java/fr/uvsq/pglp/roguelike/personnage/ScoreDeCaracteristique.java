@@ -16,6 +16,11 @@ public class ScoreDeCaracteristique {
     this.mod = (val - 10) / 2;
   }
 
+  public int val() {
+    return val;
+  }
 
-
+  public int mod() {
+    return mod;
+  }
 }
