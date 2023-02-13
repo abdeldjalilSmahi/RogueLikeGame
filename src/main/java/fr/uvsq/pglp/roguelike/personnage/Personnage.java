@@ -6,9 +6,27 @@ public class Personnage {
 
   private String name;
   private int pv;
+  private int init;
+  private int defense;
+  private int scoreattaque;
 
-  public Personnage(String name, int pv) {
-    this.name = name;
-    this.pv = pv;
+  public String getName() {
+    return name;
+  }
+
+  public int getPv() {
+    return pv;
+  }
+
+  public int getInit() {
+    return init;
+  }
+
+  public int getDefense() {
+    return defense;
+  }
+
+  public int getScoreattaque() {
+    return scoreattaque;
   }
 }
