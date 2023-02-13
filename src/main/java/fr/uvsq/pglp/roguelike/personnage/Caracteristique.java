@@ -27,5 +27,7 @@ public enum Caracteristique {
   /* La sagesse du personnage. */
   SAG,
   /* Le charisme du personnage. */
-  CHAR
+  CHAR;
+
+
 }
