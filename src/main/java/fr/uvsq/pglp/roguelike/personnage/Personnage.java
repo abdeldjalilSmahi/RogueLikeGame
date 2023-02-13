@@ -92,9 +92,7 @@ public class Personnage {
     }
 
     /**
-     * return La valeur générée pour la caractéristique. Cette méthode génère une valeur aléatoire
-     * pour une caractéristique en utilisant une limite de 4 valeurs générées aléatoirement et en
-     * retournant la somme des deuxièmes, troisièmes et quatrièmes valeurs.
+     * return La valeur générée pour la caractéristique. Cette méthode génère une valeur aléatoire pour une caractéristique en utilisant une limite de 4 valeurs générées aléatoirement et en retournant la somme des deuxièmes, troisièmes et quatrièmes valeurs.
      *
      * @return La valeur générée pour la caractéristique.
      */
@@ -106,10 +104,7 @@ public class Personnage {
     }
 
     /**
-     * return Un tableau de valeurs pour les différentes caractéristiques. Cette méthode génère les
-     * valeurs pour les différentes caractéristiques en utilisant la méthode {@link
-     * #generateRandomCaracValue()}. Elle génère des valeurs jusqu'à ce que la somme de toutes les
-     * valeurs soit supérieure à 80 et inférieure ou égale à 65.
+     * return Un tableau de valeurs pour les différentes caractéristiques. Cette méthode génère les valeurs pour les différentes caractéristiques en utilisant la méthode {@link #generateRandomCaracValue()}. Elle génère des valeurs jusqu'à ce que la somme de ces valeurs ne doit pas dépasser 80 et doit être supérieure à 65.
      *
      * @return Un tableau de valeurs pour les différentes caractéristiques.
      */
@@ -120,13 +115,12 @@ public class Personnage {
         randomIntsArray = IntStream.generate(() -> generateRandomCaracValue()).limit(6)
             .toArray();
         sum = Arrays.stream(randomIntsArray).sum();
-      } while (sum <= 80 && sum > 65);
+      } while (sum <= 80 && sum >= 65);
       return randomIntsArray;
     }
 
     /**
-     * Cette méthode remplit la map {@link #scoreDeCaracteristiqueMap} avec les caractéristiques et
-     * leurs valeurs générées.
+     * Cette méthode remplit la map {@link #scoreDeCaracteristiqueMap} avec les caractéristiques et leurs valeurs générées.
      */
     private Map generateCaracMap() {
       Map<Caracteristique, ScoreDeCaracteristique> scoreDeCaracteristiqueMap = new HashMap<>();
@@ -134,7 +128,7 @@ public class Personnage {
       int i = 0;
       for (Caracteristique caracteristique : Caracteristique.values()) {
         scoreDeCaracteristiqueMap
-            .put(caracteristique, new ScoreDeCaracteristique(valuesArray[++i]));
+            .put(caracteristique, new ScoreDeCaracteristique(valuesArray[i++]));
       }
       return scoreDeCaracteristiqueMap;
     }

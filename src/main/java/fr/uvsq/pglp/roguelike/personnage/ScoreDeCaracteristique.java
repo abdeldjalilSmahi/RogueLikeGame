@@ -1,26 +1,59 @@
 package fr.uvsq.pglp.roguelike.personnage;
 
+
 import fr.uvsq.pglp.roguelike.validation.Ivaldator;
+
+/**
+ * Classe représentant un score de caractéristique.
+ */
 
 public final class ScoreDeCaracteristique implements Ivaldator {
 
+  /**
+   * La valeur du score de caractéristique.
+   */
   private final int val;
+
+  /**
+   * Le modificateur du score de caractéristique.
+   */
   private final int mod;
 
+  /**
+   * Constructeur de la classe.
+   *
+   * @param val La valeur du score de caractéristique
+   */
   public ScoreDeCaracteristique(int val) {
     validate();
     this.val = val;
     this.mod = getModifcateur(val);
   }
 
+  /**
+   * Retourne la valeur du score de caractéristique.
+   *
+   * @return La valeur du score de caractéristique
+   */
   public int val() {
     return val;
   }
 
+  /**
+   * Retourne le modificateur du score de caractéristique.
+   *
+   * @return Le modificateur du score de caractéristique
+   */
   public int mod() {
     return mod;
   }
 
+  /**
+   * Méthode interne pour obtenir le modificateur à partir de la valeur.
+   *
+   * @param val La valeur du score de caractéristique
+   * @return Le modificateur du score de caractéristique
+   */
   private int getModifcateur(int val) {
     int modificateur;
     switch (val) {
