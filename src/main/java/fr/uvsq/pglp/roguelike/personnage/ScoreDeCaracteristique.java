@@ -39,10 +39,10 @@ public final class ScoreDeCaracteristique implements Ivaldator{
   
   @Override
   public void validate(){
-    if (val < 1) {
+    if (this.val < 1) {
       throw new IllegalArgumentException("la valeur de la caractéristique doit etre sup à 1");
     }
-    if (val > 21) {
+    if (this.val > 21) {
       throw new IllegalArgumentException("la valeur de la caractéristique doit etre inférieur 21");
     }
   }
