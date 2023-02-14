@@ -1,7 +1,11 @@
 package fr.uvsq.pglp.roguelike.personnage;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.stream.IntStream;
@@ -80,6 +84,8 @@ public class Personnage {
 
     private String name;
     private Map<Caracteristique, ScoreDeCaracteristique> scoreDeCaracteristiqueMap;
+    private List<Caracteristique> defaultPriorite =
+        new ArrayList<>(Arrays.asList(Caracteristique.CON, Caracteristique.FOR,Caracteristique.DEX,Caracteristique.CHAR,Caracteristique.INT,Caracteristique.SAG));
 
     /**
      * Constructeur prenant en paramètre le nom du personnage.
@@ -108,7 +114,7 @@ public class Personnage {
      *
      * @return Un tableau de valeurs pour les différentes caractéristiques.
      */
-    private int[] generateCarcValues() {
+    private List generateCarcValues() {
       int sum;
       int[] randomIntsArray;
       do {
@@ -116,19 +122,22 @@ public class Personnage {
             .toArray();
         sum = Arrays.stream(randomIntsArray).sum();
       } while (sum <= 80 && sum >= 65);
-      return randomIntsArray;
+      List values = Arrays.asList(randomIntsArray);
+      Collections.sort(values, Collections.reverseOrder());
+      return values;
     }
 
     /**
      * Cette méthode remplit la map {@link #scoreDeCaracteristiqueMap} avec les caractéristiques et leurs valeurs générées.
      */
     private Map generateCaracMap() {
-      Map<Caracteristique, ScoreDeCaracteristique> scoreDeCaracteristiqueMap = new HashMap<>();
-      int[] valuesArray = generateCarcValues();
+      Map<Caracteristique, ScoreDeCaracteristique> scoreDeCaracteristiqueMap =
+          new EnumMap<>(Caracteristique.class);
+      List<Integer> valuesArray = generateCarcValues();
       int i = 0;
-      for (Caracteristique caracteristique : Caracteristique.values()) {
+      for (Caracteristique caracteristique : defaultPriorite) {
         scoreDeCaracteristiqueMap
-            .put(caracteristique, new ScoreDeCaracteristique(valuesArray[i++]));
+            .put(caracteristique, new ScoreDeCaracteristique(valuesArray.get(i++)));
       }
       return scoreDeCaracteristiqueMap;
     }
