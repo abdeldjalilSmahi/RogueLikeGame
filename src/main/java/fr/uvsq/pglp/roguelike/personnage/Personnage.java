@@ -1,21 +1,16 @@
 package fr.uvsq.pglp.roguelike.personnage;
 
-import fr.uvsq.pglp.roguelike.validation.Ivaldator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumMap;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-/**
- * Classe représentant un personnage du jeu.
- */
-public class Personnage  {
+/** Classe représentant un personnage du jeu. */
+public class Personnage {
 
   private String name;
   private int pv;
@@ -31,7 +26,6 @@ public class Personnage  {
    */
   public String getName() {
     return name;
-
   }
 
   /**
@@ -79,15 +73,20 @@ public class Personnage  {
     return scoreattaque;
   }
 
-  /**
-   * Classe interne permettant de construire un objet Personnage.
-   */
-  public static class Builder  {
+  /** Classe interne permettant de construire un objet Personnage. */
+  public static class Builder {
 
     private String name;
     private Map<Caracteristique, ScoreDeCaracteristique> scoreDeCaracteristiqueMap;
     private List<Caracteristique> defaultPriorite =
-        new ArrayList<>(Arrays.asList(Caracteristique.CON, Caracteristique.FOR,Caracteristique.DEX,Caracteristique.CHAR,Caracteristique.INT,Caracteristique.SAG));
+        new ArrayList<>(
+            Arrays.asList(
+                Caracteristique.CON,
+                Caracteristique.FOR,
+                Caracteristique.DEX,
+                Caracteristique.CHAR,
+                Caracteristique.INT,
+                Caracteristique.SAG));
 
     /**
      * Constructeur prenant en paramètre le nom du personnage.
@@ -100,19 +99,24 @@ public class Personnage  {
     }
 
     /**
-     * return La valeur générée pour la caractéristique. Cette méthode génère une valeur aléatoire pour une caractéristique en utilisant une limite de 4 valeurs générées aléatoirement et en retournant la somme des deuxièmes, troisièmes et quatrièmes valeurs.
+     * return La valeur générée pour la caractéristique. Cette méthode génère une valeur aléatoire
+     * pour une caractéristique en utilisant une limite de 4 valeurs générées aléatoirement et en
+     * retournant la somme des deuxièmes, troisièmes et quatrièmes valeurs.
      *
      * @return La valeur générée pour la caractéristique.
      */
     private int generateRandomCaracValue() {
-      int[] randomIntsArray = IntStream.generate(() -> new Random().nextInt(6) + 1).limit(4)
-          .toArray();
+      int[] randomIntsArray =
+          IntStream.generate(() -> new Random().nextInt(6) + 1).limit(4).toArray();
       Arrays.sort(randomIntsArray);
       return randomIntsArray[1] + randomIntsArray[2] + randomIntsArray[3];
     }
 
     /**
-     * return Un tableau de valeurs pour les différentes caractéristiques. Cette méthode génère les valeurs pour les différentes caractéristiques en utilisant la méthode {@link #generateRandomCaracValue()}. Elle génère des valeurs jusqu'à ce que la somme de ces valeurs ne doit pas dépasser 80 et doit être supérieure à 65.
+     * return Un tableau de valeurs pour les différentes caractéristiques. Cette méthode génère les
+     * valeurs pour les différentes caractéristiques en utilisant la méthode
+     * generateRandomCaracValue(). Elle génère des valeurs jusqu'à ce que la somme de ces valeurs ne
+     * doit pas dépasser 80 et doit être supérieure à 65.
      *
      * @return Un tableau de valeurs pour les différentes caractéristiques.
      */
@@ -120,8 +124,7 @@ public class Personnage  {
       int sum;
       int[] randomIntsArray;
       do {
-        randomIntsArray = IntStream.generate(() -> generateRandomCaracValue()).limit(6)
-            .toArray();
+        randomIntsArray = IntStream.generate(() -> generateRandomCaracValue()).limit(6).toArray();
         sum = Arrays.stream(randomIntsArray).sum();
       } while (sum <= 80 && sum >= 65);
       List values = Arrays.asList(randomIntsArray);
@@ -130,7 +133,8 @@ public class Personnage  {
     }
 
     /**
-     * Cette méthode remplit la map {@link #scoreDeCaracteristiqueMap} avec les caractéristiques et leurs valeurs générées.
+     * Cette méthode remplit la map {@link #scoreDeCaracteristiqueMap} avec les caractéristiques et
+     * leurs valeurs générées.
      */
     private Map generateCaracMap() {
       Map<Caracteristique, ScoreDeCaracteristique> scoreDeCaracteristiqueMap =
@@ -138,32 +142,49 @@ public class Personnage  {
       List<Integer> valuesArray = generateCarcValues();
       int i = 0;
       for (Caracteristique caracteristique : defaultPriorite) {
-        scoreDeCaracteristiqueMap
-            .put(caracteristique, new ScoreDeCaracteristique(valuesArray.get(i++)));
+        scoreDeCaracteristiqueMap.put(
+            caracteristique, new ScoreDeCaracteristique(valuesArray.get(i++)));
       }
       return scoreDeCaracteristiqueMap;
     }
 
-    public Builder priorite(List<Caracteristique> caracteristiquePrioritie){
+    /**
+     * Définit la priorité des caractéristiques utilisées pour calculer le score.
+     *
+     * @param caracteristiquePrioritie Une liste de valeurs de {@link Caracteristique} représentant
+     *     la priorité des caractéristiques.
+     * @return Une instance du {@link Builder} avec la priorité des caractéristiques mise à jour.
+     * @throws IllegalArgumentException si la liste ne contient pas exactement 6 caractéristiques ou
+     *     si une ou plusieurs caractéristiques de la liste ne sont pas valides.
+     */
+    public Builder priorite(List<Caracteristique> caracteristiquePrioritie) {
       validate(caracteristiquePrioritie);
       int i = 0;
-     for(Caracteristique caracteristique: caracteristiquePrioritie){
-       scoreDeCaracteristiqueMap.replace(caracteristique, scoreDeCaracteristiqueMap.get(defaultPriorite.get(i++)));
-     }
+      for (Caracteristique caracteristique : caracteristiquePrioritie) {
+        scoreDeCaracteristiqueMap.replace(
+            caracteristique, scoreDeCaracteristiqueMap.get(defaultPriorite.get(i++)));
+      }
       return this;
     }
 
-
-    private void validate(List<?> caracteristiquePrioritie) {
-        if(caracteristiquePrioritie.size() != 6){
-          throw new IllegalArgumentException("Il faut mettre tous les 6 caracteristiques");
+    /**
+     * Vérifie si une liste de caractéristiques est valide.
+     *
+     * @param caracteristiquePrioritie Une liste de valeurs de {@link Caracteristique} à vérifier.
+     * @throws IllegalArgumentException si la liste ne contient pas exactement 6 caractéristiques ou
+     *     si une ou plusieurs caractéristiques de la liste ne sont pas valides.
+     */
+    private void validate(List<Caracteristique> caracteristiquePrioritie) {
+      if (caracteristiquePrioritie.size() != 6) {
+        throw new IllegalArgumentException("Il faut mettre tous les 6 caracteristiques");
+      }
+      List<Caracteristique> caracteristiques = Arrays.asList(Caracteristique.values());
+      for (Caracteristique caracteristique : caracteristiques) {
+        if (!(caracteristiquePrioritie.contains(caracteristique))) {
+          throw new IllegalArgumentException(
+              "La caracteristique: " + caracteristique + " N'existe pas dans ta liste");
         }
-        List<Caracteristique> caracteristiques = Arrays.asList(Caracteristique.values());
-        for(Caracteristique caracteristique: caracteristiques){
-          if(!(caracteristiquePrioritie.contains(caracteristique))){
-            throw new IllegalArgumentException("La caracteristique: "+caracteristique+ " N'existe pas dans ta liste");
-          }
-        }
+      }
     }
   }
 }
