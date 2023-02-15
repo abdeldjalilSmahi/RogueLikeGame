@@ -290,4 +290,55 @@ public class PersonnageTest {
     Map<Caracteristique, ScoreDeCaracteristique> result = personnage.getScoreDeCaracteristiqueMap();
     assertEquals(15, (result.get(Caracteristique.CON).val()));
   }
+  @Test
+  public void testGetNamePersonnage(){
+    Personnage personnage = new Personnage.Builder("Djalil").build();
+    assertEquals("Djalil", personnage.getName());
+  }
+  @Test
+  public void testMapPersonnage()throws Exception {
+    Builder builder = new Builder("Test");
+    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    method.setAccessible(true);
+    builder = (Builder)method.invoke(builder, new Random(1999));
+    Personnage personnage = builder.build();
+    assertEquals("Test", personnage.getName());
+    Map<Caracteristique, ScoreDeCaracteristique> scores = personnage.getScoreDeCaracteristiqueMap();
+    int[] values = {17, 17, 16, 15, 13, 6};
+    int i = 0 ;
+    for(Caracteristique caracteristique: Caracteristique.values()){
+      assertEquals(values[i++], scores.get(caracteristique).val());
+    }
+  }
+  @Test
+  public void testPv() throws Exception{
+    Builder builder = new Builder("Test");
+    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    method.setAccessible(true);
+    builder = (Builder)method.invoke(builder, new Random(1999));
+    Personnage personnage = builder.build();
+    assertEquals("Test", personnage.getName());
+    assertEquals(23, personnage.getPv()); // 20 + 3
+  }
+  @Test
+  public void testInit() throws Exception{
+    Builder builder = new Builder("Test");
+    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    method.setAccessible(true);
+    builder = (Builder)method.invoke(builder, new Random(1999));
+    Personnage personnage = builder.build();
+    assertEquals("Test", personnage.getName());
+    assertEquals(3, personnage.getInit()); // 20 + 3
+  }
+  @Test
+  public void testDefense() throws Exception{
+    Builder builder = new Builder("Test");
+    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    method.setAccessible(true);
+    builder = (Builder)method.invoke(builder, new Random(1999));
+    Personnage personnage = builder.build();
+    assertEquals("Test", personnage.getName());
+    assertEquals(13, personnage.getDefense()); // 20 + 3
+  }
+
 }
