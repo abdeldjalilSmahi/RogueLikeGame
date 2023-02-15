@@ -82,7 +82,7 @@ public class Personnage  {
   /**
    * Classe interne permettant de construire un objet Personnage.
    */
-  public static class Builder implements Ivaldator {
+  public static class Builder  {
 
     private String name;
     private Map<Caracteristique, ScoreDeCaracteristique> scoreDeCaracteristiqueMap;
@@ -145,7 +145,7 @@ public class Personnage  {
     }
 
     public Builder priorite(List<Caracteristique> caracteristiquePrioritie){
-      validate();
+      validate(caracteristiquePrioritie);
       int i = 0;
      for(Caracteristique caracteristique: caracteristiquePrioritie){
        scoreDeCaracteristiqueMap.replace(caracteristique, scoreDeCaracteristiqueMap.get(defaultPriorite.get(i++)));
@@ -153,9 +153,17 @@ public class Personnage  {
       return this;
     }
 
-    @Override
-    public void validate() {
 
+    private void validate(List<?> caracteristiquePrioritie) {
+        if(caracteristiquePrioritie.size() != 6){
+          throw new IllegalArgumentException("Il faut mettre tous les 6 caracteristiques");
+        }
+        List<Caracteristique> caracteristiques = Arrays.asList(Caracteristique.values());
+        for(Caracteristique caracteristique: caracteristiques){
+          if(!(caracteristiquePrioritie.contains(caracteristique))){
+            throw new IllegalArgumentException("La caracteristique: "+caracteristique+ " N'existe pas dans ta liste");
+          }
+        }
     }
   }
 }
