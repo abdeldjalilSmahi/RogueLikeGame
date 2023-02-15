@@ -1,9 +1,11 @@
 package fr.uvsq.pglp.roguelike.personnage;
 
+import fr.uvsq.pglp.roguelike.validation.Ivaldator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumMap;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +15,7 @@ import java.util.stream.IntStream;
 /**
  * Classe représentant un personnage du jeu.
  */
-public class Personnage {
+public class Personnage  {
 
   private String name;
   private int pv;
@@ -80,7 +82,7 @@ public class Personnage {
   /**
    * Classe interne permettant de construire un objet Personnage.
    */
-  public static class Builder {
+  public static class Builder implements Ivaldator {
 
     private String name;
     private Map<Caracteristique, ScoreDeCaracteristique> scoreDeCaracteristiqueMap;
@@ -140,6 +142,20 @@ public class Personnage {
             .put(caracteristique, new ScoreDeCaracteristique(valuesArray.get(i++)));
       }
       return scoreDeCaracteristiqueMap;
+    }
+
+    public Builder priorite(List<Caracteristique> caracteristiquePrioritie){
+      validate();
+      int i = 0;
+     for(Caracteristique caracteristique: caracteristiquePrioritie){
+       scoreDeCaracteristiqueMap.replace(caracteristique, scoreDeCaracteristiqueMap.get(defaultPriorite.get(i++)));
+     }
+      return this;
+    }
+
+    @Override
+    public void validate() {
+
     }
   }
 }
