@@ -1,0 +1,293 @@
+package fr.uvsq.pglp.roguelike.personnage;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import fr.uvsq.pglp.roguelike.personnage.Personnage.Builder;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import org.junit.jupiter.api.Test;
+
+public class PersonnageTest {
+
+  @Test
+  public void testGenerateRandomCaracValue() throws Exception {
+    Builder builder = new Builder("Test");
+    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    method.setAccessible(true);
+    builder = (Builder) method.invoke(builder, new Random(15));
+    Method privateMethod =
+        Personnage.Builder.class.getDeclaredMethod("generateRandomCaracValue", Random.class);
+    privateMethod.setAccessible(true);
+    int result = (Integer) privateMethod.invoke(builder, new Random(15));
+    assertEquals(13, result);
+  }
+
+  @Test
+  public void secondTestGenerateRandomCaracValue() throws Exception {
+    Builder builder = new Builder("Test");
+    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    method.setAccessible(true);
+    builder = (Builder) method.invoke(builder, new Random(1999));
+    Method privateMethod =
+        Personnage.Builder.class.getDeclaredMethod("generateRandomCaracValue", Random.class);
+    privateMethod.setAccessible(true);
+    int result = (Integer) privateMethod.invoke(builder, new Random(1999));
+    assertEquals(15, result);
+  }
+
+  @Test
+  public void testGenerateCarcValues() throws Exception {
+    Builder builder = new Builder("Test");
+    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    method.setAccessible(true);
+    builder = (Builder) method.invoke(builder, new Random(1999));
+    Method privateMethod =
+        Personnage.Builder.class.getDeclaredMethod("generateCarcValues", Random.class);
+    privateMethod.setAccessible(true);
+    int[] result = (int[]) privateMethod.invoke(builder, new Random(1999));
+    int[] expectedResult = {6, 13, 15, 16, 17, 17};
+    assertArrayEquals(expectedResult, result);
+  }
+
+  @Test
+  public void testGenerateCaracMap() throws Exception {
+    Builder builder = new Builder("Test");
+    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    method.setAccessible(true);
+    builder = (Builder) method.invoke(builder, new Random(1999));
+    Method privateMethod =
+        Personnage.Builder.class.getDeclaredMethod("generateCaracMap", Random.class);
+    privateMethod.setAccessible(true);
+    EnumMap<Caracteristique, ScoreDeCaracteristique> result =
+        (EnumMap<Caracteristique, ScoreDeCaracteristique>)
+            privateMethod.invoke(builder, new Random(1999));
+    assertEquals(17, (result.get(Caracteristique.CON)).val());
+  }
+
+  @Test
+  public void secondTestGenerateCaracMap() throws Exception {
+    Builder builder = new Builder("Test");
+    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    method.setAccessible(true);
+    builder = (Builder) method.invoke(builder, new Random(1999));
+    Method privateMethod =
+        Personnage.Builder.class.getDeclaredMethod("generateCaracMap", Random.class);
+    privateMethod.setAccessible(true);
+    EnumMap<Caracteristique, ScoreDeCaracteristique> result =
+        (EnumMap<Caracteristique, ScoreDeCaracteristique>)
+            privateMethod.invoke(builder, new Random(1999));
+    assertEquals(17, (result.get(Caracteristique.FOR)).val());
+  }
+
+  @Test
+  public void thirdTestGenerateCaracMap() throws Exception {
+    Builder builder = new Builder("Test");
+    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    method.setAccessible(true);
+    builder = (Builder) method.invoke(builder, new Random(1999));
+    Method privateMethod =
+        Personnage.Builder.class.getDeclaredMethod("generateCaracMap", Random.class);
+    privateMethod.setAccessible(true);
+    EnumMap<Caracteristique, ScoreDeCaracteristique> result =
+        (EnumMap<Caracteristique, ScoreDeCaracteristique>)
+            privateMethod.invoke(builder, new Random(1999));
+    assertEquals(16, (result.get(Caracteristique.DEX).val()));
+  }
+
+  @Test
+  public void fourthTestGenerateCaracMap() throws Exception {
+    Builder builder = new Builder("Test");
+    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    method.setAccessible(true);
+    builder = (Builder) method.invoke(builder, new Random(1999));
+    Method privateMethod =
+        Personnage.Builder.class.getDeclaredMethod("generateCaracMap", Random.class);
+    privateMethod.setAccessible(true);
+    EnumMap<Caracteristique, ScoreDeCaracteristique> result =
+        (EnumMap<Caracteristique, ScoreDeCaracteristique>)
+            privateMethod.invoke(builder, new Random(1999));
+    assertEquals(15, (result.get(Caracteristique.CHAR).val()));
+  }
+
+  @Test
+  public void fifthTestGenerateCaracMap() throws Exception {
+    Builder builder = new Builder("Test");
+    //    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    //    method.setAccessible(true);
+    //    builder = (Builder)method.invoke(builder, new Random(1999));
+    Method privateMethod =
+        Personnage.Builder.class.getDeclaredMethod("generateCaracMap", Random.class);
+    privateMethod.setAccessible(true);
+    EnumMap<Caracteristique, ScoreDeCaracteristique> result =
+        (EnumMap<Caracteristique, ScoreDeCaracteristique>)
+            privateMethod.invoke(builder, new Random(1999));
+    assertEquals(13, (result.get(Caracteristique.INT).val()));
+  }
+
+  @Test
+  public void sixthTestGenerateCaracMap() throws Exception {
+    Builder builder = new Builder("Test");
+    //    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    //    method.setAccessible(true);
+    //    builder = (Builder)method.invoke(builder, new Random(1999));
+    Method privateMethod =
+        Personnage.Builder.class.getDeclaredMethod("generateCaracMap", Random.class);
+    privateMethod.setAccessible(true);
+    EnumMap<Caracteristique, ScoreDeCaracteristique> result =
+        (EnumMap<Caracteristique, ScoreDeCaracteristique>)
+            privateMethod.invoke(builder, new Random(1999));
+    assertEquals(6, (result.get(Caracteristique.SAG).val()));
+  }
+
+  @Test
+  void validate_withValidArguments_shouldNotThrowException()
+      throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    Builder obj = new Builder("Test");
+    List<Caracteristique> caracteristiquePrioritie = Arrays.asList(Caracteristique.values());
+    Method validateMethod = obj.getClass().getDeclaredMethod("validate", List.class);
+    validateMethod.setAccessible(true);
+    validateMethod.invoke(obj, caracteristiquePrioritie);
+  }
+
+  @Test
+  public void testChangePriorities() throws Exception {
+    Builder builder = new Builder("Test");
+    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    method.setAccessible(true);
+    builder = (Builder) method.invoke(builder, new Random(1999));
+    List<Caracteristique> priorities =
+        new ArrayList<>(
+            Arrays.asList(
+                Caracteristique.SAG,
+                Caracteristique.INT,
+                Caracteristique.CHAR,
+                Caracteristique.DEX,
+                Caracteristique.FOR,
+                Caracteristique.CON));
+    builder = builder.priorite(priorities);
+    Personnage personnage = builder.build();
+    Map<Caracteristique, ScoreDeCaracteristique> result = personnage.getScoreDeCaracteristiqueMap();
+    assertEquals(17, (result.get(Caracteristique.SAG).val()));
+  }
+
+  @Test
+  public void secondTestChangePriorities() throws Exception {
+    Builder builder = new Builder("Test");
+    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    method.setAccessible(true);
+    builder = (Builder) method.invoke(builder, new Random(1999));
+    List<Caracteristique> priorities =
+        new ArrayList<>(
+            Arrays.asList(
+                Caracteristique.SAG,
+                Caracteristique.INT,
+                Caracteristique.CHAR,
+                Caracteristique.DEX,
+                Caracteristique.FOR,
+                Caracteristique.CON));
+    builder = builder.priorite(priorities);
+    Personnage personnage = builder.build();
+    Map<Caracteristique, ScoreDeCaracteristique> result = personnage.getScoreDeCaracteristiqueMap();
+    assertEquals(17, (result.get(Caracteristique.INT).val()));
+  }
+
+  @Test
+  public void thirdTestChangePriorities() throws Exception {
+    Builder builder = new Builder("Test");
+    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    method.setAccessible(true);
+    builder = (Builder) method.invoke(builder, new Random(1999));
+    List<Caracteristique> priorities =
+        new ArrayList<>(
+            Arrays.asList(
+                Caracteristique.SAG,
+                Caracteristique.INT,
+                Caracteristique.CHAR,
+                Caracteristique.DEX,
+                Caracteristique.FOR,
+                Caracteristique.CON));
+    builder = builder.priorite(priorities);
+    Personnage personnage = builder.build();
+    Map<Caracteristique, ScoreDeCaracteristique> result = personnage.getScoreDeCaracteristiqueMap();
+    assertEquals(16, (result.get(Caracteristique.CHAR).val()));
+  }
+
+  @Test
+  public void fourthTestChangePriorities() throws Exception {
+    Builder builder = new Builder("Test");
+    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    method.setAccessible(true);
+    builder = (Builder) method.invoke(builder, new Random(1999));
+    List<Caracteristique> priorities =
+        new ArrayList<>(
+            Arrays.asList(
+                Caracteristique.SAG,
+                Caracteristique.INT,
+                Caracteristique.CHAR,
+                Caracteristique.DEX,
+                Caracteristique.FOR,
+                Caracteristique.CON));
+    builder = builder.priorite(priorities);
+    Personnage personnage = builder.build();
+    Map<Caracteristique, ScoreDeCaracteristique> result = personnage.getScoreDeCaracteristiqueMap();
+    assertEquals(15, (result.get(Caracteristique.DEX).val()));
+  }
+
+  @Test
+  public void fifthTestChangePriorities() throws Exception {
+    Builder builder = new Builder("Test");
+    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    method.setAccessible(true);
+    builder = (Builder) method.invoke(builder, new Random(1999));
+    List<Caracteristique> priorities =
+        new ArrayList<>(
+            Arrays.asList(
+                Caracteristique.SAG,
+                Caracteristique.INT,
+                Caracteristique.CHAR,
+                Caracteristique.DEX,
+                Caracteristique.FOR,
+                Caracteristique.CON));
+    builder = builder.priorite(priorities);
+    Personnage personnage = builder.build();
+    Map<Caracteristique, ScoreDeCaracteristique> result = personnage.getScoreDeCaracteristiqueMap();
+    assertEquals(13, (result.get(Caracteristique.FOR).val()));
+  }
+
+  @Test
+  public void sixthTestChangePriorities() throws Exception {
+    Builder builder = new Builder("Test");
+    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    method.setAccessible(true);
+    builder = (Builder) method.invoke(builder, new Random(1999));
+    List<Caracteristique> priorities =
+        new ArrayList<>(
+            Arrays.asList(
+                Caracteristique.SAG,
+                Caracteristique.INT,
+                Caracteristique.CHAR,
+                Caracteristique.DEX,
+                Caracteristique.FOR,
+                Caracteristique.CON));
+    builder = builder.priorite(priorities);
+    Personnage personnage = builder.build();
+    Map<Caracteristique, ScoreDeCaracteristique> result = personnage.getScoreDeCaracteristiqueMap();
+    assertEquals(6, (result.get(Caracteristique.CON).val()));
+  }
+
+  @Test
+  public void testValeur() throws Exception {
+    Builder builder = new Builder("Test");
+    builder = builder.valeur(Caracteristique.CON, 15);
+    Personnage personnage = builder.build();
+    Map<Caracteristique, ScoreDeCaracteristique> result = personnage.getScoreDeCaracteristiqueMap();
+    assertEquals(15, (result.get(Caracteristique.CON).val()));
+  }
+}

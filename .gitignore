@@ -65,3 +65,6 @@ out/
 roguelike.iml
 
 google-java-format-1.15.0-all-deps.jar
+
+# Main de test
+src/main/java/fr/uvsq/pglp/roguelike/personnage/Main.java

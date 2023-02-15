@@ -5,29 +5,17 @@ package fr.uvsq.pglp.roguelike.personnage;
  *
  * @author Djalil_Oussama
  */
-
-
 public enum Caracteristique {
-  /**
-   * La force du personnage.
-   */
-  FOR,
-  /**
-   * La dextérité du personnage.
-   */
-  DEX,
-  /**
-   * La constitution du personnage.
-   */
+  /** La constitution du personnage. */
   CON,
-  /**
-   * L'intelligence du personnage.
-   */
+  /** La force du personnage. */
+  FOR,
+  /** La dextérité du personnage. */
+  DEX,
+  /* Le charisme du personnage. */
+  CHAR,
+  /** L'intelligence du personnage. */
   INT,
   /* La sagesse du personnage. */
-  SAG,
-  /* Le charisme du personnage. */
-  CHAR;
-
-
+  SAG;
 }

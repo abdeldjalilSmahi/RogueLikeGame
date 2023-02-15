@@ -2,7 +2,6 @@ package fr.uvsq.pglp.roguelike.personnage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -12,12 +11,33 @@ import java.util.stream.IntStream;
 /** Classe représentant un personnage du jeu. */
 public class Personnage {
 
-  private String name;
-  private int pv;
-  private int init;
-  private int defense;
-  private int scoreattaque;
-  private Map<Caracteristique, ScoreDeCaracteristique> scoreDeCaracteristiqueMap;
+  /** Le nom du personnage. */
+  private final String name;
+  /** Les points de vie du personnage. */
+  private final int pv;
+  /** L'initiative du personnage, utilisée pour déterminer l'ordre d'attaque en combat. */
+  private final int init;
+  /** La valeur de défense du personnage, qui réduit les dégâts subis lors d'une attaque. */
+  private final int defense;
+  /**
+   * La valeur d'attaque du personnage, utilisée pour calculer les dégâts infligés lors d'une
+   * attaque.
+   */
+  private final int scoreattaque;
+  /**
+   * Une table de hachage associant chaque caractéristique du personnage à son score de
+   * caractéristique correspondant.
+   */
+  private final Map<Caracteristique, ScoreDeCaracteristique> scoreDeCaracteristiqueMap;
+
+  private Personnage(Builder builder) {
+    this.name = builder.name;
+    this.pv = builder.pv;
+    this.scoreattaque = builder.scoreattaque;
+    this.defense = builder.defense;
+    this.init = builder.init;
+    this.scoreDeCaracteristiqueMap = builder.scoreDeCaracteristiqueMap;
+  }
 
   /**
    * Retourne le nom du personnage.
@@ -76,17 +96,16 @@ public class Personnage {
   /** Classe interne permettant de construire un objet Personnage. */
   public static class Builder {
 
-    private String name;
+    private final String name;
     private Map<Caracteristique, ScoreDeCaracteristique> scoreDeCaracteristiqueMap;
     private List<Caracteristique> defaultPriorite =
-        new ArrayList<>(
-            Arrays.asList(
-                Caracteristique.CON,
-                Caracteristique.FOR,
-                Caracteristique.DEX,
-                Caracteristique.CHAR,
-                Caracteristique.INT,
-                Caracteristique.SAG));
+        new ArrayList<>(Arrays.asList(Caracteristique.values()));
+    private int pv;
+    private int init;
+    private int defense;
+    private int scoreattaque;
+
+    private Random random = new Random(new Random().nextInt());
 
     /**
      * Constructeur prenant en paramètre le nom du personnage.
@@ -95,7 +114,20 @@ public class Personnage {
      */
     public Builder(String name) {
       this.name = name;
-      this.scoreDeCaracteristiqueMap = generateCaracMap();
+      this.scoreDeCaracteristiqueMap = generateCaracMap(this.random);
+      generateOtherScores();
+    }
+    /**
+     * Cette méthode est didiée pour faire les test unitaires elle sera invoqué juste lorsqu'on veut
+     * faire les tests unitaires pour contourner le Random.
+     *
+     */
+
+    private Builder setRandom(Random random) {
+      this.random = random;
+      this.scoreDeCaracteristiqueMap = generateCaracMap(random);
+      generateOtherScores();
+      return this;
     }
 
     /**
@@ -105,10 +137,10 @@ public class Personnage {
      *
      * @return La valeur générée pour la caractéristique.
      */
-    private int generateRandomCaracValue() {
-      int[] randomIntsArray =
-          IntStream.generate(() -> new Random().nextInt(6) + 1).limit(4).toArray();
+    private int generateRandomCaracValue(Random random) {
+      int[] randomIntsArray = IntStream.generate(() -> random.nextInt(6) + 1).limit(4).toArray();
       Arrays.sort(randomIntsArray);
+      //      System.out.println(Arrays.toString(randomIntsArray));
       return randomIntsArray[1] + randomIntsArray[2] + randomIntsArray[3];
     }
 
@@ -120,30 +152,30 @@ public class Personnage {
      *
      * @return Un tableau de valeurs pour les différentes caractéristiques.
      */
-    private List generateCarcValues() {
+    private int[] generateCarcValues(Random random) {
       int sum;
       int[] randomIntsArray;
       do {
-        randomIntsArray = IntStream.generate(() -> generateRandomCaracValue()).limit(6).toArray();
+        randomIntsArray =
+            IntStream.generate(() -> generateRandomCaracValue(random)).limit(6).toArray();
         sum = Arrays.stream(randomIntsArray).sum();
       } while (sum <= 80 && sum >= 65);
-      List values = Arrays.asList(randomIntsArray);
-      Collections.sort(values, Collections.reverseOrder());
-      return values;
+      Arrays.sort(randomIntsArray);
+      return randomIntsArray;
     }
 
     /**
      * Cette méthode remplit la map {@link #scoreDeCaracteristiqueMap} avec les caractéristiques et
      * leurs valeurs générées.
      */
-    private Map generateCaracMap() {
+    private Map generateCaracMap(Random random) {
       Map<Caracteristique, ScoreDeCaracteristique> scoreDeCaracteristiqueMap =
           new EnumMap<>(Caracteristique.class);
-      List<Integer> valuesArray = generateCarcValues();
-      int i = 0;
+      int[] valuesArray = generateCarcValues(random);
+      int i = 5;
       for (Caracteristique caracteristique : defaultPriorite) {
-        scoreDeCaracteristiqueMap.put(
-            caracteristique, new ScoreDeCaracteristique(valuesArray.get(i++)));
+        scoreDeCaracteristiqueMap.put(caracteristique, new ScoreDeCaracteristique(valuesArray[i]));
+        i--;
       }
       return scoreDeCaracteristiqueMap;
     }
@@ -159,11 +191,15 @@ public class Personnage {
      */
     public Builder priorite(List<Caracteristique> caracteristiquePrioritie) {
       validate(caracteristiquePrioritie);
+      Map<Caracteristique, ScoreDeCaracteristique> copyOfScoreCaracMap =
+          new EnumMap<>(scoreDeCaracteristiqueMap);
       int i = 0;
       for (Caracteristique caracteristique : caracteristiquePrioritie) {
         scoreDeCaracteristiqueMap.replace(
-            caracteristique, scoreDeCaracteristiqueMap.get(defaultPriorite.get(i++)));
+            caracteristique, copyOfScoreCaracMap.get(defaultPriorite.get(i)));
+        i++;
       }
+      generateOtherScores();
       return this;
     }
 
@@ -185,6 +221,63 @@ public class Personnage {
               "La caracteristique: " + caracteristique + " N'existe pas dans ta liste");
         }
       }
+    }
+    /**
+     * Affecte une valeur à une caractéristique spécifique du personnage. La méthode valide d'abord
+     * si la caractéristique passée en paramètre est correcte. Si la caractéristique est correcte,
+     * la méthode vérifie si la valeur passée en paramètre n'est pas supérieure à 21 ou inférieure à
+     * 1. Si la valeur est valide, la méthode met à jour la valeur de la caractéristique dans la
+     * carte des scores de caractéristiques.
+     *
+     * @param caracteristique la caractéristique à laquelle affecter une valeur
+     * @param valeur la valeur à affecter à la caractéristique
+     * @return l'instance courante de Builder pour permettre un appel fluide de méthodes
+     * @throws IllegalArgumentException si la caractéristique passée en paramètre est incorrecte, si
+     *     la valeur est supérieure à 21 ou inférieure à 1
+     */
+
+    public Builder valeur(Caracteristique caracteristique, int valeur) {
+      // vaut mieux faire une autre méthode validate({@link Caracteristique, valeur}
+      if (!(Arrays.asList(Caracteristique.values())).contains(caracteristique)) {
+        throw new IllegalArgumentException("La caracteristique que vous avez passer est incorrect");
+      }
+      if (valeur > 21) {
+        throw new IllegalArgumentException("La valeur ne doit pas dépasser 21");
+      }
+      if (valeur < 1) {
+        throw new IllegalArgumentException("La valeur ne doit pas etre inférieur à 1");
+      }
+      this.scoreDeCaracteristiqueMap.replace(caracteristique, new ScoreDeCaracteristique(valeur));
+      return this;
+    }
+    /**
+     * Génère les scores de points de vie, d'initiative et de défense en fonction des
+     * caractéristiques de la créature. Les scores de points de vie, d'initiative et de défense sont
+     * stockés dans les champs 'pv', 'init' et 'defense' de l'objet. Les scores sont calculés en
+     * utilisant les caractéristiques de la créature stockées dans le champ
+     * 'scoreDeCaracteristiqueMap'. Les scores de points de vie, d'initiative et de défense sont
+     * calculés de la manière suivante :
+     *
+     * <p>pv = 20 + modificateur(CON) init = modificateur(DEX) defense = 10 + modificateur(DEX)
+     *
+     * <p>Le modificateur d'une caractéristique est calculé en utilisant la méthode 'mod()' de
+     * l'objet 'ScoreDeCaracteristique'. Cette méthode renvoie la valeur du score de la
+     * caractéristique après avoir appliqué les éventuels bonus et malus. Si les scores de
+     * caractéristiques n'ont pas été initialisés avant d'appeler cette méthode, une exception sera
+     * levée.
+     *
+     * @throws IllegalStateException si les scores de caractéristiques n'ont pas été initialisés
+     *     avant d'appeler cette méthode.
+     */
+
+    public void generateOtherScores() {
+      this.pv = 20 + scoreDeCaracteristiqueMap.get(Caracteristique.CON).mod();
+      this.init = scoreDeCaracteristiqueMap.get(Caracteristique.DEX).mod();
+      this.defense = 10 + scoreDeCaracteristiqueMap.get(Caracteristique.DEX).mod();
+    }
+
+    public Personnage build() {
+      return new Personnage(this);
     }
   }
 }

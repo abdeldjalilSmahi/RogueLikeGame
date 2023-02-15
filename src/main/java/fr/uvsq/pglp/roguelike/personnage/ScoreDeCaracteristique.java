@@ -1,22 +1,13 @@
 package fr.uvsq.pglp.roguelike.personnage;
 
 
-import fr.uvsq.pglp.roguelike.validation.Ivaldator;
+/** Classe représentant un score de caractéristique. */
+public final class ScoreDeCaracteristique {
 
-/**
- * Classe représentant un score de caractéristique.
- */
-
-public final class ScoreDeCaracteristique implements Ivaldator {
-
-  /**
-   * La valeur du score de caractéristique.
-   */
+  /** La valeur du score de caractéristique. */
   private final int val;
 
-  /**
-   * Le modificateur du score de caractéristique.
-   */
+  /** Le modificateur du score de caractéristique. */
   private final int mod;
 
   /**
@@ -25,7 +16,7 @@ public final class ScoreDeCaracteristique implements Ivaldator {
    * @param val La valeur du score de caractéristique
    */
   public ScoreDeCaracteristique(int val) {
-    validate();
+    validate(val);
     this.val = val;
     this.mod = getModifcateur(val);
   }
@@ -73,12 +64,11 @@ public final class ScoreDeCaracteristique implements Ivaldator {
     return modificateur;
   }
 
-  @Override
-  public void validate() {
-    if (this.val < 1) {
+  private void validate(int val) {
+    if (val < 1) {
       throw new IllegalArgumentException("la valeur de la caractéristique doit etre sup à 1");
     }
-    if (this.val > 21) {
+    if (val > 21) {
       throw new IllegalArgumentException("la valeur de la caractéristique doit etre inférieur 21");
     }
   }
