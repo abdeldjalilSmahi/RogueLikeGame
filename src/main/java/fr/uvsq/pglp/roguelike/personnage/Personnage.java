@@ -121,7 +121,6 @@ public class Personnage {
      * Cette méthode est didiée pour faire les test unitaires elle sera invoqué juste lorsqu'on veut
      * faire les tests unitaires pour contourner le Random.
      */
-
     private Builder setRandom(Random random) {
       this.random = random;
       this.scoreDeCaracteristiqueMap = generateCaracMap(random);
@@ -241,7 +240,6 @@ public class Personnage {
      * @throws IllegalArgumentException si la caractéristique passée en paramètre est incorrecte, si
      *     la valeur est supérieure à 21 ou inférieure à 1
      */
-
     public Builder valeur(Caracteristique caracteristique, int valeur) {
       // vaut mieux faire une autre méthode validate({@link Caracteristique, valeur}
       validate(caracteristique);
@@ -250,7 +248,6 @@ public class Personnage {
       generateOtherScores();
       return this;
     }
-
 
     /**
      * Génère les scores de points de vie, d'initiative et de défense en fonction des
@@ -271,7 +268,6 @@ public class Personnage {
      * @throws IllegalStateException si les scores de caractéristiques n'ont pas été initialisés
      *     avant d'appeler cette méthode.
      */
-
     private void generateOtherScores() {
       this.pv = 20 + scoreDeCaracteristiqueMap.get(Caracteristique.CON).mod();
       this.init = scoreDeCaracteristiqueMap.get(Caracteristique.DEX).mod();
