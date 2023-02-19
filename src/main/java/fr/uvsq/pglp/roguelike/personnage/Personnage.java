@@ -120,7 +120,6 @@ public class Personnage {
     /**
      * Cette méthode est didiée pour faire les test unitaires elle sera invoqué juste lorsqu'on veut
      * faire les tests unitaires pour contourner le Random.
-     *
      */
 
     private Builder setRandom(Random random) {
@@ -222,6 +221,13 @@ public class Personnage {
         }
       }
     }
+
+    private void validate(Caracteristique caracteristique) {
+      if (!(Arrays.asList(Caracteristique.values())).contains(caracteristique)) {
+        throw new IllegalArgumentException("La caracteristique que vous avez passer est incorrect");
+      }
+    }
+
     /**
      * Affecte une valeur à une caractéristique spécifique du personnage. La méthode valide d'abord
      * si la caractéristique passée en paramètre est correcte. Si la caractéristique est correcte,
@@ -244,11 +250,8 @@ public class Personnage {
       generateOtherScores();
       return this;
     }
-    private void validate(Caracteristique caracteristique){
-      if (!(Arrays.asList(Caracteristique.values())).contains(caracteristique)) {
-        throw new IllegalArgumentException("La caracteristique que vous avez passer est incorrect");
-      }
-    }
+
+
     /**
      * Génère les scores de points de vie, d'initiative et de défense en fonction des
      * caractéristiques de la créature. Les scores de points de vie, d'initiative et de défense sont
@@ -269,7 +272,7 @@ public class Personnage {
      *     avant d'appeler cette méthode.
      */
 
-    public void generateOtherScores() {
+    private void generateOtherScores() {
       this.pv = 20 + scoreDeCaracteristiqueMap.get(Caracteristique.CON).mod();
       this.init = scoreDeCaracteristiqueMap.get(Caracteristique.DEX).mod();
       this.defense = 10 + scoreDeCaracteristiqueMap.get(Caracteristique.DEX).mod();
