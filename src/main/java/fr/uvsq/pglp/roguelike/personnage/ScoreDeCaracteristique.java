@@ -64,7 +64,7 @@ public final class ScoreDeCaracteristique {
     return modificateur;
   }
 
-  private void validate(int val) {
+  public static void validate(int val) {
     if (val < 1) {
       throw new IllegalArgumentException("la valeur de la caractéristique doit etre sup à 1");
     }

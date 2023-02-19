@@ -123,7 +123,6 @@ public class Personnage {
      * Cette méthode est didiée pour faire les test unitaires elle sera invoqué juste lorsqu'on veut
      * faire les tests unitaires pour contourner le Random.
      */
-
     private Builder setRandom(Random random) {
       this.random = random;
       this.scoreDeCaracteristiqueMap = generateCaracMap(random);
@@ -170,7 +169,7 @@ public class Personnage {
      * leurs valeurs générées.
      */
     private Map generateCaracMap(Random random) {
-      scoreDeCaracteristiqueMap =
+      Map<Caracteristique, ScoreDeCaracteristique> scoreDeCaracteristiqueMap =
           new EnumMap<>(Caracteristique.class);
       int[] valuesArray = generateCarcValues(random);
       int i = 5;
@@ -226,6 +225,14 @@ public class Personnage {
       }
     }
 
+
+    private void validate(Caracteristique caracteristique) {
+      if (!(Arrays.asList(Caracteristique.values())).contains(caracteristique)) {
+        throw new IllegalArgumentException("La caracteristique que vous avez passer est incorrect");
+      }
+    }
+
+
     /**
      * Affecte une valeur à une caractéristique spécifique du personnage. La méthode valide d'abord
      * si la caractéristique passée en paramètre est correcte. Si la caractéristique est correcte,
@@ -239,19 +246,12 @@ public class Personnage {
      * @throws IllegalArgumentException si la caractéristique passée en paramètre est incorrecte, si
      *                                  la valeur est supérieure à 21 ou inférieure à 1
      */
-
     public Builder valeur(Caracteristique caracteristique, int valeur) {
       // vaut mieux faire une autre méthode validate({@link Caracteristique, valeur}
-      if (!(Arrays.asList(Caracteristique.values())).contains(caracteristique)) {
-        throw new IllegalArgumentException("La caracteristique que vous avez passer est incorrect");
-      }
-      if (valeur > 21) {
-        throw new IllegalArgumentException("La valeur ne doit pas dépasser 21");
-      }
-      if (valeur < 1) {
-        throw new IllegalArgumentException("La valeur ne doit pas etre inférieur à 1");
-      }
+      validate(caracteristique);
+      ScoreDeCaracteristique.validate(valeur);
       this.scoreDeCaracteristiqueMap.replace(caracteristique, new ScoreDeCaracteristique(valeur));
+      generateOtherScores();
       return this;
     }
 
@@ -275,8 +275,8 @@ public class Personnage {
      *                               avant d'appeler cette méthode.
      */
 
-    public void generateOtherScores() {
 
+    public void generateOtherScores() {
       this.pv = 20 + scoreDeCaracteristiqueMap.get(Caracteristique.CON).mod();
       this.init = scoreDeCaracteristiqueMap.get(Caracteristique.DEX).mod();
       this.defense = 10 + scoreDeCaracteristiqueMap.get(Caracteristique.DEX).mod();
