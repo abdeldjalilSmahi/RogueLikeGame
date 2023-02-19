@@ -238,17 +238,16 @@ public class Personnage {
 
     public Builder valeur(Caracteristique caracteristique, int valeur) {
       // vaut mieux faire une autre méthode validate({@link Caracteristique, valeur}
+      validate(caracteristique);
+      ScoreDeCaracteristique.validate(valeur);
+      this.scoreDeCaracteristiqueMap.replace(caracteristique, new ScoreDeCaracteristique(valeur));
+      generateOtherScores();
+      return this;
+    }
+    private void validate(Caracteristique caracteristique){
       if (!(Arrays.asList(Caracteristique.values())).contains(caracteristique)) {
         throw new IllegalArgumentException("La caracteristique que vous avez passer est incorrect");
       }
-      if (valeur > 21) {
-        throw new IllegalArgumentException("La valeur ne doit pas dépasser 21");
-      }
-      if (valeur < 1) {
-        throw new IllegalArgumentException("La valeur ne doit pas etre inférieur à 1");
-      }
-      this.scoreDeCaracteristiqueMap.replace(caracteristique, new ScoreDeCaracteristique(valeur));
-      return this;
     }
     /**
      * Génère les scores de points de vie, d'initiative et de défense en fonction des
