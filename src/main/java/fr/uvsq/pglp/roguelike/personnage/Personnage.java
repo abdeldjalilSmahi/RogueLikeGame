@@ -8,26 +8,16 @@ import java.util.Map;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-/**
- * Classe représentant un personnage du jeu.
- */
+/** Classe représentant un personnage du jeu. */
 public class Personnage {
 
-  /**
-   * Le nom du personnage.
-   */
+  /** Le nom du personnage. */
   private final String name;
-  /**
-   * Les points de vie du personnage.
-   */
+  /** Les points de vie du personnage. */
   private final int pv;
-  /**
-   * L'initiative du personnage, utilisée pour déterminer l'ordre d'attaque en combat.
-   */
+  /** L'initiative du personnage, utilisée pour déterminer l'ordre d'attaque en combat. */
   private final int init;
-  /**
-   * La valeur de défense du personnage, qui réduit les dégâts subis lors d'une attaque.
-   */
+  /** La valeur de défense du personnage, qui réduit les dégâts subis lors d'une attaque. */
   private final int defense;
   /**
    * Une table de hachage associant chaque caractéristique du personnage à son score de
@@ -91,10 +81,7 @@ public class Personnage {
     return defense;
   }
 
-
-  /**
-   * Classe interne permettant de construire un objet Personnage.
-   */
+  /** Classe interne permettant de construire un objet Personnage. */
   public static class Builder {
 
     private final String name;
@@ -125,7 +112,7 @@ public class Personnage {
      */
     private Builder setRandom(Random random) {
       this.random = random;
-      this.scoreDeCaracteristiqueMap = generateCaracMap(random);
+      this.scoreDeCaracteristiqueMap = generateCaracMap(this.random);
       generateOtherScores();
       return this;
     }
@@ -153,6 +140,7 @@ public class Personnage {
      * @return Un tableau de valeurs pour les différentes caractéristiques.
      */
     private int[] generateCarcValues(Random random) {
+      // test unitaire urgent  !
       int sum;
       int[] randomIntsArray;
       do {
@@ -184,11 +172,10 @@ public class Personnage {
      * Définit la priorité des caractéristiques utilisées pour calculer le score.
      *
      * @param caracteristiquePrioritie Une liste de valeurs de {@link Caracteristique} représentant
-     *                                 la priorité des caractéristiques.
+     *     la priorité des caractéristiques.
      * @return Une instance du {@link Builder} avec la priorité des caractéristiques mise à jour.
      * @throws IllegalArgumentException si la liste ne contient pas exactement 6 caractéristiques ou
-     *                                  si une ou plusieurs caractéristiques de la liste ne sont pas
-     *                                  valides.
+     *     si une ou plusieurs caractéristiques de la liste ne sont pas valides.
      */
     public Builder priorite(List<Caracteristique> caracteristiquePrioritie) {
       validate(caracteristiquePrioritie);
@@ -209,8 +196,7 @@ public class Personnage {
      *
      * @param caracteristiquePrioritie Une liste de valeurs de {@link Caracteristique} à vérifier.
      * @throws IllegalArgumentException si la liste ne contient pas exactement 6 caractéristiques ou
-     *                                  si une ou plusieurs caractéristiques de la liste ne sont pas
-     *                                  valides.
+     *     si une ou plusieurs caractéristiques de la liste ne sont pas valides.
      */
     private void validate(List<Caracteristique> caracteristiquePrioritie) {
       if (caracteristiquePrioritie.size() != 6) {
@@ -225,13 +211,11 @@ public class Personnage {
       }
     }
 
-
     private void validate(Caracteristique caracteristique) {
       if (!(Arrays.asList(Caracteristique.values())).contains(caracteristique)) {
         throw new IllegalArgumentException("La caracteristique que vous avez passer est incorrect");
       }
     }
-
 
     /**
      * Affecte une valeur à une caractéristique spécifique du personnage. La méthode valide d'abord
@@ -241,10 +225,10 @@ public class Personnage {
      * carte des scores de caractéristiques.
      *
      * @param caracteristique la caractéristique à laquelle affecter une valeur
-     * @param valeur          la valeur à affecter à la caractéristique
+     * @param valeur la valeur à affecter à la caractéristique
      * @return l'instance courante de Builder pour permettre un appel fluide de méthodes
      * @throws IllegalArgumentException si la caractéristique passée en paramètre est incorrecte, si
-     *                                  la valeur est supérieure à 21 ou inférieure à 1
+     *     la valeur est supérieure à 21 ou inférieure à 1
      */
     public Builder valeur(Caracteristique caracteristique, int valeur) {
       // vaut mieux faire une autre méthode validate({@link Caracteristique, valeur}
@@ -272,20 +256,18 @@ public class Personnage {
      * levée.
      *
      * @throws IllegalStateException si les scores de caractéristiques n'ont pas été initialisés
-     *                               avant d'appeler cette méthode.
+     *     avant d'appeler cette méthode.
      */
-
-
     public void generateOtherScores() {
       this.pv = 20 + scoreDeCaracteristiqueMap.get(Caracteristique.CON).mod();
       this.init = scoreDeCaracteristiqueMap.get(Caracteristique.DEX).mod();
       this.defense = 10 + scoreDeCaracteristiqueMap.get(Caracteristique.DEX).mod();
-      this.typeDattaque.put(TypeDattaque.AttaqueContact,
-          scoreDeCaracteristiqueMap.get(Caracteristique.FOR).mod());
-      this.typeDattaque.put(TypeDattaque.AttaqueDistance,
-          scoreDeCaracteristiqueMap.get(Caracteristique.DEX).mod());
-      this.typeDattaque.put(TypeDattaque.AttaqueDistance,
-          scoreDeCaracteristiqueMap.get(Caracteristique.INT).mod());
+      this.typeDattaque.put(
+          TypeDattaque.AttaqueContact, scoreDeCaracteristiqueMap.get(Caracteristique.FOR).mod());
+      this.typeDattaque.put(
+          TypeDattaque.AttaqueDistance, scoreDeCaracteristiqueMap.get(Caracteristique.DEX).mod());
+      this.typeDattaque.put(
+          TypeDattaque.AttaqueMagique, scoreDeCaracteristiqueMap.get(Caracteristique.INT).mod());
     }
 
     public Personnage build() {
