@@ -259,7 +259,7 @@ public class Personnage {
      *     avant d'appeler cette méthode.
      */
     public void generateOtherScores() {
-      this.pv = 20 + scoreDeCaracteristiqueMap.get(Caracteristique.CON).mod();
+      this.pv = profil(random) + scoreDeCaracteristiqueMap.get(Caracteristique.CON).mod();
       this.init = scoreDeCaracteristiqueMap.get(Caracteristique.DEX).mod();
       this.defense = 10 + scoreDeCaracteristiqueMap.get(Caracteristique.DEX).mod();
       this.typeDattaque.put(
@@ -268,6 +268,14 @@ public class Personnage {
           TypeDattaque.AttaqueDistance, scoreDeCaracteristiqueMap.get(Caracteristique.DEX).mod());
       this.typeDattaque.put(
           TypeDattaque.AttaqueMagique, scoreDeCaracteristiqueMap.get(Caracteristique.INT).mod());
+    }
+
+    /**
+     *
+     * @return
+     */
+    private int profil(Random random){
+      return 2* random.nextInt(5) + 2;
     }
 
     public Personnage build() {
