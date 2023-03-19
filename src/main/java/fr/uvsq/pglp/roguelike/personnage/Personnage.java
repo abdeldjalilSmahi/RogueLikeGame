@@ -284,7 +284,7 @@ public class Personnage {
           scoreDeCaracteristiqueMap.get(Caracteristique.FOR).mod());
       this.typeDattaque.put(TypeDattaque.AttaqueDistance,
           scoreDeCaracteristiqueMap.get(Caracteristique.DEX).mod());
-      this.typeDattaque.put(TypeDattaque.AttaqueDistance,
+      this.typeDattaque.put(TypeDattaque.AttaqueMagique,
           scoreDeCaracteristiqueMap.get(Caracteristique.INT).mod());
     }
 
