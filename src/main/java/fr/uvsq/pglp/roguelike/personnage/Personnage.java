@@ -260,7 +260,7 @@ public class Personnage {
      */
     public void generateOtherScores() {
       this.pv = profil(random) + scoreDeCaracteristiqueMap.get(Caracteristique.CON).mod();
-      this.init = scoreDeCaracteristiqueMap.get(Caracteristique.DEX).mod();
+      this.init = scoreDeCaracteristiqueMap.get(Caracteristique.DEX).val();
       this.defense = 10 + scoreDeCaracteristiqueMap.get(Caracteristique.DEX).mod();
       this.typeDattaque.put(
           TypeDattaque.AttaqueContact, scoreDeCaracteristiqueMap.get(Caracteristique.FOR).mod());
