@@ -1,17 +1,17 @@
 package fr.uvsq.pglp.roguelike.Equipement;
 
 public enum ArmeDistanceType {
-  Baton(4,2,0),
-  BatonFerre(6,2,2);
+  Arbaletedepoing(6,10,8),
+  ArbaleteLegere(6,2,2);
 
 
   private int De;
-  private int nbrMain;
+  private int portee;
   private int prix;
 
-  ArmeDistanceType(int de, int nbrMain, int prix) {
+  ArmeDistanceType(int de, int poertee, int prix) {
     De = de;
-    this.nbrMain = nbrMain;
+    this.portee = portee;
     this.prix = prix;
   }
 
@@ -19,8 +19,8 @@ public enum ArmeDistanceType {
     return De;
   }
 
-  public int getNbrMain() {
-    return nbrMain;
+  public int getPortee() {
+    return portee;
   }
 
   public int getPrix() {
