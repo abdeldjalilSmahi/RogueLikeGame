@@ -14,8 +14,4 @@ public enum TypeDattaque {
    * L'attaque à distance.
    */
   AttaqueDistance,
-  /**
-   * L'attaque magique.
-   */
-  AttaqueMagique;
 }

@@ -328,7 +328,7 @@ public class PersonnageTest {
     builder = (Builder)method.invoke(builder, new Random(1999));
     Personnage personnage = builder.build();
     assertEquals("Test", personnage.getName());
-    assertEquals(3, personnage.getInit()); // 20 + 3
+    assertEquals(3, personnage.getInit());
   }
   @Test
   public void testDefense() throws Exception{
@@ -338,7 +338,7 @@ public class PersonnageTest {
     builder = (Builder)method.invoke(builder, new Random(1999));
     Personnage personnage = builder.build();
     assertEquals("Test", personnage.getName());
-    assertEquals(13, personnage.getDefense()); // 20 + 3
+    assertEquals(13, personnage.getDefense());
   }
 
 }

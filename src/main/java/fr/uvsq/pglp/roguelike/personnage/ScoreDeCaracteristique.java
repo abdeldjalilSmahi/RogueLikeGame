@@ -1,6 +1,5 @@
 package fr.uvsq.pglp.roguelike.personnage;
 
-
 /** Classe représentant un score de caractéristique. */
 public final class ScoreDeCaracteristique {
 
@@ -64,6 +63,11 @@ public final class ScoreDeCaracteristique {
     return modificateur;
   }
 
+  /**
+   * Méthode static responsable de la verification des valeurs.
+   *
+   * @throws IllegalArgumentException si la valeur est inf à 1 ou sup à 21
+   */
   public static void validate(int val) {
     if (val < 1) {
       throw new IllegalArgumentException("la valeur de la caractéristique doit etre sup à 1");
