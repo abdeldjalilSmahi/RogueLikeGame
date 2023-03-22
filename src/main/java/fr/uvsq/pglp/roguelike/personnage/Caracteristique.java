@@ -3,7 +3,7 @@ package fr.uvsq.pglp.roguelike.personnage;
 /**
  * Enumération des différentes caractéristiques d'un personnage.
  *
- * @author Djalil_Oussama
+ * @author Djalil_Oussama_Amir
  */
 public enum Caracteristique {
   /** La constitution du personnage. */
