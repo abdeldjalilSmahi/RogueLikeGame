@@ -262,19 +262,19 @@ public class Personnage {
       this.pv = profil(random) + scoreDeCaracteristiqueMap.get(Caracteristique.CON).mod();
       this.init = scoreDeCaracteristiqueMap.get(Caracteristique.DEX).val();
       this.defense = 10 + scoreDeCaracteristiqueMap.get(Caracteristique.DEX).mod();
-      this.scoreAttaque.put(TypeDattaque.AttaqueContact,
-          scoreDeCaracteristiqueMap.get(Caracteristique.FOR).mod());
-      this.scoreAttaque.put(TypeDattaque.AttaqueDistance,
-          scoreDeCaracteristiqueMap.get(Caracteristique.DEX).mod());
+      this.scoreAttaque.put(
+          TypeDattaque.AttaqueContact, scoreDeCaracteristiqueMap.get(Caracteristique.FOR).mod());
+      this.scoreAttaque.put(
+          TypeDattaque.AttaqueDistance, scoreDeCaracteristiqueMap.get(Caracteristique.DEX).mod());
     }
 
     /**
+     * Calcule la valeur aléatoire de point de vie.
      *
-     * @return
+     * @return pv
      */
-    private int profil(Random random){
-      return 2* random.nextInt(5) + 2;
-
+    private int profil(Random random) {
+      return 2 * random.nextInt(5) + 2;
     }
 
     public Personnage build() {

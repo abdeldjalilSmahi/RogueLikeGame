@@ -1,13 +1,9 @@
+package fr.uvsq.pglp.roguelike.equipement;
 
-/**
-
- Classe définissant une arme à distance.
- Hérite de la classe ArmeContact.
- */
-package fr.uvsq.pglp.roguelike.Equipement;
 import java.util.Random;
 
-public class ArmeDistance extends ArmeContact{
+/** classe d'arme a distance. */
+public class ArmeDistance implements Equipement {
 
   /** Le type d'arme de contact associé à l'arme à distance. */
   private ArmeContactType armecontact;
@@ -19,18 +15,14 @@ public class ArmeDistance extends ArmeContact{
   private int porte;
 
   /**
-
-   Constructeur pour l'initialisation d'une arme à distance.
-   @param armecontact L'arme de contact associée à l'arme à distance.
+   * Constructeur pour l'initialisation d'une arme à distance.
+   *
+   * @param armecontact L'arme de contact associée à l'arme à distance.
    */
   public ArmeDistance(ArmeContactType armecontact) {
     this.armecontact = armecontact;
   }
-  /**
 
-   Méthode privée pour le calcul des dégâts de l'arme à distance.
-   */
-  private void calculdegat(){
-  }
-
+  /** Méthode privée pour le calcul des dégâts de l'arme à distance. */
+  private void calculdegat() {}
 }
