@@ -2,6 +2,8 @@ package fr.uvsq.pglp.roguelike.personnage;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import fr.uvsq.pglp.roguelike.personnage.Personnage.Builder;
 import java.lang.reflect.InvocationTargetException;
@@ -18,6 +20,7 @@ public class PersonnageTest {
 
   @Test
   public void testGenerateRandomCaracValue() throws Exception {
+    // ce test fonctionnne après avoir revu le code.
     Builder builder = new Builder("Test");
     Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
     method.setAccessible(true);
@@ -52,8 +55,23 @@ public class PersonnageTest {
         Personnage.Builder.class.getDeclaredMethod("generateCarcValues", Random.class);
     privateMethod.setAccessible(true);
     int[] result = (int[]) privateMethod.invoke(builder, new Random(1999));
-    int[] expectedResult = {6, 13, 15, 16, 17, 17};
+    int[] expectedResult = {10, 12, 13, 13, 15, 15};
     assertArrayEquals(expectedResult, result);
+  }
+
+  @Test
+  public void testGenerateCarcValuesSum() throws Exception {
+    Builder builder = new Builder("Test");
+    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    method.setAccessible(true);
+    builder = (Builder) method.invoke(builder, new Random(1999));
+    Method privateMethod =
+        Personnage.Builder.class.getDeclaredMethod("generateCarcValues", Random.class);
+    privateMethod.setAccessible(true);
+    int[] result = (int[]) privateMethod.invoke(builder, new Random(1999));
+    int sum = Arrays.stream(result).sum();
+    assertTrue(sum > 65 );
+    assertTrue(sum < 80);
   }
 
   @Test
@@ -68,7 +86,7 @@ public class PersonnageTest {
     EnumMap<Caracteristique, ScoreDeCaracteristique> result =
         (EnumMap<Caracteristique, ScoreDeCaracteristique>)
             privateMethod.invoke(builder, new Random(1999));
-    assertEquals(17, (result.get(Caracteristique.CON)).val());
+    assertEquals(15, (result.get(Caracteristique.CON)).val());
   }
 
   @Test
@@ -83,7 +101,7 @@ public class PersonnageTest {
     EnumMap<Caracteristique, ScoreDeCaracteristique> result =
         (EnumMap<Caracteristique, ScoreDeCaracteristique>)
             privateMethod.invoke(builder, new Random(1999));
-    assertEquals(17, (result.get(Caracteristique.FOR)).val());
+    assertEquals(15, (result.get(Caracteristique.FOR)).val());
   }
 
   @Test
@@ -98,7 +116,7 @@ public class PersonnageTest {
     EnumMap<Caracteristique, ScoreDeCaracteristique> result =
         (EnumMap<Caracteristique, ScoreDeCaracteristique>)
             privateMethod.invoke(builder, new Random(1999));
-    assertEquals(16, (result.get(Caracteristique.DEX).val()));
+    assertEquals(13, (result.get(Caracteristique.DEX).val()));
   }
 
   @Test
@@ -113,7 +131,7 @@ public class PersonnageTest {
     EnumMap<Caracteristique, ScoreDeCaracteristique> result =
         (EnumMap<Caracteristique, ScoreDeCaracteristique>)
             privateMethod.invoke(builder, new Random(1999));
-    assertEquals(15, (result.get(Caracteristique.CHAR).val()));
+    assertEquals(13, (result.get(Caracteristique.CHAR).val()));
   }
 
   @Test
@@ -128,7 +146,7 @@ public class PersonnageTest {
     EnumMap<Caracteristique, ScoreDeCaracteristique> result =
         (EnumMap<Caracteristique, ScoreDeCaracteristique>)
             privateMethod.invoke(builder, new Random(1999));
-    assertEquals(13, (result.get(Caracteristique.INT).val()));
+    assertEquals(12, (result.get(Caracteristique.INT).val()));
   }
 
   @Test
@@ -143,7 +161,7 @@ public class PersonnageTest {
     EnumMap<Caracteristique, ScoreDeCaracteristique> result =
         (EnumMap<Caracteristique, ScoreDeCaracteristique>)
             privateMethod.invoke(builder, new Random(1999));
-    assertEquals(6, (result.get(Caracteristique.SAG).val()));
+    assertEquals(10, (result.get(Caracteristique.SAG).val()));
   }
 
   @Test
@@ -174,7 +192,7 @@ public class PersonnageTest {
     builder = builder.priorite(priorities);
     Personnage personnage = builder.build();
     Map<Caracteristique, ScoreDeCaracteristique> result = personnage.getScoreDeCaracteristiqueMap();
-    assertEquals(17, (result.get(Caracteristique.SAG).val()));
+    assertEquals(15, (result.get(Caracteristique.SAG).val()));
   }
 
   @Test
@@ -195,7 +213,7 @@ public class PersonnageTest {
     builder = builder.priorite(priorities);
     Personnage personnage = builder.build();
     Map<Caracteristique, ScoreDeCaracteristique> result = personnage.getScoreDeCaracteristiqueMap();
-    assertEquals(17, (result.get(Caracteristique.INT).val()));
+    assertEquals(15, (result.get(Caracteristique.INT).val()));
   }
 
   @Test
@@ -216,7 +234,7 @@ public class PersonnageTest {
     builder = builder.priorite(priorities);
     Personnage personnage = builder.build();
     Map<Caracteristique, ScoreDeCaracteristique> result = personnage.getScoreDeCaracteristiqueMap();
-    assertEquals(16, (result.get(Caracteristique.CHAR).val()));
+    assertEquals(13, (result.get(Caracteristique.CHAR).val()));
   }
 
   @Test
@@ -237,7 +255,7 @@ public class PersonnageTest {
     builder = builder.priorite(priorities);
     Personnage personnage = builder.build();
     Map<Caracteristique, ScoreDeCaracteristique> result = personnage.getScoreDeCaracteristiqueMap();
-    assertEquals(15, (result.get(Caracteristique.DEX).val()));
+    assertEquals(13, (result.get(Caracteristique.DEX).val()));
   }
 
   @Test
@@ -258,7 +276,7 @@ public class PersonnageTest {
     builder = builder.priorite(priorities);
     Personnage personnage = builder.build();
     Map<Caracteristique, ScoreDeCaracteristique> result = personnage.getScoreDeCaracteristiqueMap();
-    assertEquals(13, (result.get(Caracteristique.FOR).val()));
+    assertEquals(12, (result.get(Caracteristique.FOR).val()));
   }
 
   @Test
@@ -279,7 +297,7 @@ public class PersonnageTest {
     builder = builder.priorite(priorities);
     Personnage personnage = builder.build();
     Map<Caracteristique, ScoreDeCaracteristique> result = personnage.getScoreDeCaracteristiqueMap();
-    assertEquals(6, (result.get(Caracteristique.CON).val()));
+    assertEquals(10, (result.get(Caracteristique.CON).val()));
   }
 
   @Test
@@ -304,22 +322,37 @@ public class PersonnageTest {
     Personnage personnage = builder.build();
     assertEquals("Test", personnage.getName());
     Map<Caracteristique, ScoreDeCaracteristique> scores = personnage.getScoreDeCaracteristiqueMap();
-    int[] values = {17, 17, 16, 15, 13, 6};
+    int[] values = {15, 15, 13, 13, 12, 10};
     int i = 0 ;
     for(Caracteristique caracteristique: Caracteristique.values()){
       assertEquals(values[i++], scores.get(caracteristique).val());
     }
   }
-//  @Test
-//  public void testPv() throws Exception{
-//    Builder builder = new Builder("Test");
-//    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
-//    method.setAccessible(true);
-//    builder = (Builder)method.invoke(builder, new Random(1999));
-//    Personnage personnage = builder.build();
-//    assertEquals("Test", personnage.getName());
-//    assertEquals(23, personnage.getPv()); // 20 + 3
-//  }
+
+  @Test
+  public void testProfil() throws Exception{
+    Builder builder = new Builder("Test");
+    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    method.setAccessible(true);
+    builder = (Builder) method.invoke(builder, new Random(1999));
+    Method privateMethod =
+        Personnage.Builder.class.getDeclaredMethod("profil", Random.class);
+    privateMethod.setAccessible(true);
+    int result = (int)(privateMethod.invoke(builder, new Random(1999)));
+    assertEquals(12, result);
+
+  }
+
+  @Test
+  public void testPv() throws Exception{
+    Builder builder = new Builder("Test");
+    Method method = Builder.class.getDeclaredMethod("setRandom", Random.class);
+    method.setAccessible(true);
+    builder = (Builder)method.invoke(builder, new Random(1999));
+    Personnage personnage = builder.build();
+    assertEquals("Test", personnage.getName());
+    assertEquals(14, personnage.getPv()); // 20 + 3
+  }
   @Test
   public void testInit() throws Exception{
     Builder builder = new Builder("Test");
@@ -328,7 +361,7 @@ public class PersonnageTest {
     builder = (Builder)method.invoke(builder, new Random(1999));
     Personnage personnage = builder.build();
     assertEquals("Test", personnage.getName());
-    assertEquals(16, personnage.getInit());
+    assertEquals(13, personnage.getInit());
   }
   @Test
   public void testDefense() throws Exception{
@@ -338,7 +371,7 @@ public class PersonnageTest {
     builder = (Builder)method.invoke(builder, new Random(1999));
     Personnage personnage = builder.build();
     assertEquals("Test", personnage.getName());
-    assertEquals(13, personnage.getDefense());
+    assertEquals(11, personnage.getDefense());
   }
 
 }

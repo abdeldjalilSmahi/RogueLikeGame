@@ -141,13 +141,13 @@ public class Personnage {
      */
     private int[] generateCarcValues(Random random) {
       // test unitaire urgent  !
-      int sum;
-      int[] randomIntsArray;
-      do {
+      int sum = 0;
+      int[] randomIntsArray = {};
+      while (sum < 65 || sum > 80){
         randomIntsArray =
             IntStream.generate(() -> generateRandomCaracValue(random)).limit(6).toArray();
         sum = Arrays.stream(randomIntsArray).sum();
-      } while (sum <= 80 && sum >= 65);
+      }
       Arrays.sort(randomIntsArray);
       return randomIntsArray;
     }
@@ -259,7 +259,7 @@ public class Personnage {
      *     avant d'appeler cette méthode.
      */
     public void generateOtherScores() {
-      this.pv = profil(random) + scoreDeCaracteristiqueMap.get(Caracteristique.CON).mod();
+      this.pv = profil(this.random) + scoreDeCaracteristiqueMap.get(Caracteristique.CON).mod();
       this.init = scoreDeCaracteristiqueMap.get(Caracteristique.DEX).val();
       this.defense = 10 + scoreDeCaracteristiqueMap.get(Caracteristique.DEX).mod();
       this.scoreAttaque.put(
@@ -273,8 +273,8 @@ public class Personnage {
      *
      * @return pv
      */
-    private int profil(Random random) {
-      return 2 * random.nextInt(5) + 2;
+    public int profil(Random random) {
+      return 2 * (random.nextInt(5) + 2);
     }
 
     public Personnage build() {

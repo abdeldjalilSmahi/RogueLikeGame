@@ -19,6 +19,16 @@ public class ArmeDistance implements Equipement{
     this.prix = armeDistanceType.prix;
     this.random = random;
   }
+  private void setRandom(Random random) {
+    this.random = random;
+  }
+  public int calculDamage(){
+    int dm = 0;
+    for(int i = 0 ; i < this.nbreDe ; i++){
+      dm += this.random.nextInt(this.de + 1);
+    }
+    return dm ;
+  }
 
   @Override
   public int getBonus() {
