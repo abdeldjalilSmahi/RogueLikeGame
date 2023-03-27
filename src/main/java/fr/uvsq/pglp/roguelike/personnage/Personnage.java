@@ -143,7 +143,7 @@ public class Personnage {
       // test unitaire urgent  !
       int sum = 0;
       int[] randomIntsArray = {};
-      while (sum < 65 || sum > 80){
+      while (sum < 65 || sum > 80) {
         randomIntsArray =
             IntStream.generate(() -> generateRandomCaracValue(random)).limit(6).toArray();
         sum = Arrays.stream(randomIntsArray).sum();
