@@ -36,8 +36,9 @@ public class ArmeDistance implements Equipement {
    *
    * @param random passé en paramètre pour ecraser la valeur aléatoire.
    */
-  private void setRandom(Random random) {
+  private ArmeDistance setRandom(Random random) {
     this.random = random;
+    return this;
   }
 
   /**

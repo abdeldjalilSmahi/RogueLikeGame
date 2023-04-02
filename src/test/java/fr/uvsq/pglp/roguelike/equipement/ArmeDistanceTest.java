@@ -1,4 +1,5 @@
 package fr.uvsq.pglp.roguelike.equipement;
+import static fr.uvsq.pglp.roguelike.equipement.ArmeDistanceType.ARBALETE_LEGERE;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -15,32 +16,35 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import org.junit.jupiter.api.Test;
-public class ArmeContactTest {
+
+public class ArmeDistanceTest {
   @Test
+  
   public void testCalculDamage() throws NoSuchMethodException, SecurityException,
       IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-    ArmeContact arme = new ArmeContact(ArmeContactType.BATON);
-    Method method0 = ArmeContact.class.getDeclaredMethod("setRandom", Random.class);
+    ArmeDistance arme = new ArmeDistance(ArmeDistanceType.ARBALETE_LEGERE);
+    Method method0 = ArmeDistance.class.getDeclaredMethod("setRandom", Random.class);
     method0.setAccessible(true);
-    arme = (ArmeContact) method0.invoke(arme, new Random(15));
-    Method method = ArmeContact.class.getDeclaredMethod("calculDamage");
-    method.setAccessible(true);
-    int damage = (int) method.invoke(arme);
-//    System.out.println(damage);
-    assertEquals(1, damage);
-  }
-  @Test
-  public void testCalculDamage2() throws NoSuchMethodException, SecurityException,
-      IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-    ArmeContact arme = new ArmeContact(ArmeContactType.GOURDIN);
-    Method method0 = ArmeContact.class.getDeclaredMethod("setRandom", Random.class);
-    method0.setAccessible(true);
-    arme = (ArmeContact) method0.invoke(arme, new Random(1854));
-    Method method = ArmeContact.class.getDeclaredMethod("calculDamage");
+    arme = (ArmeDistance) method0.invoke(arme, new Random(15));
+    Method method = ArmeDistance.class.getDeclaredMethod("calculDamage");
     method.setAccessible(true);
     int damage = (int) method.invoke(arme);
 //    System.out.println(damage);
     assertEquals(3, damage);
+  }
+  @Test
+  public void testCalculDamage2() throws NoSuchMethodException, SecurityException,
+      IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    ArmeDistance arme = new ArmeDistance(ArmeDistanceType.ARBALETE_LEGERE);
+    Method method0 = ArmeDistance.class.getDeclaredMethod("setRandom", Random.class);
+    method0.setAccessible(true);
+    arme = (ArmeDistance) method0.invoke(arme, new Random(1854));
+    Method method = ArmeDistance.class.getDeclaredMethod("calculDamage");
+    method.setAccessible(true);
+    int damage = (int) method.invoke(arme);
+//    System.out.println(damage);
+    assertEquals(6, damage);
+
   }
 
 }
