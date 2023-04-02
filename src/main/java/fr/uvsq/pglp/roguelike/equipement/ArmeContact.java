@@ -39,7 +39,7 @@ public class ArmeContact implements Equipement {
    */
   private ArmeContact setRandom(Random random) {
     this.random = random;
-    return this ;
+    return this;
   }
 
   /**

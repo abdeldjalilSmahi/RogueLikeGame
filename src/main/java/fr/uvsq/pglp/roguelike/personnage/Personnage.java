@@ -25,20 +25,16 @@ public class Personnage {
    * caractéristique correspondant.
    */
   private final Map<Caracteristique, ScoreDeCaracteristique> scoreDeCaracteristiqueMap;
-  /**
-   * Map identifie le type d'attaque de joueur.
-   */
+  /** Map identifie le type d'attaque de joueur. */
   private final Map<TypeDattaque, Integer> typeDattaque;
-  /**
-   * List des equipements du joueur.
-   */
+  /** List des equipements du joueur. */
   private List<Equipement> equipements;
 
   /**
    * Constructeur de la classe {@link Personnage}.
+   *
    * @param builder pour construire le personnage.
    */
-
   private Personnage(Builder builder) {
     this.name = builder.name;
     this.pv = builder.pv;
@@ -105,7 +101,8 @@ public class Personnage {
   public void setEquipements(List<Equipement> equipements) {
     this.equipements = equipements;
   }
-  public void setEquipement(Equipement equipement){
+
+  public void setEquipement(Equipement equipement) {
     this.equipements.add(equipement);
   }
 
