@@ -1,5 +1,7 @@
 package fr.uvsq.pglp.roguelike.equipement;
 
+import java.util.Random;
+
 /** interface pour les equipements. */
 public interface Equipement {
 

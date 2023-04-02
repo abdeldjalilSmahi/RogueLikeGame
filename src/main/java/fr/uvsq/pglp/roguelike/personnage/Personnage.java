@@ -1,5 +1,6 @@
 package fr.uvsq.pglp.roguelike.personnage;
 
+import fr.uvsq.pglp.roguelike.equipement.Equipement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
@@ -24,8 +25,19 @@ public class Personnage {
    * caractéristique correspondant.
    */
   private final Map<Caracteristique, ScoreDeCaracteristique> scoreDeCaracteristiqueMap;
-
+  /**
+   * Map identifie le type d'attaque de joueur.
+   */
   private final Map<TypeDattaque, Integer> typeDattaque;
+  /**
+   * List des equipements du joueur.
+   */
+  private List<Equipement> equipements;
+
+  /**
+   * Constructeur de la classe {@link Personnage}.
+   * @param builder pour construire le personnage.
+   */
 
   private Personnage(Builder builder) {
     this.name = builder.name;
@@ -34,6 +46,7 @@ public class Personnage {
     this.init = builder.init;
     this.scoreDeCaracteristiqueMap = builder.scoreDeCaracteristiqueMap;
     this.typeDattaque = builder.scoreAttaque;
+    this.equipements = builder.equipements;
   }
 
   /**
@@ -81,6 +94,21 @@ public class Personnage {
     return defense;
   }
 
+  public Map<TypeDattaque, Integer> getTypeDattaque() {
+    return typeDattaque;
+  }
+
+  public List<Equipement> getEquipements() {
+    return equipements;
+  }
+
+  public void setEquipements(List<Equipement> equipements) {
+    this.equipements = equipements;
+  }
+  public void setEquipement(Equipement equipement){
+    this.equipements.add(equipement);
+  }
+
   /** Classe interne permettant de construire un objet Personnage. */
   public static class Builder {
 
@@ -92,6 +120,7 @@ public class Personnage {
     private int pv;
     private int init;
     private int defense;
+    private List<Equipement> equipements;
 
     private Random random = new Random(new Random().nextInt());
 
@@ -104,6 +133,7 @@ public class Personnage {
       this.name = name;
       this.scoreDeCaracteristiqueMap = generateCaracMap(this.random);
       generateOtherScores();
+      this.equipements = new ArrayList<>();
     }
 
     /**

@@ -1,5 +1,7 @@
 package fr.uvsq.pglp.roguelike.equipement;
 
+import java.util.Random;
+
 /** Classe Armure qui implémente l'interface {@link Equipement}. */
 public class Armure implements Equipement {
 

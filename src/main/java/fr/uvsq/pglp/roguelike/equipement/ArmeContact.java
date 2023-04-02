@@ -18,20 +18,18 @@ public class ArmeContact implements Equipement {
   /** le prix de l'arme. */
   private int prix;
   /** random pour générer aléatoirement les valeurs des dés. */
-  private Random random;
+  private Random random = new Random(new Random().nextInt());
 
   /**
    * Constructeur de l'arme de contact.
    *
    * @param armeContactType pour ramèner les armes enregistrés dans l'enum.
-   * @param random pour fixer le random de la classe.
    */
-  public ArmeContact(ArmeContactType armeContactType, Random random) {
+  public ArmeContact(ArmeContactType armeContactType) {
     this.armeContactType = armeContactType;
     this.de = armeContactType.de;
     this.nbreDe = armeContactType.nbreDe;
     this.prix = armeContactType.prix;
-    this.random = random;
   }
 
   /**
@@ -39,8 +37,9 @@ public class ArmeContact implements Equipement {
    *
    * @param random fixer la valeur random de la classe.
    */
-  private void setRandom(Random random) {
+  private ArmeContact setRandom(Random random) {
     this.random = random;
+    return this ;
   }
 
   /**
@@ -51,7 +50,7 @@ public class ArmeContact implements Equipement {
   private int calculDamage() {
     int dm = 0;
     for (int i = 0; i < this.nbreDe; i++) {
-      dm += this.random.nextInt(this.de + 1);
+      dm += random.nextInt(this.de + 1);
     }
     return dm;
   }
