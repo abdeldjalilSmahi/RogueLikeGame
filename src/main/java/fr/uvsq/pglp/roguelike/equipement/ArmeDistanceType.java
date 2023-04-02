@@ -1,5 +1,6 @@
 package fr.uvsq.pglp.roguelike.equipement;
 
+/** enum pour stocker les ArmeDistance. */
 public enum ArmeDistanceType {
   ARBALETE_POING(1, 6, 10, 8),
   ARBALETE_LEGERE(2, 4, 30, 10),
@@ -7,19 +8,28 @@ public enum ArmeDistanceType {
   ARC_COURT(1, 6, 30, 4),
   ARC_LONG(1, 8, 50, 5),
   DAGUE(1, 4, 5, 3),
-  MOUSQUET(2, 6, 50, 20)
-  ;
+  MOUSQUET(2, 6, 50, 20);
+  /** nombre de dé de l'arme. */
   int nbreDe;
+  /** la valeur maximum du dé. */
   int de;
-  int prix ;
+  /** le prix de l'arme à distance. */
+  int prix;
+  /** la porté de l'arme en mettres. */
   int portee;
 
-  ArmeDistanceType(int nbreDe, int de, int portee, int prix ) {
-    this.nbreDe = nbreDe ;
-    this.de = de ;
-    this.portee = portee ;
-    this.prix = prix ;
+  /**
+   * constructeur de l'enum.
+   *
+   * @param nbreDe représente le nombre de dé de l'armure.
+   * @param de la valeur maximale de dé.
+   * @param portee la portée de l'arme en mettre.
+   * @param prix représente le prix de l'arme.
+   */
+  ArmeDistanceType(int nbreDe, int de, int portee, int prix) {
+    this.nbreDe = nbreDe;
+    this.de = de;
+    this.portee = portee;
+    this.prix = prix;
   }
-
-
 }
