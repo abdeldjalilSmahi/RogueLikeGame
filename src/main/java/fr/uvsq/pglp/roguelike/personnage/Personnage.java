@@ -35,7 +35,7 @@ public class Personnage {
    *
    * @param builder pour construire le personnage.
    */
-  private Personnage(Builder builder) {
+  protected Personnage(Builder builder) {
     this.name = builder.name;
     this.pv = builder.pv;
     this.defense = builder.defense;
