@@ -1,17 +1,19 @@
 package fr.uvsq.pglp.roguelike.personnage;
 
 public class Pnj extends Personnage {
-
+  private Strategy strategy;
 
   /**
    * Constructeur de la classe {@link Personnage}.
    *
    * @param builder pour construire le personnage.
    */
-  protected Pnj(Builder builder) {
+  protected Pnj(Pnjbuilder builder) {
     super(builder);
+    this.strategy = builder.strategy ;
   }
   public static class Pnjbuilder extends Builder {
+    private Strategy strategy;
 
     /**
      * Constructeur prenant en paramètre le nom du personnage.
