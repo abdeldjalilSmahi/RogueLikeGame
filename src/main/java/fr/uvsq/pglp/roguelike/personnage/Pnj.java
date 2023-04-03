@@ -22,7 +22,8 @@ public class Pnj extends Personnage {
      */
     public Pnjbuilder(String name) {
       super(name);
-
     }
+
+
   }
 }

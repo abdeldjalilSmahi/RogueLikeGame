@@ -114,6 +114,10 @@ public class Personnage {
     return defense;
   }
 
+  public Equipement getCurrentarme() {
+    return currentarme;
+  }
+
   public Map<TypeDattaque, Integer> getTypeDattaque() {
     return typeDattaque;
   }

@@ -58,10 +58,10 @@ public class ArmeDistance implements Equipement {
   /**
    * la méthode implémenté de l'interface qui sert à retourner la valeur de bonus.
    *
-   * @return 0 dans le cas d'une arme à distance.
+   * @return le damage de l'arme distance dans le cas d'une arme à distance.
    */
   @Override
   public int getBonus() {
-    return 0;
+    return calculDamage();
   }
 }
