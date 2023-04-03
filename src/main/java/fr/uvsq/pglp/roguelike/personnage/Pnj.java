@@ -1,6 +1,7 @@
 package fr.uvsq.pglp.roguelike.personnage;
 
 public class Pnj extends Personnage {
+
   private Strategy strategy;
 
   /**
@@ -10,9 +11,15 @@ public class Pnj extends Personnage {
    */
   protected Pnj(Pnjbuilder builder) {
     super(builder);
-    this.strategy = builder.strategy ;
+    this.strategy = builder.strategy;
   }
+
+  public void proofaction() {
+    strategy.execute();
+  }
+
   public static class Pnjbuilder extends Builder {
+
     private Strategy strategy;
 
     /**
@@ -24,6 +31,8 @@ public class Pnj extends Personnage {
       super(name);
     }
 
-
+    public void setStrategy(Strategy strategy) {
+      this.strategy = strategy;
+    }
   }
 }
