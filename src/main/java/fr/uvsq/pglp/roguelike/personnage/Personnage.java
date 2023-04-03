@@ -134,11 +134,14 @@ public class Personnage {
     this.equipements.add(equipement);
   }
 
+  /**
+   * Cette méthode sert changer l'arme courante du personnage.
+   */
   public void changearme() {
     boolean matchTest = equipements.stream()
         .anyMatch(c -> (c instanceof ArmeDistance || c instanceof ArmeContact));
     if (matchTest) {
-      {
+        {
         for (Equipement equipement : equipements) {
           if (equipement instanceof Armure) {
             continue;
@@ -146,10 +149,10 @@ public class Personnage {
           Equipement temp = equipement;
           equipements.add(currentarme);
           equipements.remove(equipement);
-          currentarme = temp ;
+          currentarme = temp;
           return;
         }
-      }
+        }
     }
   }
 

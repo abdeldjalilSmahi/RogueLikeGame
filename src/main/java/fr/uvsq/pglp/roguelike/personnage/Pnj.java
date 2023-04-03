@@ -1,5 +1,8 @@
 package fr.uvsq.pglp.roguelike.personnage;
 
+/**
+ * Classe représentant un pnj du jeu.
+ */
 public class Pnj extends Personnage {
 
   private Strategy strategy;
@@ -18,6 +21,9 @@ public class Pnj extends Personnage {
     strategy.execute();
   }
 
+  /**
+   * Classe interne permettant de construire un objet Pnj.
+   */
   public static class Pnjbuilder extends Builder {
 
     private Strategy strategy;

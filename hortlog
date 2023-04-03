@@ -1,0 +1,62 @@
+Oussama Bouakaz (22):
+      Save class for pull
+      Merge branch 'main' of https://github.com/uvsq-hal2223/roguelike-team_dz_
+      Creation de la classe personnage avec ses attributs et accesseurs
+      Creation un constructeur avec des methodes qui generent les caracteristiques aleatoirement
+      Regler les problemes de checkstyle avec la javadoc de la classe personnage
+      Implementation de l'ordre de priorité par defaut
+      Creer une enum pour gerer les types d'attaque et les intialiser au niveau de la classe perssonage
+      Creer une enum pour gerer les types d'attaque et les intialiser au niveau de la classe perssonage
+      pour gerer les conflits
+      Creer le package Equipement et l'interface Equipement
+      Implementer la classe Piece qui implemente l'interface Equipement et qui presente les piece d'argent dans le sac de personnage
+      Creer une enummeration pour les armes au contact
+      Creer une classe Armecontact qui implemente l'interface Equipement
+      Rajouter l'attribut nombre de de dans l'nnumeration et la classe de Armecontact
+      Creer une enummeration pour les armes a distance
+      Creer une classe Armedistance qui implemente l'interface Equipement
+      modifications
+      modifications
+      creer la classe Pnj avec l'heritage
+      creer la methode change arme et recuperer l'arme courante et appliquer strategie design pattern en implemntant une interface startegie
+      implementer la classe agressifstategy qui prend en charge le comportement agressif
+      ajouter deux methodes à la classe pnj une pour l'execution de comportement et l'autre pour l'intialisation du comportement
+
+amir (1):
+      regler les erreurs de checkstyle
+
+github-classroom[bot] (1):
+      Initial commit
+
+uvsq22205250 (30):
+      creation de l'enumaration Caracteristique, en ajoutant les 6 caracs
+      initialisation de la classe ScoreDeCaractéristique en créant le constructeur
+      google checkstyle pour l'enum + methodes val et mod dans la classe ScoreDeCaracteristiques
+      revision de checkstyle de l'enumeration
+      creation du package des validations + interface validator , implementation de cette interface et validation de val de carac
+      creation d'une methode prive getModificateur retourne la valeur du modificateur de la carac et modification du constructeur
+      gestion du conflit
+      reglage du checkstyle de la classe ScoreDeCaracteristique ainsi que la javadoc
+      implementation de la methode priorities
+      Implementation de la liste passée en paramètres de priorite
+      checkstyle de la classe Personnage + la javadoc
+      Beaucoup de changement, modification de la classe Personnage avec la gestion d'un Random pour faire les tests unitaires , tests unitaires des classes et checkstyle
+      ajout des tests de la classe Personnage
+      modification de la méthode valeur
+      résolution des prblms du checkstyle
+      checkstyle de surcharge des méthodes
+      ajout de la javadoc pour la méthode static ScoreDeCaracteristique.validate
+      ajout de la fonction profil
+      réglage d'une petite erreur au niveau de init
+      reglage du checkstyle
+      réglage de quelques erreur
+      réglage des erreurs
+      création de l'interface equipement, les implémentations, armeContact et armeDistance
+      réglage des tests unitaires, création des armures
+      armure, et quelques checkstyle
+      checkstyle des classes du package equipement
+      test unitaire armeContact
+      reglage des violations checkstyle
+      unit tests ArmeDistance
+      création de la classe pnj
+
