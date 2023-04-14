@@ -1,10 +1,7 @@
 package fr.uvsq.pglp.roguelike.personnage;
 
 import fr.uvsq.pglp.roguelike.equipement.Arme;
-import fr.uvsq.pglp.roguelike.equipement.ArmeContact;
-import fr.uvsq.pglp.roguelike.equipement.ArmeDistance;
 import fr.uvsq.pglp.roguelike.equipement.Armure;
-import fr.uvsq.pglp.roguelike.equipement.Equipement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
@@ -13,47 +10,29 @@ import java.util.Map;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-/**
- * Classe représentant un personnage du jeu.
- */
+/** Classe représentant un personnage du jeu. */
 public class Personnage {
 
-  /**
-   * Le nom du personnage.
-   */
+  /** Le nom du personnage. */
   private String name;
-  /**
-   * Les points de vie du personnage.
-   */
+  /** Les points de vie du personnage. */
   private int pv;
-  /**
-   * L'initiative du personnage, utilisée pour déterminer l'ordre d'fttaque en combat.
-   */
+  /** L'initiative du personnage, utilisée pour déterminer l'ordre d'fttaque en combat. */
   private int init;
-  /**
-   * La valeur de défense du personnage, qui réduit les dégâts subis lors d'une attaque.
-   */
+  /** La valeur de défense du personnage, qui réduit les dégâts subis lors d'une attaque. */
   private int defense;
-  /**
-   * L'arme currente du personnage.
-   */
+  /** L'arme currente du personnage. */
   private Arme currentArme;
   /**
    * Une table de hachage associant chaque caractéristique du personnage à son score de
    * caractéristique correspondant.
    */
   private Map<Caracteristique, ScoreDeCaracteristique> scoreDeCaracteristiqueMap;
-  /**
-   * Map identifie le type d'attaque de joueur.
-   */
+  /** Map identifie le type d'attaque de joueur. */
   private Map<TypeDattaque, Integer> typeDattaque;
-  /**
-   * List des armes du joueur.
-   */
+  /** List des armes du joueur. */
   private List<Arme> armes;
-  /**
-   * List des armures du joueur.
-   */
+  /** List des armures du joueur. */
   private List<Armure> armures;
 
   /**
@@ -121,9 +100,9 @@ public class Personnage {
     return defense;
   }
 
-//  public Arme getCurrentArme() {
-//    return currentArme;
-//  }
+  //  public Arme getCurrentArme() {
+  //    return currentArme;
+  //  }
 
   public Map<TypeDattaque, Integer> getTypeDattaque() {
     return typeDattaque;
@@ -141,25 +120,34 @@ public class Personnage {
     this.armes.add(arme);
   }
 
-  /**
-   * Cette méthode sert changer l'arme courante du personnage.
-   */
+  /** Cette méthode sert changer l'arme courante du personnage. */
   public void changeArme() {
-    if(!armes.isEmpty()){
-      if(armes == null){
+    if (!armes.isEmpty()) {
+      if (armes == null) {
         System.out.println("Vous n'avez aucune arme à votre disposition!");
-        return;
-      }
-      else{
+      } else {
         currentArme = armes.get(0);
         armes.remove(armes.get(0));
       }
+    } else {
+      System.out.println("Vous n'avez aucune arme");
     }
   }
 
   /**
-   * Classe statique imbriquée permettant de construire un objet Personnage.
+   * Ramasser une arme.
+   *
+   * @param arme l'arme qui est devant le personnage.
    */
+  public void ramasserArme(Arme arme) {
+    if (currentArme == null) {
+      currentArme = arme;
+    } else {
+      armes.add(arme);
+    }
+  }
+
+  /** Classe statique imbriquée permettant de construire un objet Personnage. */
   public static class Builder {
 
     private final String name;
@@ -170,7 +158,7 @@ public class Personnage {
     private int pv;
     private int init;
     private int defense;
-    private List<Equipement> equipements;
+    private List<Arme> equipements;
 
     private Random random = new Random(new Random().nextInt());
 
@@ -252,11 +240,10 @@ public class Personnage {
      * Définit la priorité des caractéristiques utilisées pour calculer le score.
      *
      * @param caracteristiquePrioritie Une liste de valeurs de {@link Caracteristique} représentant
-     *                                 la priorité des caractéristiques.
+     *     la priorité des caractéristiques.
      * @return Une instance du {@link Builder} avec la priorité des caractéristiques mise à jour.
      * @throws IllegalArgumentException si la liste ne contient pas exactement 6 caractéristiques ou
-     *                                  si une ou plusieurs caractéristiques de la liste ne sont pas
-     *                                  valides.
+     *     si une ou plusieurs caractéristiques de la liste ne sont pas valides.
      */
     public Builder priorite(List<Caracteristique> caracteristiquePrioritie) {
       validate(caracteristiquePrioritie);
@@ -277,8 +264,7 @@ public class Personnage {
      *
      * @param caracteristiquePrioritie Une liste de valeurs de {@link Caracteristique} à vérifier.
      * @throws IllegalArgumentException si la liste ne contient pas exactement 6 caractéristiques ou
-     *                                  si une ou plusieurs caractéristiques de la liste ne sont pas
-     *                                  valides.
+     *     si une ou plusieurs caractéristiques de la liste ne sont pas valides.
      */
     private void validate(List<Caracteristique> caracteristiquePrioritie) {
       if (caracteristiquePrioritie.size() != 6) {
@@ -307,10 +293,10 @@ public class Personnage {
      * carte des scores de caractéristiques.
      *
      * @param caracteristique la caractéristique à laquelle affecter une valeur
-     * @param valeur          la valeur à affecter à la caractéristique
+     * @param valeur la valeur à affecter à la caractéristique
      * @return l'instance courante de Builder pour permettre un appel fluide de méthodes
      * @throws IllegalArgumentException si la caractéristique passée en paramètre est incorrecte, si
-     *                                  la valeur est supérieure à 21 ou inférieure à 1
+     *     la valeur est supérieure à 21 ou inférieure à 1
      */
     public Builder valeur(Caracteristique caracteristique, int valeur) {
       // vaut mieux faire une autre méthode validate({@link Caracteristique, valeur}
@@ -338,7 +324,7 @@ public class Personnage {
      * levée.
      *
      * @throws IllegalStateException si les scores de caractéristiques n'ont pas été initialisés
-     *                               avant d'appeler cette méthode.
+     *     avant d'appeler cette méthode.
      */
     public void generateOtherScores() {
       this.pv = profil(this.random) + scoreDeCaracteristiqueMap.get(Caracteristique.CON).mod();
@@ -355,7 +341,6 @@ public class Personnage {
      *
      * @return pv
      */
-
     public int profil(Random random) {
       return 2 * (random.nextInt(5) + 2);
     }

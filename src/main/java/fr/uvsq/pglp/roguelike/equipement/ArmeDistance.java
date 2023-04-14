@@ -8,9 +8,7 @@ public class ArmeDistance extends Arme {
 
   /** Attribut de type de l'arme stocké dans l'enum {@link ArmeDistanceType}. */
   private ArmeDistanceType armeDistanceType;
-  /**
-   * Type d'attaque de l'arme.
-   */
+  /** Type d'attaque de l'arme. */
   private TypeDattaque typeDattaque;
   /** la porté de l'arme en mettre. */
   private int portee;
@@ -24,7 +22,11 @@ public class ArmeDistance extends Arme {
    * @param armeDistanceType type de l'arme à distance stocké dans l'enum.
    */
   public ArmeDistance(ArmeDistanceType armeDistanceType) {
-    super(armeDistanceType.de, armeDistanceType.nbreDe, armeDistanceType.prix, TypeDattaque.AttaqueDistance);
+    super(
+        armeDistanceType.de,
+        armeDistanceType.nbreDe,
+        armeDistanceType.prix,
+        TypeDattaque.AttaqueDistance);
     this.armeDistanceType = armeDistanceType;
     this.portee = armeDistanceType.portee;
   }
@@ -54,5 +56,4 @@ public class ArmeDistance extends Arme {
     }
     return dm;
   }
-
 }
