@@ -3,7 +3,7 @@ package fr.uvsq.pglp.roguelike.equipement;
 import java.util.Random;
 
 /** Classe Armure qui implémente l'interface {@link Equipement}. */
-public class Armure implements Equipement {
+public class Armure {
 
   /** pour récuppérer le type de l'armure stocké dans l'enum. */
   private ArmureType armureType;
@@ -27,11 +27,11 @@ public class Armure implements Equipement {
   }
 
   /**
-   * implémentation de la méthode de l'interface.
+   * Méthode retournant le bonus à rajouter à la def du personnages.
    *
    * @return la valeur de bonus ajouté au joueur.
    */
-  @Override
+
   public int getBonus() {
     return this.bonusDef;
   }

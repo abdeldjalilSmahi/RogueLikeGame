@@ -1,5 +1,6 @@
 package fr.uvsq.pglp.roguelike.personnage;
 
+import fr.uvsq.pglp.roguelike.equipement.Arme;
 import fr.uvsq.pglp.roguelike.equipement.ArmeContact;
 import fr.uvsq.pglp.roguelike.equipement.ArmeDistance;
 import fr.uvsq.pglp.roguelike.equipement.Armure;
@@ -33,8 +34,10 @@ public class Personnage {
    * La valeur de défense du personnage, qui réduit les dégâts subis lors d'une attaque.
    */
   private int defense;
-
-  private Equipement currentarme;
+  /**
+   * L'arme currente du personnage.
+   */
+  private Arme currentArme;
   /**
    * Une table de hachage associant chaque caractéristique du personnage à son score de
    * caractéristique correspondant.
@@ -45,9 +48,13 @@ public class Personnage {
    */
   private Map<TypeDattaque, Integer> typeDattaque;
   /**
-   * List des equipements du joueur.
+   * List des armes du joueur.
    */
-  private List<Equipement> equipements;
+  private List<Arme> armes;
+  /**
+   * List des armures du joueur.
+   */
+  private List<Armure> armures;
 
   /**
    * Constructeur de la classe {@link Personnage}.
@@ -61,8 +68,8 @@ public class Personnage {
     this.init = builder.init;
     this.scoreDeCaracteristiqueMap = builder.scoreDeCaracteristiqueMap;
     this.typeDattaque = builder.scoreAttaque;
-    this.equipements = builder.equipements;
-    this.currentarme = null;
+    this.armes = builder.equipements;
+    this.currentArme = null;
   }
 
   /**
@@ -114,50 +121,44 @@ public class Personnage {
     return defense;
   }
 
-  public Equipement getCurrentarme() {
-    return currentarme;
-  }
+//  public Arme getCurrentArme() {
+//    return currentArme;
+//  }
 
   public Map<TypeDattaque, Integer> getTypeDattaque() {
     return typeDattaque;
   }
 
-  public List<Equipement> getEquipements() {
-    return equipements;
+  public List<Arme> getArmes() {
+    return armes;
   }
 
-  public void setEquipements(List<Equipement> equipements) {
-    this.equipements = equipements;
+  public void setArmes(List<Arme> armes) {
+    this.armes = armes;
   }
 
-  public void setEquipement(Equipement equipement) {
-    this.equipements.add(equipement);
+  public void setEquipement(Arme arme) {
+    this.armes.add(arme);
   }
 
   /**
    * Cette méthode sert changer l'arme courante du personnage.
    */
-  public void changearme() {
-    boolean matchTest = equipements.stream()
-        .anyMatch(c -> (c instanceof ArmeDistance || c instanceof ArmeContact));
-    if (matchTest) {
-        {
-        for (Equipement equipement : equipements) {
-          if (equipement instanceof Armure) {
-            continue;
-          }
-          Equipement temp = equipement;
-          equipements.add(currentarme);
-          equipements.remove(equipement);
-          currentarme = temp;
-          return;
-        }
-        }
+  public void changeArme() {
+    if(!armes.isEmpty()){
+      if(armes == null){
+        System.out.println("Vous n'avez aucune arme à votre disposition!");
+        return;
+      }
+      else{
+        currentArme = armes.get(0);
+        armes.remove(armes.get(0));
+      }
     }
   }
 
   /**
-   * Classe interne permettant de construire un objet Personnage.
+   * Classe statique imbriquée permettant de construire un objet Personnage.
    */
   public static class Builder {
 
