@@ -2,7 +2,7 @@ package fr.uvsq.pglp.roguelike.equipement;
 
 import java.util.Random;
 
-/** Classe Armure qui implémente l'interface {@link Equipement}. */
+/** Classe Armure qui implémente. */
 public class Armure {
 
   /** pour récuppérer le type de l'armure stocké dans l'enum. */

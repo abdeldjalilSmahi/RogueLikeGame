@@ -123,14 +123,12 @@ public class Personnage {
   /** Cette méthode sert changer l'arme courante du personnage. */
   public void changeArme() {
     if (!armes.isEmpty()) {
-      if (armes == null) {
-        System.out.println("Vous n'avez aucune arme à votre disposition!");
-      } else {
-        currentArme = armes.get(0);
-        armes.remove(armes.get(0));
-      }
+//      Arme temp =
+      currentArme = armes.get(0);
+      armes.remove(armes.get(0));
+
     } else {
-      System.out.println("Vous n'avez aucune arme");
+      System.out.println("Vous n'avez aucune arme a votre disposition");
     }
   }
 
