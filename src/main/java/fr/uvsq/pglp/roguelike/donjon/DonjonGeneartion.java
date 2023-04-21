@@ -5,11 +5,17 @@ import org.fusesource.jansi.Ansi.Color;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
-public class DonjonComponent implements Strategie {
+public class DonjonGeneartion implements Strategie {
 
     public int random;
     private DonjonObject[][] map;
     private final Random rand = new Random();
+    int nbRooms = 4;
+    int roomSize = 6;
+    int nbrfloors = 2;
+    int profondeur = (nbrfloors * roomSize) + 2 + (nbrfloors - 1);
+    int largeur = (nbRooms * roomSize) + 2 + nbRooms - 1;
+    int k;
 
     public DonjonObject[][] getMap() {
         return map;
@@ -17,16 +23,11 @@ public class DonjonComponent implements Strategie {
 
     @Override
     public void setup() {
-        int nbRooms = 4;
-        int roomSize = 6;
-        int nbrfloors = 2;
-        int profondeur = (nbrfloors * roomSize) + 2 + (nbrfloors - 1);
-        int largeur = (nbRooms * roomSize) + 2 + nbRooms - 1;
-        int k;
+
 
         // Initialisation de la carte de donjon
         map = new DonjonObject[profondeur][largeur];
-
+//creer des salles
         for (int i = 0; i < profondeur; i++) {
             for (int j = 0; j < largeur; j++) {
                 if (i == 0 || i == profondeur - 1 || j == 0 || j == largeur - 1) {
@@ -43,6 +44,11 @@ public class DonjonComponent implements Strategie {
                         new DonjonObject(new Point2D.Double(i, (roomSize + 1) * k), " # ", Color.CYAN);
             }
         }
+
+    }
+
+    @Override
+    public void createportealeatoire() {
         for(int level=1;level<nbrfloors;level++){
             for (k = 1; k <= nbRooms; k++) {
                 random = rand.nextInt((roomSize * k) - roomSize*(k-1)-1) + roomSize*(k-1)+k;
@@ -54,9 +60,8 @@ public class DonjonComponent implements Strategie {
             for (k = 1; k <= nbrfloors; k++) {
                 random = rand.nextInt((roomSize * k) - roomSize*(k-1) - 1) + roomSize*(k-1)+k;
                 map[random][(roomSize + 1) * room] =
-                        new DonjonObject(new Point2D.Double(0, 0), " P ", Color.CYAN);
+                        new DonjonObject(new Point2D.Double(random, (roomSize + 1) * room), " P ", Color.CYAN);
             }
         }
-
     }
 }

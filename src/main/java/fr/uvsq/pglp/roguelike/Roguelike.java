@@ -1,6 +1,6 @@
 package fr.uvsq.pglp.roguelike;
 
-import fr.uvsq.pglp.roguelike.donjon.DonjonComponent;
+import fr.uvsq.pglp.roguelike.donjon.DonjonGeneartion;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,7 +32,7 @@ public enum Roguelike {
    * @param args command line arguments
    */
   public static void main(String[] args) {
-    DonjonComponent donjon = new DonjonComponent();
+    DonjonGeneartion donjon = new DonjonGeneartion();
     donjon.setup();
 
     for (int i = 0; i < donjon.getMap().length; i++) {
