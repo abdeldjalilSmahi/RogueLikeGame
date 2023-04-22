@@ -1,14 +1,12 @@
 package fr.uvsq.pglp.roguelike.equipement;
 
-import java.util.Random;
-
 /** Classe Armure qui implémente. */
 public class Armure {
 
   /** pour récuppérer le type de l'armure stocké dans l'enum. */
-  private ArmureType armureType;
+  private ArmureEnum armureEnum;
   /** Pour réccupérer le type de l'armure bouclier ou corps. */
-  private ArmureTypes typeArmure;
+  private ArmureTypes armureTypes;
   /** Bonus ajouté par l'armure à la défense du joueur. */
   private int bonusDef;
   /** prix de l'armure. */
@@ -17,13 +15,13 @@ public class Armure {
   /**
    * Constructeur de l'armure.
    *
-   * @param armureType pour préciser l'armure.
+   * @param armureEnum pour préciser l'armure.
    */
-  public Armure(ArmureType armureType) {
-    this.armureType = armureType;
-    this.typeArmure = armureType.armureTypes;
-    this.bonusDef = armureType.bonusDef;
-    this.prix = armureType.prix;
+  public Armure(ArmureEnum armureEnum) {
+    this.armureEnum = armureEnum;
+    this.armureTypes = armureEnum.armureTypes;
+    this.bonusDef = armureEnum.bonusDef;
+    this.prix = armureEnum.prix;
   }
 
   /**

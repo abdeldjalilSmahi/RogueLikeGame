@@ -2,12 +2,9 @@ package fr.uvsq.pglp.roguelike.equipement;
 
 /** enum pour stocker les ArmeDistance. */
 public enum ArmeDistanceType {
-  ARBALETE_POING(1, 6, 10, 8),
-  ARBALETE_LEGERE(2, 4, 30, 10),
+ ARBALETE_LEGERE(2, 4, 30, 10),
   ARBALETE_LOURDE(3, 4, 60, 12),
-  ARC_COURT(1, 6, 30, 4),
   ARC_LONG(1, 8, 50, 5),
-  DAGUE(1, 4, 5, 3),
   MOUSQUET(2, 6, 50, 20);
   /** nombre de dé de l'arme. */
   int nbreDe;
