@@ -10,9 +10,9 @@ public class DonjonGeneartion implements Strategie {
     public int random;
     private DonjonObject[][] map;
     private final Random rand = new Random();
-    int nbRooms = 4;
+    int nbRooms = 3;
     int roomSize = 6;
-    int nbrfloors = 2;
+    int nbrfloors = 3;
     int profondeur = (nbrfloors * roomSize) + 2 + (nbrfloors - 1);
     int largeur = (nbRooms * roomSize) + 2 + nbRooms - 1;
     int k;
@@ -23,11 +23,9 @@ public class DonjonGeneartion implements Strategie {
 
     @Override
     public void setup() {
-
-
         // Initialisation de la carte de donjon
         map = new DonjonObject[profondeur][largeur];
-//creer des salles
+        //creer des salles
         for (int i = 0; i < profondeur; i++) {
             for (int j = 0; j < largeur; j++) {
                 if (i == 0 || i == profondeur - 1 || j == 0 || j == largeur - 1) {
@@ -36,7 +34,6 @@ public class DonjonGeneartion implements Strategie {
                 for (k = 1; k < nbrfloors; k++) {
                     map[(roomSize + 1) * k][j] =
                             new DonjonObject(new Point2D.Double(i, j), " # ", Color.CYAN);
-
                 }
             }
             for (k = 1; k < nbRooms; k++) {
@@ -53,7 +50,8 @@ public class DonjonGeneartion implements Strategie {
             for (k = 1; k <= nbRooms; k++) {
                 random = rand.nextInt((roomSize * k) - roomSize*(k-1)-1) + roomSize*(k-1)+k;
                 map[(roomSize + 1) * level][random] =
-                        new DonjonObject(new Point2D.Double((roomSize + 1) * level, random), " P ", Color.CYAN);
+                        new DonjonObject(new Point2D.Double((roomSize + 1) * level, random),
+                                " ¿ ", Color.CYAN);
             }
         }
         for(int room=1;room<nbRooms;room++){

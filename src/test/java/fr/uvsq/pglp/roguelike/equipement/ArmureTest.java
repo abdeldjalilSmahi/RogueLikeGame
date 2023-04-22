@@ -1,6 +1,6 @@
 package fr.uvsq.pglp.roguelike.equipement;
 
-import static fr.uvsq.pglp.roguelike.equipement.ArmureEnum.PETIT_BOUCLIER;
+import static fr.uvsq.pglp.roguelike.equipement.ArmureType.PETIT_BOUCLIER;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

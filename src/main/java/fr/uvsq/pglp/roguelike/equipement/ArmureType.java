@@ -1,7 +1,7 @@
 package fr.uvsq.pglp.roguelike.equipement;
 
 /** enum pour enregistrer tous les armures de jeux. */
-public enum ArmureEnum {
+public enum ArmureType {
   PETIT_BOUCLIER(ArmureTypes.BOUCLIER, 1, 2),
   CUIR(ArmureTypes.CORPS, 2, 4),
   GRAND_BOUCLIER(ArmureTypes.BOUCLIER, 2, 4),
@@ -28,7 +28,7 @@ public enum ArmureEnum {
    * @param bonusDef bonus ajouté a la défense du joueur
    * @param prix le prix de l'armure.
    */
-  ArmureEnum(ArmureTypes armureTypes, int bonusDef, int prix) {
+  ArmureType(ArmureTypes armureTypes, int bonusDef, int prix) {
     this.armureTypes = armureTypes;
     this.bonusDef = bonusDef;
     this.prix = prix;

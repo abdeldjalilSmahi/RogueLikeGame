@@ -34,6 +34,7 @@ public enum Roguelike {
   public static void main(String[] args) {
     DonjonGeneartion donjon = new DonjonGeneartion();
     donjon.setup();
+    donjon.createportealeatoire();
 
     for (int i = 0; i < donjon.getMap().length; i++) {
       for (int j = 0; j < donjon.getMap()[0].length; j++) {

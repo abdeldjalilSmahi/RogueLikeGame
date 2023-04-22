@@ -4,7 +4,7 @@ package fr.uvsq.pglp.roguelike.equipement;
 public class Armure {
 
   /** pour récuppérer le type de l'armure stocké dans l'enum. */
-  private ArmureEnum armureEnum;
+  private ArmureType armureType;
   /** Pour réccupérer le type de l'armure bouclier ou corps. */
   private ArmureTypes armureTypes;
   /** Bonus ajouté par l'armure à la défense du joueur. */
@@ -15,13 +15,13 @@ public class Armure {
   /**
    * Constructeur de l'armure.
    *
-   * @param armureEnum pour préciser l'armure.
+   * @param armureType pour préciser l'armure.
    */
-  public Armure(ArmureEnum armureEnum) {
-    this.armureEnum = armureEnum;
-    this.armureTypes = armureEnum.armureTypes;
-    this.bonusDef = armureEnum.bonusDef;
-    this.prix = armureEnum.prix;
+  public Armure(ArmureType armureType) {
+    this.armureType = armureType;
+    this.armureTypes = armureType.armureTypes;
+    this.bonusDef = armureType.bonusDef;
+    this.prix = armureType.prix;
   }
 
   /**
