@@ -24,6 +24,10 @@ public class Personnage {
   /** L'arme currente du personnage. */
   private Arme currentArme;
   /**
+   * L'armure currente du personnage.
+   */
+  private Armure currentArmure ;
+  /**
    * Une table de hachage associant chaque caractéristique du personnage à son score de
    * caractéristique correspondant.
    */
@@ -49,6 +53,7 @@ public class Personnage {
     this.typeDattaque = builder.scoreAttaque;
     this.armes = builder.equipements;
     this.currentArme = null;
+    this.currentArme = null ;
   }
 
   /**
@@ -99,11 +104,6 @@ public class Personnage {
   public int getDefense() {
     return defense;
   }
-
-  //  public Arme getCurrentArme() {
-  //    return currentArme;
-  //  }
-
   public Map<TypeDattaque, Integer> getTypeDattaque() {
     return typeDattaque;
   }
@@ -116,7 +116,7 @@ public class Personnage {
     this.armes = armes;
   }
 
-  public void setEquipement(Arme arme) {
+  public void setArme(Arme arme) {
     this.armes.add(arme);
   }
 
@@ -142,6 +142,26 @@ public class Personnage {
       currentArme = arme;
     } else {
       armes.add(arme);
+    }
+  }
+
+  public List<Armure> getArmures(){
+    return this.armures;
+  }
+
+  public void setArmure(Armure armure){
+    this.armures.add(armure);
+  }
+
+  public void setArmures(List<Armure> armures){
+    this.armures = armures ;
+  }
+
+  public void ramasserArmure(Armure armure){
+    if (currentArmure == null) {
+      currentArmure = armure;
+    } else {
+      armures.add(armure);
     }
   }
 
