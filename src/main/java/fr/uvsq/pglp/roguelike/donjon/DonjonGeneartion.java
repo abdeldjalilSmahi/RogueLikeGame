@@ -3,6 +3,8 @@ package fr.uvsq.pglp.roguelike.donjon;
 import org.fusesource.jansi.Ansi.Color;
 
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class DonjonGeneartion implements Strategie {
@@ -16,6 +18,11 @@ public class DonjonGeneartion implements Strategie {
     int profondeur = (nbrfloors * roomSize) + 2 + (nbrfloors - 1);
     int largeur = (nbRooms * roomSize) + 2 + nbRooms - 1;
     int k;
+    List<RoomDonjon> roomsDonjon = new ArrayList<>();
+
+    public List<RoomDonjon> getRoomsDonjon() {
+        return roomsDonjon;
+    }
 
     public DonjonObject[][] getMap() {
         return map;
@@ -59,6 +66,31 @@ public class DonjonGeneartion implements Strategie {
                 random = rand.nextInt((roomSize * k) - roomSize*(k-1) - 1) + roomSize*(k-1)+k;
                 map[random][(roomSize + 1) * room] =
                         new DonjonObject(new Point2D.Double(random, (roomSize + 1) * room), " P ", Color.CYAN);
+            }
+        }
+    }
+
+    @Override
+    public void determinateRoom() {
+        for (int i = 0; i < profondeur-roomSize; i = i + roomSize+1) {
+            for (int j = 0; j < largeur-roomSize; j=j+roomSize+1) {
+                int hgI = i + 1;
+                int hdI = hgI;
+                int bgI = i+roomSize;
+                int bdI = bgI;
+
+                int hgJ = j+1;
+                int hdJ = roomSize+j;
+                int bgJ = hgJ;
+                int bdJ = hdJ;
+
+                Point2D hgPoint = new Point2D.Double(hgI, hgJ);
+                Point2D hdPoint = new Point2D.Double(hdI, hdJ);
+                Point2D bgPoint = new Point2D.Double(bgI, bgJ);
+                Point2D bdPoint = new Point2D.Double(bdI, bdJ);
+
+                RoomDonjon room = new RoomDonjon(hgPoint, hdPoint, bgPoint, bdPoint);
+                roomsDonjon.add(room);
             }
         }
     }

@@ -1,6 +1,7 @@
 package fr.uvsq.pglp.roguelike;
 
 import fr.uvsq.pglp.roguelike.donjon.DonjonGeneartion;
+import fr.uvsq.pglp.roguelike.donjon.RoomDonjon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,6 +36,7 @@ public enum Roguelike {
     DonjonGeneartion donjon = new DonjonGeneartion();
     donjon.setup();
     donjon.createportealeatoire();
+    donjon.determinateRoom();
 
     for (int i = 0; i < donjon.getMap().length; i++) {
       for (int j = 0; j < donjon.getMap()[0].length; j++) {
@@ -42,5 +44,9 @@ public enum Roguelike {
       }
       System.out.println();
     }
+    for(RoomDonjon romm : donjon.getRoomsDonjon() ){
+      System.out.println(romm.getBasDroit());
+    }
+
   }
-}
+  }
