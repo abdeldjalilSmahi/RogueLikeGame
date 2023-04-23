@@ -9,6 +9,10 @@ public enum DonjonComponentType {
    * Sol, représenté par un caractère .
    */
   SOL(" . "),
+  /**
+   * Porte, représenté par un P.
+   */
+  PORTE(" P ")
   ;
 
   /**

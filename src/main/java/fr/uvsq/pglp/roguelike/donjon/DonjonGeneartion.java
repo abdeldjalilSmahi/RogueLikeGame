@@ -1,5 +1,6 @@
 package fr.uvsq.pglp.roguelike.donjon;
 
+import fr.uvsq.pglp.roguelike.personnage.Personnage;
 import org.fusesource.jansi.Ansi.Color;
 
 import java.awt.geom.Point2D;
@@ -36,16 +37,16 @@ public class DonjonGeneartion implements Strategie {
         for (int i = 0; i < profondeur; i++) {
             for (int j = 0; j < largeur; j++) {
                 if (i == 0 || i == profondeur - 1 || j == 0 || j == largeur - 1) {
-                    map[i][j] = new DonjonObject(new Point2D.Double(i, j), " # ", Color.CYAN);
-                } else map[i][j] = new DonjonObject(new Point2D.Double(i, j), " . ", Color.CYAN);
+                    map[i][j] = new ComponentDonjon(new Point2D.Double(i, j), Color.CYAN, DonjonComponentType.OBSTACLE);
+                } else map[i][j] = new ComponentDonjon(new Point2D.Double(i, j), Color.CYAN, DonjonComponentType.SOL);
                 for (k = 1; k < nbrfloors; k++) {
                     map[(roomSize + 1) * k][j] =
-                            new DonjonObject(new Point2D.Double(i, j), " # ", Color.CYAN);
+                            new ComponentDonjon(new Point2D.Double(i, j), Color.CYAN, DonjonComponentType.OBSTACLE);
                 }
             }
             for (k = 1; k < nbRooms; k++) {
                 map[i][(roomSize + 1) * k] =
-                        new DonjonObject(new Point2D.Double(i, (roomSize + 1) * k), " # ", Color.CYAN);
+                        new ComponentDonjon(new Point2D.Double(i, (roomSize + 1) * k), Color.CYAN, DonjonComponentType.OBSTACLE);
             }
         }
 
@@ -57,15 +58,14 @@ public class DonjonGeneartion implements Strategie {
             for (k = 1; k <= nbRooms; k++) {
                 random = rand.nextInt((roomSize * k) - roomSize*(k-1)-1) + roomSize*(k-1)+k;
                 map[(roomSize + 1) * level][random] =
-                        new DonjonObject(new Point2D.Double((roomSize + 1) * level, random),
-                                " ¿ ", Color.CYAN);
+                        new ComponentDonjon(new Point2D.Double((roomSize + 1) * level, random), Color.CYAN, DonjonComponentType.PORTE);
             }
         }
         for(int room=1;room<nbRooms;room++){
             for (k = 1; k <= nbrfloors; k++) {
                 random = rand.nextInt((roomSize * k) - roomSize*(k-1) - 1) + roomSize*(k-1)+k;
                 map[random][(roomSize + 1) * room] =
-                        new DonjonObject(new Point2D.Double(random, (roomSize + 1) * room), " P ", Color.CYAN);
+                        new ComponentDonjon(new Point2D.Double(random, (roomSize + 1) * room), Color.CYAN, DonjonComponentType.PORTE);
             }
         }
     }

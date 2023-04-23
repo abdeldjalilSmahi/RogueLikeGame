@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Donjon {
+
+
     private Strategie strategie;
     //private Map <DonjonObject, Point2D>allElements;
 
