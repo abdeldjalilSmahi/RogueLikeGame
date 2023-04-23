@@ -23,7 +23,6 @@ public class ArmeTest {
     List<Arme> armes = new ArrayList<>();
     armes.add(new ArmeDistance(ArmeDistanceType.ARBALETE_LEGERE));
     armes.add(new ArmeContact(ArmeContactType.GOURDIN));
-    armes.add(new ArmeDistance(ArmeDistanceType.ARC_COURT));
     armes.add(new ArmeContact(ArmeContactType.BATON_FEREE));
     armes.remove(armes.get(0));
     System.out.println(armes.get(0).getTypeDattaque().toString());

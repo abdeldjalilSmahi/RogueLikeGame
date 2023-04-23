@@ -8,8 +8,9 @@ public class PnjDonjon extends Creature{
 
   private Pnj pnj;
 
-  public PnjDonjon(Point2D position, String asciiChar, Color color) {
-    super(position, asciiChar, color);
+  public PnjDonjon(Pnj pnj, Point2D position) {
+    super(position, " $ ", Color.CYAN);
+    this.pnj = pnj ;
   }
 
   @Override
