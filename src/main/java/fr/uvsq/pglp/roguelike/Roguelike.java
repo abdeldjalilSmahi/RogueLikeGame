@@ -46,14 +46,15 @@
           donjon.genererDonjon();
           Scanner sc = new Scanner(System.in);
           String c;
-
           DisplayMap.dispaly(donjon);
+          Command cmd;
+          Interaction interaction;
           while(true){
               c= sc.nextLine();
               System.out.println(c);
-              Interaction interaction = new Interaction(c,donjon);
-             Command cmd=interaction.getCommande();
-             interaction.executecmd(cmd);
+              interaction = new Interaction(c,donjon);
+              cmd=interaction.getCommande();
+              interaction.executecmd(cmd);
               DisplayMap.dispaly(donjon);
 
           }

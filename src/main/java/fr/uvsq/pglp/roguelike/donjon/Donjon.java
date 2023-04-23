@@ -38,8 +38,10 @@ public class Donjon {
   }
   public void swapObjects(DonjonObject obj1, DonjonObject obj2){
     Point2D temp = obj1.getPosition();
-    this.addObject(temp, obj2);
-    this.addObject(obj2.getPosition(), obj1);
+    obj1.setPosition(obj2.getPosition());
+    obj2.setPosition(temp);
+    addObject(obj1.getPosition(),obj1);
+    addObject(obj2.getPosition(),obj2);
     updateMap();
   }
   public void addObject(Point2D point2D, DonjonObject donjonObject){
@@ -73,5 +75,9 @@ public class Donjon {
 
   public DonjonObject[][] getMap() {
     return map;
+  }
+
+  public List<PnjDonjon> getPnjDonjonList() {
+    return pnjDonjonList;
   }
 }

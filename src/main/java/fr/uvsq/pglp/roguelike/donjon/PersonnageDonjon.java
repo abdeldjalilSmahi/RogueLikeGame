@@ -25,8 +25,9 @@ public class PersonnageDonjon extends Creature {
 
   @Override
   public boolean canMoveTo(Point2D newPosition, Map<Point2D, DonjonObject> map) {
+
     if (map.get(newPosition).getAsciiChar()!=DonjonComponentType.SOL.getAsciiChar()) {
-      System.out.println("yeah");
+
       return false;
     }
     return true;
