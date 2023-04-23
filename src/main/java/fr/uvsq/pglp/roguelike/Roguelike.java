@@ -1,7 +1,6 @@
     package fr.uvsq.pglp.roguelike;
 
-    import fr.uvsq.pglp.roguelike.donjon.DonjonGeneartion;
-    import fr.uvsq.pglp.roguelike.donjon.RoomDonjon;
+    import fr.uvsq.pglp.roguelike.donjon.*;
     import fr.uvsq.pglp.roguelike.personnage.Personnage;
     import org.slf4j.Logger;
     import org.slf4j.LoggerFactory;
@@ -34,9 +33,11 @@
        * @param args command line arguments
        */
       public static void main(String[] args) {
-        Personnage pj = new Personnage.Builder("abdjalil").setPieces(0).build();
-        DonjonGeneartion donjon = new DonjonGeneartion(pj);
-
+          Personnage pj = new Personnage.Builder("abdjalil").setPieces(0).build();
+          Strategie strategie = new DonjonGeneartion(pj);
+          Donjon donjon = new Donjon();
+          donjon.setStrategie(strategie);
+          donjon.genererDonjon();
 
         for (int i = 0; i < donjon.getMap().length; i++) {
           for (int j = 0; j < donjon.getMap()[0].length; j++) {
@@ -44,9 +45,7 @@
           }
           System.out.println();
         }
-        for(RoomDonjon romm : donjon.getRoomsDonjon() ){
-          System.out.println(romm.getBasDroit());
-        }
+
 
       }
       }

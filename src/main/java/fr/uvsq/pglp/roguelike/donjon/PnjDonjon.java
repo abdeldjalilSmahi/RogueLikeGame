@@ -2,6 +2,8 @@ package fr.uvsq.pglp.roguelike.donjon;
 
 import fr.uvsq.pglp.roguelike.personnage.Pnj;
 import java.awt.geom.Point2D;
+import java.util.Map;
+
 import org.fusesource.jansi.Ansi.Color;
 
 public class PnjDonjon extends Creature {
@@ -16,7 +18,7 @@ public class PnjDonjon extends Creature {
   }
 
   @Override
-  public boolean canMoveTo(Point2D position) {
+  public boolean canMoveTo(Point2D position, Map<Point2D, DonjonObject> map) {
     return false;
   }
 }

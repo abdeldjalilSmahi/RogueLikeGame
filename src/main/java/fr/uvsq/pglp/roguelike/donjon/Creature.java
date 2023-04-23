@@ -1,6 +1,7 @@
 package fr.uvsq.pglp.roguelike.donjon;
 
 import java.awt.geom.Point2D;
+import java.util.Map;
 import org.fusesource.jansi.Ansi;
 
 public abstract class Creature extends DonjonObject {
@@ -8,5 +9,10 @@ public abstract class Creature extends DonjonObject {
     super(position, asciiChar, color);
   }
 
-  public abstract boolean canMoveTo(Point2D position);
+  public abstract boolean canMoveTo(Point2D newPosition, Map<Point2D, DonjonObject> map);
+
+
+
 }
+
+
