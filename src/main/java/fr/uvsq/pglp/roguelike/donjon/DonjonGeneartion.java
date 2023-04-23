@@ -1,6 +1,7 @@
 package fr.uvsq.pglp.roguelike.donjon;
 
 import fr.uvsq.pglp.roguelike.personnage.Personnage;
+import fr.uvsq.pglp.roguelike.personnage.Pnj;
 import org.fusesource.jansi.Ansi.Color;
 
 import java.awt.geom.Point2D;
@@ -23,6 +24,8 @@ public class DonjonGeneartion implements Strategie {
     private Personnage pj ;
     private PersonnageDonjon pjDonjon;
 
+    private List<PnjDonjon> pnjDonjonList;
+
     public DonjonGeneartion(Personnage pj) {
         this.pj = pj;
 
@@ -42,9 +45,8 @@ public class DonjonGeneartion implements Strategie {
         createportealeatoire();
         determinateRoom();
         initPj();
-
     }
-public void generatepiecefixe(){
+    private void generatepiecefixe(){
     map = new DonjonObject[profondeur][largeur];
     //creer des salles
     for (int i = 0; i < profondeur; i++) {
@@ -64,7 +66,7 @@ public void generatepiecefixe(){
     }
 }
 
-    public void createportealeatoire() {
+    private void createportealeatoire() {
         for(int level=1;level<nbrfloors;level++){
             for (k = 1; k <= nbRooms; k++) {
                 random = rand.nextInt((roomSize * k) - roomSize*(k-1)-1) + roomSize*(k-1)+k;
@@ -81,7 +83,7 @@ public void generatepiecefixe(){
         }
     }
 
-    public void determinateRoom() {
+    private void determinateRoom() {
         for (int i = 0; i < profondeur-roomSize; i = i + roomSize+1) {
             for (int j = 0; j < largeur-roomSize; j=j+roomSize+1) {
                 int hgI = i + 1;
@@ -104,7 +106,7 @@ public void generatepiecefixe(){
             }
         }
     }
-    public void initPj(){
+    private void initPj(){
         this.pjDonjon=new PersonnageDonjon(pj,new Point2D.Double(1,1));
         ajoutMap(this.pjDonjon);
 
@@ -112,4 +114,10 @@ public void generatepiecefixe(){
     private void ajoutMap(DonjonObject donjonObject){
         this.map[(int)donjonObject.position.getX()][(int)donjonObject.position.getY()]=donjonObject;
     }
+    private void initPnj(){
+     for (RoomDonjon roomDonjon : roomsDonjon){
+
+         }
+     }
+
 }
