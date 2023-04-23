@@ -7,10 +7,12 @@ import org.fusesource.jansi.Ansi.Color;
 public class PnjDonjon extends Creature {
 
   private Pnj pnj;
+  String ascichar;
 
-  public PnjDonjon(Pnj pnj, Point2D position) {
-    super(position, " $ ", Color.CYAN);
+  public PnjDonjon(Pnj pnj, String ascichar,Point2D position) {
+    super(position, ascichar, Color.CYAN);
     this.pnj = pnj;
+    this.ascichar=ascichar;
   }
 
   @Override

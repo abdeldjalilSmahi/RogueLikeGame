@@ -1,14 +1,12 @@
 package fr.uvsq.pglp.roguelike.donjon;
 
-import fr.uvsq.pglp.roguelike.personnage.Personnage;
-import fr.uvsq.pglp.roguelike.personnage.Pnj;
+import fr.uvsq.pglp.roguelike.equipement.*;
+import fr.uvsq.pglp.roguelike.personnage.*;
+
 import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
+
 import org.fusesource.jansi.Ansi.Color;
 
 public class DonjonGeneartion implements Strategie {
@@ -29,6 +27,8 @@ public class DonjonGeneartion implements Strategie {
   private List<PnjDonjon> pnjDonjonList;
 
   private Map<Point2D, DonjonObject> allDonjonObjects = new HashMap<>();
+  private List<ArmureDonjType> armuresDonj;
+  private List<ArmeDistDonjType> armesDist;
 
   public DonjonGeneartion(Personnage pj) {
     this.pj = pj;
@@ -52,6 +52,7 @@ public class DonjonGeneartion implements Strategie {
     initPnj();
     initPiece();
     initPiege();
+    initMagasin();
   }
 
   private void generatepiecefixe() {
@@ -165,12 +166,24 @@ public class DonjonGeneartion implements Strategie {
   }
 
   private void initPnj() {
-
+    List<ArmeContactType> armeContactTypes = Arrays.asList(ArmeContactType.values());
+    List<ArmeDistanceType> armeDistanceTypes = Arrays.asList(ArmeDistanceType.values());
+    int cpt = 0;
     for (RoomDonjon roomDonjon : roomsDonjon) {
-      int nbrofdange = rand.nextInt(3) + 2;
-      for (int k = 0; k < nbrofdange; k++) {
-        Personnage.Builder builder = new Personnage.Builder("za3im");
-        Pnj pnj = new Pnj(builder);
+       ArmeContactType armeContactType = armeContactTypes.get(new Random().nextInt(armeContactTypes.size()));
+       ArmeDistanceType armeDistanceType = armeDistanceTypes.get(new Random().nextInt(armeDistanceTypes.size()));
+       ArmeContact armeContact = new ArmeContact(armeContactType);
+       ArmeDistance armeDistance = new ArmeDistance(armeDistanceType);
+       Personnage.Builder builder = new Personnage.Builder("za3im");
+       Pnj pnj = new Pnj(builder);
+       if(cpt%2==0){
+         Agreesifstrategy agreesifstrategy=new Agreesifstrategy(armeContact);
+         pnj.setStrategy(agreesifstrategy);
+       }
+       else{
+         Agreesifstrategy agreesifstrategy=new Agreesifstrategy(armeDistance);
+         pnj.setStrategy(agreesifstrategy);
+       }
         Point2D point2D;
         do {
           int x =
@@ -185,10 +198,34 @@ public class DonjonGeneartion implements Strategie {
                   + (int) roomDonjon.getHautGauche().getY();
           point2D = new Double(x, y);
         } while (!validateposition(point2D));
-        PnjDonjon pnjDonjon = new PnjDonjon(pnj, point2D);
+        PnjDonjon pnjDonjon = new PnjDonjon(pnj," A " ,point2D);
         this.ajoutMap(pnjDonjon);
         this.addToHashMap(point2D, pnjDonjon);
-      }
+        cpt++;
+    }
+    for (RoomDonjon roomDonjon : roomsDonjon) {
+
+      Point2D point2D;
+      do {
+        int x =
+                rand.nextInt(
+                        (int) (roomDonjon.getBasGauche().getX() - roomDonjon.getHautGauche().getX())
+                                + 1)
+                        + (int) roomDonjon.getHautGauche().getX();
+        int y =
+                rand.nextInt(
+                        (int) (roomDonjon.getHautDroit().getY() - roomDonjon.getHautGauche().getY())
+                                + 1)
+                        + (int) roomDonjon.getHautGauche().getY();
+        point2D = new Double(x, y);
+      } while (!validateposition(point2D));
+      Personnage.Builder builder = new Personnage.Builder("za3im");
+      Pnj pnj = new Pnj(builder);
+      Amicalstategie amicalstategie = new Amicalstategie(this.map,this.roomSize,this.roomsDonjon,point2D);
+      pnj.setStrategy(amicalstategie);
+      PnjDonjon pnjDonjon = new PnjDonjon(pnj," T " ,point2D);
+      this.ajoutMap(pnjDonjon);
+      this.addToHashMap(point2D, pnjDonjon);
     }
   }
 
@@ -224,7 +261,6 @@ public class DonjonGeneartion implements Strategie {
   }
   private void initPiege(){
     for (RoomDonjon roomDonjon : roomsDonjon) {
-      for (int k = 0; k < 1; k++) {
         Point2D point2D;
         do {
           int x =
@@ -242,7 +278,33 @@ public class DonjonGeneartion implements Strategie {
         Piege piege = new Piege(point2D);
         this.ajoutMap(piege);
         this.addToHashMap(point2D, piege);
+
+    }
+  }
+  private void initMagasin(){
+    int cpt=0;
+    for (RoomDonjon roomDonjon : roomsDonjon) {
+      if(cpt%2==0) {
+        Point2D point2D;
+        do {
+          int x =
+                  rand.nextInt(
+                          (int) (roomDonjon.getBasGauche().getX() - roomDonjon.getHautGauche().getX())
+                                  + 1)
+                          + (int) roomDonjon.getHautGauche().getX();
+          int y =
+                  rand.nextInt(
+                          (int) (roomDonjon.getHautDroit().getY() - roomDonjon.getHautGauche().getY())
+                                  + 1)
+                          + (int) roomDonjon.getHautGauche().getY();
+          point2D = new Double(x, y);
+        } while (!validateposition(point2D));
+        MagasinDonjon magasinDonjon = new MagasinDonjon(point2D);
+        this.ajoutMap(magasinDonjon);
+        this.addToHashMap(point2D, magasinDonjon);
       }
+      cpt++;
+
     }
   }
 }

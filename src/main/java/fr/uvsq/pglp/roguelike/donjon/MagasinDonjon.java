@@ -1,20 +1,18 @@
 package fr.uvsq.pglp.roguelike.donjon;
 
-import fr.uvsq.pglp.roguelike.equipement.*;
 import fr.uvsq.pglp.roguelike.personnage.Personnage;
 import org.fusesource.jansi.Ansi;
 
 import java.awt.geom.Point2D;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class MgasinDonjon extends DonjonObject{
+public class MagasinDonjon extends DonjonObject{
     private List<ArmureDonjType> armuresDonj;
     private List<ArmeDistDonjType> armesDist;
     private List<ArmeConDonjType> armesCont;
     private Personnage pj;
-    public MgasinDonjon(Point2D position) {
+    public MagasinDonjon(Point2D position) {
         super(position, " M ", Ansi.Color.MAGENTA);
         this.armesCont = Arrays.asList(ArmeConDonjType.values());
         this.armesDist = Arrays.asList(ArmeDistDonjType.values());
