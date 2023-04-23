@@ -13,6 +13,10 @@ public class ArmeDistance extends Arme {
   /** la porté de l'arme en mettre. */
   private int portee;
 
+  public ArmeDistanceType getArmeDistanceType() {
+    return armeDistanceType;
+  }
+
   /** {@link Random} pour controler le random au test unitaires. */
   private Random random = new Random(new Random().nextInt());
 

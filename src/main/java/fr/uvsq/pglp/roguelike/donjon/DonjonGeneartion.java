@@ -50,6 +50,8 @@ public class DonjonGeneartion implements Strategie {
     determinateRoom();
     initPj();
     initPnj();
+    initPiece();
+    initPiege();
   }
 
   private void generatepiecefixe() {
@@ -190,5 +192,51 @@ public class DonjonGeneartion implements Strategie {
 
   private void addToHashMap(Point2D key, DonjonObject value) {
     this.allDonjonObjects.put(key, value);
+  }
+  private void initPiece(){
+    for (RoomDonjon roomDonjon : roomsDonjon) {
+      for (int k = 0; k < 2; k++) {
+        Point2D point2D;
+        do {
+          int x =
+                  rand.nextInt(
+                          (int) (roomDonjon.getBasGauche().getX() - roomDonjon.getHautGauche().getX())
+                                  + 1)
+                          + (int) roomDonjon.getHautGauche().getX();
+          int y =
+                  rand.nextInt(
+                          (int) (roomDonjon.getHautDroit().getY() - roomDonjon.getHautGauche().getY())
+                                  + 1)
+                          + (int) roomDonjon.getHautGauche().getY();
+          point2D = new Double(x, y);
+        } while (!validateposition(point2D));
+        Piece piece = new Piece(point2D);
+        this.ajoutMap(piece);
+        this.addToHashMap(point2D, piece);
+      }
+    }
+  }
+  private void initPiege(){
+    for (RoomDonjon roomDonjon : roomsDonjon) {
+      for (int k = 0; k < 1; k++) {
+        Point2D point2D;
+        do {
+          int x =
+                  rand.nextInt(
+                          (int) (roomDonjon.getBasGauche().getX() - roomDonjon.getHautGauche().getX())
+                                  + 1)
+                          + (int) roomDonjon.getHautGauche().getX();
+          int y =
+                  rand.nextInt(
+                          (int) (roomDonjon.getHautDroit().getY() - roomDonjon.getHautGauche().getY())
+                                  + 1)
+                          + (int) roomDonjon.getHautGauche().getY();
+          point2D = new Double(x, y);
+        } while (!validateposition(point2D));
+        Piege piege = new Piege(point2D);
+        this.ajoutMap(piege);
+        this.addToHashMap(point2D, piege);
+      }
+    }
   }
 }

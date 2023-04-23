@@ -40,6 +40,11 @@ public class ArmeContact extends Arme {
     return this;
   }
 
+
+  public ArmeContactType getArmeContactType() {
+    return armeContactType;
+  }
+
   /**
    * calcul le damage qu'inflige l'arme.
    *

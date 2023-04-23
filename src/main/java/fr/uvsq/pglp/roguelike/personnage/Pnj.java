@@ -34,6 +34,10 @@ public class Pnj {
     this.typeDattaque = builder.getScoreAttaque();
   }
 
+  public void setStrategy(Strategy strategy) {
+    this.strategy = strategy;
+  }
+
   public int getPv() {
     return pv;
   }

@@ -7,9 +7,9 @@ import org.fusesource.jansi.Ansi.Color;
 public class Piece extends DonjonObject {
   private int value;
 
-  public Piece(Point2D position, String asciiChar, Color color) {
-    super(position, " € ", color);
-    this.value = new Random().nextInt(15) + 1;
+  public Piece(Point2D position) {
+    super(position, " € ", Color.RED);
+    this.value = new Random().nextInt(15) + 5;
   }
 
   public int getValue() {

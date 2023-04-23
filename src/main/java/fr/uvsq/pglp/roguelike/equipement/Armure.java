@@ -24,6 +24,14 @@ public class Armure {
     this.prix = armureType.prix;
   }
 
+  public ArmureType getArmureType() {
+    return armureType;
+  }
+
+  public int getPrix() {
+    return prix;
+  }
+
   /**
    * Méthode retournant le bonus à rajouter à la def du personnages.
    *

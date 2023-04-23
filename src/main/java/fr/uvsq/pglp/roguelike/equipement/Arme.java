@@ -30,13 +30,6 @@ public abstract class Arme {
     this.typeDattaque = typeDattaque;
   }
 
-  public ArmeContactType getArmeContactType() {
-    return armeContactType;
-  }
-
-  public void setArmeContactType(ArmeContactType armeContactType) {
-    this.armeContactType = armeContactType;
-  }
 
   public int getDe() {
     return de;
