@@ -394,5 +394,25 @@ public class Personnage {
     public Personnage build() {
       return new Personnage(this);
     }
+
+    public Map<Caracteristique, ScoreDeCaracteristique> getScoreDeCaracteristiqueMap() {
+      return scoreDeCaracteristiqueMap;
+    }
+
+    public Map<TypeDattaque, Integer> getScoreAttaque() {
+      return scoreAttaque;
+    }
+
+    public int getPv() {
+      return pv;
+    }
+
+    public int getInit() {
+      return init;
+    }
+
+    public int getDefense() {
+      return defense;
+    }
   }
 }

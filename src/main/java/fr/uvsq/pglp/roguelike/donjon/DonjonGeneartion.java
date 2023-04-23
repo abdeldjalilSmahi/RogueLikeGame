@@ -23,12 +23,12 @@ public class DonjonGeneartion implements Strategie {
     List<RoomDonjon> roomsDonjon = new ArrayList<>();
     private Personnage pj ;
     private PersonnageDonjon pjDonjon;
-
+    private List<Pnj> pnjList;
     private List<PnjDonjon> pnjDonjonList;
 
-    public DonjonGeneartion(Personnage pj) {
+    public DonjonGeneartion(Personnage pj, List<Pnj> pnjList) {
         this.pj = pj;
-
+        this.pnjList = pnjList ;
     }
 
     public List<RoomDonjon> getRoomsDonjon() {
@@ -115,6 +115,9 @@ public class DonjonGeneartion implements Strategie {
         this.map[(int)donjonObject.position.getX()][(int)donjonObject.position.getY()]=donjonObject;
     }
     private void initPnj(){
+        for(Pnj pnj: this.pnjList){
+            PnjDonjon pnjDonjon = new PnjDonjon(pnj, );
+        }
      for (RoomDonjon roomDonjon : roomsDonjon){
 
          }
