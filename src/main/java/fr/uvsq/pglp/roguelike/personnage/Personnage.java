@@ -23,10 +23,8 @@ public class Personnage {
   private int defense;
   /** L'arme currente du personnage. */
   private Arme currentArme;
-  /**
-   * L'armure currente du personnage.
-   */
-  private Armure currentArmure ;
+  /** L'armure currente du personnage. */
+  private Armure currentArmure;
   /**
    * Une table de hachage associant chaque caractéristique du personnage à son score de
    * caractéristique correspondant.
@@ -38,9 +36,7 @@ public class Personnage {
   private List<Arme> armes;
   /** List des armures du joueur. */
   private List<Armure> armures;
-  /**
-   * Les pieces de monnaies de joueur
-   */
+  /** Les pieces de monnaies de joueur. */
   private int pieces;
 
   /**
@@ -57,7 +53,7 @@ public class Personnage {
     this.typeDattaque = builder.scoreAttaque;
     this.armes = builder.equipements;
     this.currentArme = null;
-    this.currentArmure = null ;
+    this.currentArmure = null;
     this.pieces = builder.pieces;
   }
 
@@ -109,6 +105,7 @@ public class Personnage {
   public int getDefense() {
     return defense;
   }
+
   public Map<TypeDattaque, Integer> getTypeDattaque() {
     return typeDattaque;
   }
@@ -128,7 +125,7 @@ public class Personnage {
   /** Cette méthode sert changer l'arme courante du personnage. */
   public void changeArme() {
     if (!armes.isEmpty()) {
-//      Arme temp =
+      //      Arme temp =
       currentArme = armes.get(0);
       armes.remove(armes.get(0));
 
@@ -150,19 +147,19 @@ public class Personnage {
     }
   }
 
-  public List<Armure> getArmures(){
+  public List<Armure> getArmures() {
     return this.armures;
   }
 
-  public void setArmure(Armure armure){
+  public void setArmure(Armure armure) {
     this.armures.add(armure);
   }
 
-  public void setArmures(List<Armure> armures){
-    this.armures = armures ;
+  public void setArmures(List<Armure> armures) {
+    this.armures = armures;
   }
 
-  public void ramasserArmure(Armure armure){
+  public void ramasserArmure(Armure armure) {
     if (currentArmure == null) {
       currentArmure = armure;
     } else {
@@ -377,10 +374,8 @@ public class Personnage {
       return 2 * (random.nextInt(5) + 2);
     }
 
-    /**
-     * Pour construire un personnage avec sa monnaie;
-     */
-    public Builder setPieces(int pieces){
+    /** Pour construire un personnage avec sa monnaie; */
+    public Builder setPieces(int pieces) {
       this.pieces = pieces;
       return this;
     }
@@ -390,7 +385,6 @@ public class Personnage {
      *
      * @return Personnage instance construite.
      */
-
     public Personnage build() {
       return new Personnage(this);
     }
