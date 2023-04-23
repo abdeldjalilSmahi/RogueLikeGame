@@ -2,9 +2,7 @@ package fr.uvsq.pglp.roguelike.personnage;
 
 import java.util.Map;
 
-/**
- * Classe représentant un pnj du jeu.
- */
+/** Classe représentant un pnj du jeu. */
 public class Pnj {
 
   private int pv;
@@ -21,7 +19,7 @@ public class Pnj {
   private Map<TypeDattaque, Integer> typeDattaque;
 
   private Strategy strategy;
-  private Personnage.Builder builder ;
+  private Personnage.Builder builder;
 
   /**
    * Constructeur de la classe {@link Personnage}.
@@ -34,7 +32,6 @@ public class Pnj {
     this.init = builder.getInit();
     this.scoreDeCaracteristiqueMap = builder.getScoreDeCaracteristiqueMap();
     this.typeDattaque = builder.getScoreAttaque();
-
   }
 
   public int getPv() {
@@ -65,8 +62,5 @@ public class Pnj {
     strategy.execute();
   }
 
-  /**
-   * Classe interne permettant de construire un objet Pnj.
-   */
-
+  /** Classe interne permettant de construire un objet Pnj. */
 }

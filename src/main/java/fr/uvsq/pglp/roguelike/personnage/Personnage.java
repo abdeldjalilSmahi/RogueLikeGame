@@ -374,13 +374,13 @@ public class Personnage {
       return 2 * (random.nextInt(5) + 2);
     }
 
-    /** Pour construire un personnage avec sa monnaie; */
+    /** Pour construire un personnage avec sa monnaie. */
     public Builder setPieces(int pieces) {
       this.pieces = pieces;
       return this;
     }
 
-    /**
+    /**.
      * Méthode de construction du {@link Personnage}
      *
      * @return Personnage instance construite.
