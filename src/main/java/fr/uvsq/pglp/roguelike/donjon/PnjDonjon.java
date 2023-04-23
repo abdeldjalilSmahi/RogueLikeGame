@@ -3,6 +3,7 @@ package fr.uvsq.pglp.roguelike.donjon;
 import fr.uvsq.pglp.roguelike.personnage.Pnj;
 import java.awt.geom.Point2D;
 import java.util.Map;
+
 import org.fusesource.jansi.Ansi.Color;
 
 public class PnjDonjon extends Creature {

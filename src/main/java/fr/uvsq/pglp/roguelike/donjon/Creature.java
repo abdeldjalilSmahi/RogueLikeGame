@@ -12,4 +12,7 @@ public abstract class Creature extends DonjonObject {
   public abstract boolean canMoveTo(Point2D newPosition, Map<Point2D, DonjonObject> map);
 
 
+
 }
+
+
