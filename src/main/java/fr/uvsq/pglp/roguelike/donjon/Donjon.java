@@ -54,10 +54,9 @@ public class Donjon {
 
   public void updateMap(){
     for (Point2D key : allElements.keySet()) {
-      // ...
       int x = (int)key.getX();
       int y = (int)key.getY();
-      map[x][y] = allElements.get(key);
+      this.map[x][y] = allElements.get(key);
     }
   }
 

@@ -1,9 +1,15 @@
     package fr.uvsq.pglp.roguelike;
 
     import fr.uvsq.pglp.roguelike.donjon.*;
+    import fr.uvsq.pglp.roguelike.ihm.Command;
+    import fr.uvsq.pglp.roguelike.ihm.DisplayMap;
+    import fr.uvsq.pglp.roguelike.ihm.Interaction;
+
     import fr.uvsq.pglp.roguelike.personnage.Personnage;
     import org.slf4j.Logger;
     import org.slf4j.LoggerFactory;
+
+    import java.util.Scanner;
 
     /**
      * Main class for the application.
@@ -33,18 +39,25 @@
        * @param args command line arguments
        */
       public static void main(String[] args) {
-          Personnage pj = new Personnage.Builder("abdjalil").setPieces(0).build();
+          Personnage pj = new Personnage.Builder("abdjalil").setPieces(15).build();
           Strategie strategie = new DonjonGeneartion(pj);
           Donjon donjon = new Donjon();
           donjon.setStrategie(strategie);
           donjon.genererDonjon();
+          Scanner sc = new Scanner(System.in);
+          String c;
 
-        for (int i = 0; i < donjon.getMap().length; i++) {
-          for (int j = 0; j < donjon.getMap()[0].length; j++) {
-            System.out.print(donjon.getMap()[i][j].getAsciiChar());
+          DisplayMap.dispaly(donjon);
+          while(true){
+              c= sc.nextLine();
+              System.out.println(c);
+              Interaction interaction = new Interaction(c,donjon);
+             Command cmd=interaction.getCommande();
+             interaction.executecmd(cmd);
+              DisplayMap.dispaly(donjon);
+
           }
-          System.out.println();
-        }
+
 
 
       }
