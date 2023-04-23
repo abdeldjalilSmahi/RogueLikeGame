@@ -20,6 +20,13 @@ public class DonjonGeneartion implements Strategie {
     int largeur = (nbRooms * roomSize) + 2 + nbRooms - 1;
     int k;
     List<RoomDonjon> roomsDonjon = new ArrayList<>();
+    private Personnage pj ;
+    private PersonnageDonjon pjDonjon;
+
+    public DonjonGeneartion(Personnage pj) {
+        this.pj = pj;
+
+    }
 
     public List<RoomDonjon> getRoomsDonjon() {
         return roomsDonjon;
@@ -30,29 +37,33 @@ public class DonjonGeneartion implements Strategie {
     }
 
     @Override
-    public void setup() {
-        // Initialisation de la carte de donjon
-        map = new DonjonObject[profondeur][largeur];
-        //creer des salles
-        for (int i = 0; i < profondeur; i++) {
-            for (int j = 0; j < largeur; j++) {
-                if (i == 0 || i == profondeur - 1 || j == 0 || j == largeur - 1) {
-                    map[i][j] = new ComponentDonjon(new Point2D.Double(i, j), Color.CYAN, DonjonComponentType.OBSTACLE);
-                } else map[i][j] = new ComponentDonjon(new Point2D.Double(i, j), Color.CYAN, DonjonComponentType.SOL);
-                for (k = 1; k < nbrfloors; k++) {
-                    map[(roomSize + 1) * k][j] =
-                            new ComponentDonjon(new Point2D.Double(i, j), Color.CYAN, DonjonComponentType.OBSTACLE);
-                }
-            }
-            for (k = 1; k < nbRooms; k++) {
-                map[i][(roomSize + 1) * k] =
-                        new ComponentDonjon(new Point2D.Double(i, (roomSize + 1) * k), Color.CYAN, DonjonComponentType.OBSTACLE);
-            }
-        }
+    public void makedonjon() {
+        generatepiecefixe();
+        createportealeatoire();
+        determinateRoom();
+        initPj();
 
     }
+public void generatepiecefixe(){
+    map = new DonjonObject[profondeur][largeur];
+    //creer des salles
+    for (int i = 0; i < profondeur; i++) {
+        for (int j = 0; j < largeur; j++) {
+            if (i == 0 || i == profondeur - 1 || j == 0 || j == largeur - 1) {
+                map[i][j] = new ComponentDonjon(new Point2D.Double(i, j), Color.CYAN, DonjonComponentType.OBSTACLE);
+            } else map[i][j] = new ComponentDonjon(new Point2D.Double(i, j), Color.CYAN, DonjonComponentType.SOL);
+            for (k = 1; k < nbrfloors; k++) {
+                map[(roomSize + 1) * k][j] =
+                        new ComponentDonjon(new Point2D.Double(i, j), Color.CYAN, DonjonComponentType.OBSTACLE);
+            }
+        }
+        for (k = 1; k < nbRooms; k++) {
+            map[i][(roomSize + 1) * k] =
+                    new ComponentDonjon(new Point2D.Double(i, (roomSize + 1) * k), Color.CYAN, DonjonComponentType.OBSTACLE);
+        }
+    }
+}
 
-    @Override
     public void createportealeatoire() {
         for(int level=1;level<nbrfloors;level++){
             for (k = 1; k <= nbRooms; k++) {
@@ -70,7 +81,6 @@ public class DonjonGeneartion implements Strategie {
         }
     }
 
-    @Override
     public void determinateRoom() {
         for (int i = 0; i < profondeur-roomSize; i = i + roomSize+1) {
             for (int j = 0; j < largeur-roomSize; j=j+roomSize+1) {
@@ -93,5 +103,13 @@ public class DonjonGeneartion implements Strategie {
                 roomsDonjon.add(room);
             }
         }
+    }
+    public void initPj(){
+        this.pjDonjon=new PersonnageDonjon(pj,new Point2D.Double(1,1));
+        ajoutMap(this.pjDonjon);
+
+    }
+    private void ajoutMap(DonjonObject donjonObject){
+        this.map[(int)donjonObject.position.getX()][(int)donjonObject.position.getY()]=donjonObject;
     }
 }

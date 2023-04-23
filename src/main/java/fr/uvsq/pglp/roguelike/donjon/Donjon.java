@@ -16,8 +16,7 @@ public class Donjon {
     }
 
     public void genererDonjon() {
-        strategie.setup();
-        strategie.createportealeatoire();
-        strategie.determinateRoom();
+        strategie.makedonjon();
+
     }
 }

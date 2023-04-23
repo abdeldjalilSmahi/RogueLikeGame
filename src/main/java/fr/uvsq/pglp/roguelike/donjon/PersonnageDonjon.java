@@ -12,6 +12,10 @@ public class PersonnageDonjon extends Creature{
         this.personnage = personnage ;
     }
 
+    public Personnage getPersonnage() {
+        return personnage;
+    }
+
     @Override
     public boolean canMoveTo(Point2D position) {
         return false;

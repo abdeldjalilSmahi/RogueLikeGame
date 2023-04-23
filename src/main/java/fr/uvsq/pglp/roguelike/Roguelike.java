@@ -2,6 +2,7 @@ package fr.uvsq.pglp.roguelike;
 
 import fr.uvsq.pglp.roguelike.donjon.DonjonGeneartion;
 import fr.uvsq.pglp.roguelike.donjon.RoomDonjon;
+import fr.uvsq.pglp.roguelike.personnage.Personnage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,10 +34,9 @@ public enum Roguelike {
    * @param args command line arguments
    */
   public static void main(String[] args) {
-    DonjonGeneartion donjon = new DonjonGeneartion();
-    donjon.setup();
-    donjon.createportealeatoire();
-    donjon.determinateRoom();
+    Personnage pj = new Personnage.Builder("abdjalil").setPieces(0).build();
+    DonjonGeneartion donjon = new DonjonGeneartion(pj);
+    donjon.makedonjon();
 
     for (int i = 0; i < donjon.getMap().length; i++) {
       for (int j = 0; j < donjon.getMap()[0].length; j++) {
