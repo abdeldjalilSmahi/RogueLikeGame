@@ -115,12 +115,25 @@ public class DonjonGeneartion implements Strategie {
         this.map[(int)donjonObject.position.getX()][(int)donjonObject.position.getY()]=donjonObject;
     }
     private void initPnj(){
-        for(Pnj pnj: this.pnjList){
-            PnjDonjon pnjDonjon = new PnjDonjon(pnj, );
-        }
-     for (RoomDonjon roomDonjon : roomsDonjon){
 
+     for (RoomDonjon roomDonjon : roomsDonjon){
+        int nbrofdange=rand.nextInt(3)+2;
+        for(int k=0;k<nbrofdange;k++){
+            Personnage.Builder builder = new Personnage.Builder("za3im");
+            Pnj pnj = new Pnj(builder);
+            do {
+                int x = rand.nextInt((int) (roomDonjon.getBasGauche().getX() - roomDonjon.getHautGauche().getX()) + 1)
+                        + (int) roomDonjon.getHautGauche().getX();
+                int y = rand.nextInt((int) (roomDonjon.getHautDroit().getX() - roomDonjon.getHautGauche().getX()) + 1)
+                        + (int) roomDonjon.getHautGauche().getX();
+                Point2D point2D = new Point2D.Double(x,y);
+            }while(validateposition(point2D));
+            PnjDonjon pnjDonjon = new PnjDonjon();
+        }
          }
+     }
+     private boolean  validateposition(Point2D point2D){
+
      }
 
 }
