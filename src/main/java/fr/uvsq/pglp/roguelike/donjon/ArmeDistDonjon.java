@@ -4,14 +4,14 @@ import fr.uvsq.pglp.roguelike.equipement.ArmeDistance;
 import java.awt.geom.Point2D;
 import org.fusesource.jansi.Ansi.Color;
 
-public class ArmeDistDonjon extends DonjonObject{
+public class ArmeDistDonjon extends DonjonObject {
   private ArmeDistDonjType armeDistDonjType;
   private ArmeDistance armeDistance;
 
   public ArmeDistDonjon(Point2D position, Color color, ArmeDistDonjType armeDistDonjType) {
     super(position, armeDistDonjType.getAsciiChar(), color);
-    this.armeDistDonjType = armeDistDonjType ;
-    this.armeDistance = armeDistDonjType.getArmeDistance() ;
+    this.armeDistDonjType = armeDistDonjType;
+    this.armeDistance = armeDistDonjType.getArmeDistance();
   }
 
   public ArmeDistDonjType getArmeDistDonjType() {
@@ -22,7 +22,7 @@ public class ArmeDistDonjon extends DonjonObject{
     return armeDistance;
   }
 
-  public int getDamage(){
+  public int getDamage() {
     return this.armeDistance.calculDamage();
   }
 }
