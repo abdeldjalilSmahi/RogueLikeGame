@@ -2,11 +2,8 @@ package fr.uvsq.pglp.roguelike.personnage;
 
 import fr.uvsq.pglp.roguelike.equipement.Arme;
 import fr.uvsq.pglp.roguelike.equipement.ArmeContact;
-import fr.uvsq.pglp.roguelike.equipement.Armure;
 
-/**
- * Classe représentant le comportement agressif.
- */
+/** Classe représentant le comportement agressif. */
 public class Agreesifstrategy implements Strategy {
 
   private Pnj pnj;
@@ -18,7 +15,7 @@ public class Agreesifstrategy implements Strategy {
    *
    * @param pnj , personnage pour construire le personnage.
    */
-  public Agreesifstrategy(Pnj pnj,Arme arme) {
+  public Agreesifstrategy(Pnj pnj, Arme arme) {
     this.pnj = pnj;
   }
 
@@ -30,19 +27,18 @@ public class Agreesifstrategy implements Strategy {
     return personnage;
   }
 
-  /**
-   * la méthode implémenté de l'interface qui sert à executer le comportement agressif du pnj.
-   *
-   */
+  /** la méthode implémenté de l'interface qui sert à executer le comportement agressif du pnj. */
   @Override
   public void execute() {
-      attack();
+    attack();
   }
-  private void attack(){
+
+  private void attack() {
     if (arme instanceof ArmeContact) {
       this.personnage.setPv(
-              this.personnage.getPv() - (arme.calculDamage() + pnj.getScoreDeCaracteristiqueMap()
-                      .get(Caracteristique.FOR).mod()));
+          this.personnage.getPv()
+              - (arme.calculDamage()
+                  + pnj.getScoreDeCaracteristiqueMap().get(Caracteristique.FOR).mod()));
     } else {
       this.personnage.setPv(this.personnage.getPv() - arme.calculDamage());
     }
