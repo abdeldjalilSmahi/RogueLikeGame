@@ -25,6 +25,8 @@ public class Interaction {
                 return new Move(donjon, new Point2D.Double(personnageDonjon.getPosition().getX() - 1, personnageDonjon.getPosition().getY()+0));
             case "w":
                 return new Move(donjon, new Point2D.Double(personnageDonjon.getPosition().getX() + 1, personnageDonjon.getPosition().getY()+0));
+            case "acheter":
+                return new Achatarme(donjon);
         }
        return cmd;
         }

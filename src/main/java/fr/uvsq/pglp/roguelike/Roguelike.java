@@ -54,9 +54,14 @@
               System.out.println(c);
               interaction = new Interaction(c,donjon);
               cmd=interaction.getCommande();
-              interaction.executecmd(cmd);
-              DisplayMap.dispaly(donjon);
-
+              if(cmd==null) {
+                  DisplayMap.dispaly(donjon);
+                  System.out.println("Veuillez entrer une commande valide");
+              }
+              else{
+                  interaction.executecmd(cmd);
+                  DisplayMap.dispaly(donjon);
+              }
           }
 
 

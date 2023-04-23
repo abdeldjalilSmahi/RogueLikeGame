@@ -6,6 +6,7 @@ import org.fusesource.jansi.Ansi;
 import java.awt.geom.Point2D;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class MagasinDonjon extends DonjonObject{
     private List<ArmureDonjType> armuresDonj;
@@ -42,7 +43,63 @@ public class MagasinDonjon extends DonjonObject{
         for (ArmureDonjType armureDonjType : armuresDonj) {
             System.out.println(armureDonjType.getArmure().getArmureType().name() + " - "+ armureDonjType.getAsciiChar() + " - " + armureDonjType.getArmure().getPrix() + " pièces d'or");
         }
+        acheter();
+    }
+
+    private void acheter() {
+
+            Scanner scanner = new Scanner(System.in);
+
+            // Demander à l'acheteur de choisir un objet
+            System.out.println("Quel objet souhaitez-vous acheter?");
+            String nomObjet = scanner.nextLine();
+
+            // Rechercher l'objet dans les listes d'objets disponibles à la vente
+            ArmeConDonjType armeContact = null;
+            for (ArmeConDonjType armeConDonjType : armesCont) {
+                if (armeConDonjType.getArmeContact().getArmeContactType().name().equalsIgnoreCase(nomObjet)) {
+                    armeContact = armeConDonjType;
+                    break;
+                }
+            }
+
+            ArmeDistDonjType armeDistance = null;
+            for (ArmeDistDonjType armeDistDonjType : armesDist) {
+                if (armeDistDonjType.getArmeDistance().getArmeDistanceType().name().equalsIgnoreCase(nomObjet)) {
+                    armeDistance = armeDistDonjType;
+                    break;
+                }
+            }
+
+            ArmureDonjType armure = null;
+            for (ArmureDonjType armureDonjType : armuresDonj) {
+                if (armureDonjType.getArmure().getArmureType().name().equalsIgnoreCase(nomObjet)) {
+                    armure = armureDonjType;
+                    break;
+                }
+            }
+
+            // Vérifier si l'objet a été trouvé et s'il peut être acheté
+            if (armeContact == null && armeDistance == null && armure == null) {
+                System.out.println("L'objet " + nomObjet + " n'est pas disponible à la vente.");
+            } else {
+                int prixObjet = 0;
+                if (armeContact != null) {
+                    prixObjet = armeContact.getArmeContact().getPrix();
+                } else if (armeDistance != null) {
+                    prixObjet = armeDistance.getArmeDistance().getPrix();
+                } else {
+                    prixObjet = armure.getArmure().getPrix();
+                }
+
+                if (this.getPj().getPieces() >= prixObjet) {
+                    this.getPj().setPieces(this.getPj().getPieces() - prixObjet);
+                    System.out.println("L'objet " + nomObjet + " a été acheté avec succès.");
+                } else {
+                    System.out.println("Vous n'avez pas assez d'or pour acheter l'objet " + nomObjet + ".");
+                }
+            }
+        }
 
     }
 
-}
