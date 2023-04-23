@@ -21,9 +21,9 @@ public class Agreesifstrategy implements Strategy {
   /**
    * Constructeur de la classe {@link Agreesifstrategy}.
    *
-   * @param pnj , personnage pour construire le personnage.
+
    */
-  public Agreesifstrategy(Pnj pnj, Arme arme) {
+  public Agreesifstrategy(Arme arme) {
     this.pnj = pnj;
   }
 
