@@ -10,6 +10,14 @@ public class Agreesifstrategy implements Strategy {
   private Personnage personnage;
   private Arme arme;
 
+  public void setArme(Arme arme) {
+    this.arme = arme;
+  }
+
+  public Arme getArme() {
+    return arme;
+  }
+
   /**
    * Constructeur de la classe {@link Agreesifstrategy}.
    *
