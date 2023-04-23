@@ -21,7 +21,7 @@ public class DonjonGeneartion implements Strategie {
   int nbrfloors = 3;
   int profondeur = (nbrfloors * roomSize) + 2 + (nbrfloors - 1);
   int largeur = (nbRooms * roomSize) + 2 + nbRooms - 1;
-  int k;
+  int indice;
   List<RoomDonjon> roomsDonjon = new ArrayList<>();
   private Personnage pj;
   private PersonnageDonjon pjDonjon;
@@ -72,23 +72,23 @@ public class DonjonGeneartion implements Strategie {
           map[i][j] = componentDonjon;
           this.addToHashMap(point2D, componentDonjon);
         }
-        for (k = 1; k < nbrfloors; k++) {
-          Point2D point2D = new Point2D.Double((roomSize + 1) * k, j);
+        for (indice = 1; indice < nbrfloors; indice++) {
+          Point2D point2D = new Point2D.Double((roomSize + 1) * indice, j);
           ComponentDonjon componentDonjon =
               new ComponentDonjon(
                   new Point2D.Double(i, j), Color.CYAN, DonjonComponentType.OBSTACLE);
-          map[(roomSize + 1) * k][j] = componentDonjon;
+          map[(roomSize + 1) * indice][j] = componentDonjon;
           this.addToHashMap(point2D, componentDonjon);
         }
       }
-      for (k = 1; k < nbRooms; k++) {
-        Point2D point2D = new Point2D.Double(i, (roomSize + 1) * k);
+      for (indice = 1; indice < nbRooms; indice++) {
+        Point2D point2D = new Point2D.Double(i, (roomSize + 1) * indice);
         ComponentDonjon componentDonjon =
             new ComponentDonjon(
-                new Point2D.Double(i, (roomSize + 1) * k),
+                new Point2D.Double(i, (roomSize + 1) * indice),
                 Color.CYAN,
                 DonjonComponentType.OBSTACLE);
-        map[i][(roomSize + 1) * k] = componentDonjon;
+        map[i][(roomSize + 1) * indice] = componentDonjon;
         this.addToHashMap(point2D, componentDonjon);
       }
     }
@@ -96,8 +96,11 @@ public class DonjonGeneartion implements Strategie {
 
   private void createportealeatoire() {
     for (int level = 1; level < nbrfloors; level++) {
-      for (k = 1; k <= nbRooms; k++) {
-        random = rand.nextInt((roomSize * k) - roomSize * (k - 1) - 1) + roomSize * (k - 1) + k;
+      for (indice = 1; indice <= nbRooms; indice++) {
+        random =
+            rand.nextInt((roomSize * indice) - roomSize * (indice - 1) - 1)
+                + roomSize * (indice - 1)
+                + indice;
         Point2D point2D = new Point2D.Double((roomSize + 1) * level, random);
         ComponentDonjon componentDonjon =
             new ComponentDonjon(
@@ -109,8 +112,11 @@ public class DonjonGeneartion implements Strategie {
       }
     }
     for (int room = 1; room < nbRooms; room++) {
-      for (k = 1; k <= nbrfloors; k++) {
-        random = rand.nextInt((roomSize * k) - roomSize * (k - 1) - 1) + roomSize * (k - 1) + k;
+      for (indice = 1; indice <= nbrfloors; indice++) {
+        random =
+            rand.nextInt((roomSize * indice) - roomSize * (indice - 1) - 1)
+                + roomSize * (indice - 1)
+                + indice;
         Point2D point2D = new Point2D.Double(random, (roomSize + 1) * room);
         ComponentDonjon componentDonjon =
             new ComponentDonjon(
