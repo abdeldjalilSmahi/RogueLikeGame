@@ -38,6 +38,10 @@ public class Personnage {
   private List<Arme> armes;
   /** List des armures du joueur. */
   private List<Armure> armures;
+  /**
+   * Les pieces de monnaies de joueur
+   */
+  private int pieces;
 
   /**
    * Constructeur de la classe {@link Personnage}.
@@ -53,7 +57,8 @@ public class Personnage {
     this.typeDattaque = builder.scoreAttaque;
     this.armes = builder.equipements;
     this.currentArme = null;
-    this.currentArme = null ;
+    this.currentArmure = null ;
+    this.pieces = builder.pieces;
   }
 
   /**
@@ -165,6 +170,14 @@ public class Personnage {
     }
   }
 
+  public int getPieces() {
+    return pieces;
+  }
+
+  public void RamasserPieces(int pieces) {
+    this.pieces += pieces;
+  }
+
   /** Classe statique imbriquée permettant de construire un objet Personnage. */
   public static class Builder {
 
@@ -177,6 +190,7 @@ public class Personnage {
     private int init;
     private int defense;
     private List<Arme> equipements;
+    private int pieces;
 
     private Random random = new Random(new Random().nextInt());
 
@@ -362,6 +376,20 @@ public class Personnage {
     public int profil(Random random) {
       return 2 * (random.nextInt(5) + 2);
     }
+
+    /**
+     * Pour construire un personnage avec sa monnaie;
+     */
+    public Builder setPieces(int pieces){
+      this.pieces = pieces;
+      return this;
+    }
+
+    /**
+     * Méthode de construction du {@link Personnage}
+     *
+     * @return Personnage instance construite.
+     */
 
     public Personnage build() {
       return new Personnage(this);
