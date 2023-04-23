@@ -174,7 +174,7 @@ public class DonjonGeneartion implements Strategie {
        ArmeDistanceType armeDistanceType = armeDistanceTypes.get(new Random().nextInt(armeDistanceTypes.size()));
        ArmeContact armeContact = new ArmeContact(armeContactType);
        ArmeDistance armeDistance = new ArmeDistance(armeDistanceType);
-       Personnage.Builder builder = new Personnage.Builder("za3im");
+       Personnage.Builder builder = new Personnage.Builder("oussama");
        Pnj pnj = new Pnj(builder);
        if(cpt%2==0){
          Agreesifstrategy agreesifstrategy=new Agreesifstrategy(armeContact);
