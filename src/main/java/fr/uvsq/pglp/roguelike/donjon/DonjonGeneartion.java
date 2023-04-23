@@ -26,13 +26,16 @@ public class DonjonGeneartion implements Strategie {
   private List<Pnj> pnjList;
   private List<PnjDonjon> pnjDonjonList;
 
-  private Map<Point2D, DonjonObject> allDonjonObjects = new HashMap<>();
-  private List<ArmureDonjType> armuresDonj;
-  private List<ArmeDistDonjType> armesDist;
+  private Map<Point2D, DonjonObject> allDonjonObjects;
+
+  private List<MagasinDonjon> magasinsDonjon ;
 
   public DonjonGeneartion(Personnage pj) {
     this.pj = pj;
     //        this.pnjList = pnjList ;
+    magasinsDonjon = new ArrayList<>();
+    pnjDonjonList = new ArrayList<>();
+    allDonjonObjects = new HashMap<>();
   }
 
   public List<RoomDonjon> getRoomsDonjon() {
@@ -301,10 +304,27 @@ public class DonjonGeneartion implements Strategie {
         } while (!validateposition(point2D));
         MagasinDonjon magasinDonjon = new MagasinDonjon(point2D);
         this.ajoutMap(magasinDonjon);
+        this.magasinsDonjon.add(magasinDonjon);
         this.addToHashMap(point2D, magasinDonjon);
       }
       cpt++;
 
     }
+  }
+
+  public PersonnageDonjon getPjDonjon() {
+    return pjDonjon;
+  }
+
+  public List<PnjDonjon> getPnjDonjonList() {
+    return pnjDonjonList;
+  }
+
+  public Map<Point2D, DonjonObject> getAllDonjonObjects() {
+    return allDonjonObjects;
+  }
+
+  public List<MagasinDonjon> getMagasinsDonjon() {
+    return magasinsDonjon;
   }
 }
