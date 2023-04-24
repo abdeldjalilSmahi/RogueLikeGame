@@ -9,7 +9,7 @@ public abstract class Creature extends DonjonObject {
     super(position, asciiChar, color);
   }
 
-  public abstract boolean canMoveTo(Point2D newPosition, Map<Point2D, DonjonObject> map);
+  public abstract boolean canMoveTo(Point2D newPosition, Map<Point2D, DonjonObject> map,Donjon donjon);
 
 
 
