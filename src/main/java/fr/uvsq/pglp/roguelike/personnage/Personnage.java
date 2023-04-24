@@ -129,7 +129,7 @@ public class Personnage {
   /** Cette méthode sert changer l'arme courante du personnage. */
   public void changeArme() {
     if (!armes.isEmpty()) {
-      Arme temp = currentArme ;
+      Arme temp = currentArme;
       currentArme = armes.get(0);
       armes.remove(armes.get(0));
       armes.add(temp);

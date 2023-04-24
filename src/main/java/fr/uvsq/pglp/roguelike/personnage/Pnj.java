@@ -78,7 +78,8 @@ public class Pnj {
     this.defense = defense;
   }
 
-  public void setScoreDeCaracteristiqueMap(Map<Caracteristique, ScoreDeCaracteristique> scoreDeCaracteristiqueMap) {
+  public void setScoreDeCaracteristiqueMap(
+      Map<Caracteristique, ScoreDeCaracteristique> scoreDeCaracteristiqueMap) {
     this.scoreDeCaracteristiqueMap = scoreDeCaracteristiqueMap;
   }
 
