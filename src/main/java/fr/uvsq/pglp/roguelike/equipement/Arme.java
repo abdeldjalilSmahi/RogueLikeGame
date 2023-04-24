@@ -61,5 +61,6 @@ public abstract class Arme {
 
   /** pour calculer les domagement de l'arme. */
   public abstract int calculDamage();
+
   public abstract String armeName();
 }

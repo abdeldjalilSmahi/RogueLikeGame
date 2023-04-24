@@ -200,7 +200,7 @@ public class DonjonGeneartion implements Strategie {
         Agreesifstrategy agreesifstrategy = new Agreesifstrategy(pnj, armeContact);
         pnj.setStrategy(agreesifstrategy);
       } else {
-        Agreesifstrategy agreesifstrategy = new Agreesifstrategy(pnj,armeDistance);
+        Agreesifstrategy agreesifstrategy = new Agreesifstrategy(pnj, armeDistance);
         pnj.setStrategy(agreesifstrategy);
       }
       Point2D point2D;
