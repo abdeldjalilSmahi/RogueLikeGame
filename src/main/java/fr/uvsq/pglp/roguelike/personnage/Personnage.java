@@ -133,7 +133,6 @@ public class Personnage {
       currentArme = armes.get(0);
       armes.remove(armes.get(0));
       armes.add(temp);
-
     } else {
       System.out.println("Vous n'avez aucune arme a votre disposition");
     }

@@ -56,7 +56,6 @@ public enum Roguelike {
       new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
       interaction.executecmd(cmd);
       DisplayMap.dispaly(donjon);
-
     }
   }
 }

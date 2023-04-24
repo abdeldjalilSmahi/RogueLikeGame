@@ -3,6 +3,7 @@ package fr.uvsq.pglp.roguelike.ihm;
 import static org.fusesource.jansi.Ansi.ansi;
 
 import fr.uvsq.pglp.roguelike.donjon.Donjon;
+import fr.uvsq.pglp.roguelike.equipement.Arme;
 import org.fusesource.jansi.Ansi;
 
 /** Classe qui permet d'afficher la carte d'un donjon. */
@@ -20,11 +21,18 @@ public class DisplayMap {
     System.out.println(
         "You have " + donjon.getPersonnageDonjon().getPersonnage().getPieces() + " coins");
     if (donjon.getPersonnageDonjon().getPersonnage().getCurrentArme() == null) {
-      System.out.println("You don't have a weapon");
+      System.out.println("You don't have a weapon in your hand");
     } else {
       System.out.println(
           "Your current weapon is "
               + donjon.getPersonnageDonjon().getPersonnage().getCurrentArme().armeName());
+    }
+
+    if(donjon.getPersonnageDonjon().getPersonnage().getArmes().size()>=1){
+      System.out.println("Other weapon in your disposition click changearme : ");
+      for (Arme arme :donjon.getPersonnageDonjon().getPersonnage().getArmes())
+        if (arme!=null)
+          System.out.println(arme.armeName());
     }
     System.out.println(
         ansi()
