@@ -3,6 +3,9 @@ package fr.uvsq.pglp.roguelike.donjon;
 import fr.uvsq.pglp.roguelike.equipement.ArmeDistance;
 import fr.uvsq.pglp.roguelike.equipement.ArmeDistanceType;
 
+/**
+ * une enumeration qui enmere  les type des armes de distance.
+ */
 public enum ArmeDistDonjType {
   ARBALETE_LEGERE(new ArmeDistance(ArmeDistanceType.ARBALETE_LEGERE), " ) "),
   ARBALETE_LOURDE(new ArmeDistance(ArmeDistanceType.ARBALETE_LOURDE), " ( "),

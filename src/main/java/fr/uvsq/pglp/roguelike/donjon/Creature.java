@@ -4,6 +4,9 @@ import java.awt.geom.Point2D;
 import java.util.Map;
 import org.fusesource.jansi.Ansi;
 
+/**
+ * La classe abstraite Creature représente une créature dans le donjon.
+ */
 public abstract class Creature extends DonjonObject {
   public Creature(Point2D position, String asciiChar, Ansi.Color color) {
     super(position, asciiChar, color);

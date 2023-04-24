@@ -1,5 +1,8 @@
 package fr.uvsq.pglp.roguelike.donjon;
 
+/**
+ * une enumeration qui enumere les type des composants du donjon.
+ */
 public enum DonjonComponentType {
   /**
    * Obstacle, représenté par un caractère #.

@@ -3,6 +3,9 @@ package fr.uvsq.pglp.roguelike.donjon;
 import fr.uvsq.pglp.roguelike.equipement.ArmeContact;
 import fr.uvsq.pglp.roguelike.equipement.ArmeContactType;
 
+/**
+ * une enumeration qui enumere les type des armes de contact.
+ */
 public enum ArmeConDonjType {
   GOURDIN(new ArmeContact(ArmeContactType.GOURDIN), " ? "),
   BATON(new ArmeContact(ArmeContactType.BATON), " | "),

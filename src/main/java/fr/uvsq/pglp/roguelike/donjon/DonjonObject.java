@@ -3,11 +3,21 @@ package fr.uvsq.pglp.roguelike.donjon;
 import java.awt.geom.Point2D;
 import org.fusesource.jansi.Ansi.Color;
 
+/**
+ * La classe DonjonObject représente un objet dans un donjon.
+ */
 public class DonjonObject {
   protected Point2D position;
   protected String asciiChar;
   protected Color color;
 
+  /**
+   * Construit un objet DonjonObject avec les informations données.
+   *
+   * @param position La position de l'objet.
+   * @param asciiChar Le caractère ASCII représentant l'objet.
+   * @param color  La couleur de l'objet.
+   */
   public DonjonObject(Point2D position, String asciiChar, Color color) {
     this.position = position;
     this.asciiChar = asciiChar;

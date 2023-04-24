@@ -3,6 +3,9 @@ package fr.uvsq.pglp.roguelike.donjon;
 import fr.uvsq.pglp.roguelike.equipement.Armure;
 import fr.uvsq.pglp.roguelike.equipement.ArmureType;
 
+/**
+ * une enumeration qui enumere les type des armes de contact.
+ */
 public enum ArmureDonjType {
   PETIT_BOUCLIER(new Armure(ArmureType.PETIT_BOUCLIER), " o "),
   CUIR(new Armure(ArmureType.CUIR), " c "),
