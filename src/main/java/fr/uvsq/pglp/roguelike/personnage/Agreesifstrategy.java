@@ -23,7 +23,8 @@ public class Agreesifstrategy implements Strategy {
    *
 
    */
-  public Agreesifstrategy(Arme arme) {
+  public Agreesifstrategy(Pnj pnj, Arme arme) {
+    this.arme = arme;
     this.pnj = pnj;
   }
 
