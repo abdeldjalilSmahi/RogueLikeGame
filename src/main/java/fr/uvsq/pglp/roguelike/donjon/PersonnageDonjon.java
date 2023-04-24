@@ -27,25 +27,16 @@ public class PersonnageDonjon extends Creature {
     return personnage;
   }
 
-
   @Override
-  public boolean canMoveTo(Point2D newPosition, Map<Point2D, DonjonObject> map) {
+  public boolean canMoveTo(Point2D newPosition, Map<Point2D, DonjonObject> map, Donjon donjon) {
     if (map.get(newPosition).getAsciiChar() != DonjonComponentType.SOL.getAsciiChar()) {
-      System.out.println("yeah");
+      PiegeIncident piegeIncident = new PiegeIncident(donjon);
+      piegeIncident.execut();
       return false;
-
-    @Override
-    public boolean canMoveTo(Point2D newPosition, Map<Point2D, DonjonObject> map,Donjon donjon) {
-        if (map.get(newPosition).getAsciiChar() != DonjonComponentType.SOL.getAsciiChar()) {
-            PiegeIncident piegeIncident = new PiegeIncident(donjon);
-            piegeIncident.execut();
-            return false;
-        }
-        return true;
-
     }
     return true;
   }
+
 
 
   /**
@@ -55,20 +46,8 @@ public class PersonnageDonjon extends Creature {
    * @param donjon le donjon courant.
    */
   public void moveTo(Point2D newPosition, Donjon donjon) {
-    if (canMoveTo(newPosition, donjon.getAllElements())) {
+    if (canMoveTo(newPosition, donjon.getAllElements(), donjon)) {
       donjon.swapObjects(this, donjon.getObject(newPosition));
-
-    /**
-     * Méthode permet de bouger le joueur.
-     *
-     * @param newPosition la nvl position.
-     * @param donjon le donjon courant.
-     */
-    public void moveTo(Point2D newPosition, Donjon donjon) {
-        if (canMoveTo(newPosition, donjon.getAllElements(),donjon)) {
-            donjon.swapObjects(this, donjon.getObject(newPosition));
-        }
-
     }
   }
 }

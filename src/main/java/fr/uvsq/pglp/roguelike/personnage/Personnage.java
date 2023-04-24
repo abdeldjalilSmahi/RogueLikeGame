@@ -163,6 +163,11 @@ public class Personnage {
     this.armures = armures;
   }
 
+  /**
+   * Ramasse une armure et l'équipe ou l'ajoute à l'inventaire des armures du joueur.
+   *
+   * @param armure l'armure à ramasser
+   */
   public void ramasserArmure(Armure armure) {
     if (currentArmure == null) {
       currentArmure = armure;
@@ -175,7 +180,7 @@ public class Personnage {
     return pieces;
   }
 
-  public void RamasserPieces(int pieces) {
+  public void ramasserPieces(int pieces) {
     this.pieces += pieces;
   }
 
@@ -384,8 +389,8 @@ public class Personnage {
       return this;
     }
 
-    /**.
-     * Méthode de construction du {@link Personnage}
+    /**
+     * . Méthode de construction du {@link Personnage}
      *
      * @return Personnage instance construite.
      */
@@ -412,6 +417,5 @@ public class Personnage {
     public int getDefense() {
       return defense;
     }
-
   }
 }
