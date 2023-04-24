@@ -25,8 +25,12 @@ public class PnjDonjon extends Creature {
   }
 
   @Override
-  public boolean canMoveTo(Point2D newPosition, Map<Point2D, DonjonObject> map) {
-    if (map.get(newPosition).getAsciiChar() != DonjonComponentType.SOL.getAsciiChar()) {
+
+
+
+  public boolean canMoveTo(Point2D newPosition, Map<Point2D, DonjonObject> map,Donjon donjon) {
+    if (map.get(newPosition).getAsciiChar()!=DonjonComponentType.SOL.getAsciiChar()) {
+
       return false;
     }
     return true;
@@ -39,7 +43,7 @@ public class PnjDonjon extends Creature {
    * @param donjon
    */
   public void moveTo(Point2D newPosition, Donjon donjon) {
-    if (canMoveTo(newPosition, donjon.getAllElements())) {
+    if (canMoveTo(newPosition, donjon.getAllElements(),donjon)) {
       donjon.swapObjects(this, donjon.getObject(newPosition));
     }
   }
