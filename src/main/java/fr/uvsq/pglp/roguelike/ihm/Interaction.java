@@ -31,6 +31,8 @@ public class Interaction {
                 return new RamasserPiece(donjon);
             case "changearme":
                return new Changearme(donjon);
+            case "franchir":
+                return new Franchirporte(donjon);
         }
        return cmd;
         }
