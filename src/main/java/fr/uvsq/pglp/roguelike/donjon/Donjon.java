@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import org.fusesource.jansi.Ansi;
 
 /** La classe Donjon représente le donjon où se déroule le jeu. */
 public class Donjon {
@@ -43,6 +44,7 @@ public class Donjon {
     this.magasinsDonjon = this.strategie.getMagasinsDonjon();
     this.personnageDonjon = this.strategie.getPjDonjon();
     this.pnjDonjonList = this.strategie.getPnjDonjonList();
+    this.rooms = this.strategie.getRoomsDonjon();
   }
 
   /**
@@ -75,6 +77,13 @@ public class Donjon {
 
   private void removeObject(DonjonObject donjonObject) {
     this.allElements.remove(donjonObject.getPosition());
+    map[(int) donjonObject.getPosition().getX()][(int) donjonObject.getPosition().getX()] =
+        new ComponentDonjon(
+            new Point2D.Double(
+                donjonObject.getPosition().getX(), donjonObject.getPosition().getY()),
+            Ansi.Color.CYAN,
+            DonjonComponentType.SOL);
+    updateMap();
   }
 
   /** Metre à jour la carte du donjon en fonction des objets présents. */

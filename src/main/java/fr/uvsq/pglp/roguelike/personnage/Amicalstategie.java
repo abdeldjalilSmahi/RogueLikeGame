@@ -37,9 +37,13 @@ public class Amicalstategie implements Strategy {
 
   /** Affiche les informations des PNJ dans la salle du personnage. */
   public void afficherinfos() {
-    int x = (int) (position.getX() % roomSize);
-    int y = (int) (position.getY() % roomSize);
-    int numberroom = x * y;
+    int numberroom = 0;
+    if (position.getX() < roomSize) {
+      int x = 0;
+      int y = (int) (position.getY() % roomSize);
+      numberroom = x * y;
+    }
+
     for (int i = (int) roomsDonjon.get(numberroom).getHautDroit().getX();
         i <= roomsDonjon.get(numberroom).getBasGauche().getX();
         i++) {

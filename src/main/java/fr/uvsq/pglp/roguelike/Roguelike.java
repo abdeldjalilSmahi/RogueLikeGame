@@ -49,13 +49,20 @@ public enum Roguelike {
     Command cmd;
     Interaction interaction;
     DisplayMap.dispaly(donjon);
-    while (true) {
+    boolean gameOver = false;
+    while (!gameOver) {
       c = sc.nextLine();
       interaction = new Interaction(c, donjon);
       cmd = interaction.getCommande();
       new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
       interaction.executecmd(cmd);
       DisplayMap.dispaly(donjon);
+      if (donjon.getPersonnageDonjon().getPersonnage().getPv() <= 0) {
+        gameOver = true;
+      }
     }
+    System.out.println("GAME OVER");
+    System.out.println("BYE");
+    System.exit(0);
   }
 }

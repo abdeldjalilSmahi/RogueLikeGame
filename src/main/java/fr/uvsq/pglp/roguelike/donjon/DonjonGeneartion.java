@@ -196,6 +196,7 @@ public class DonjonGeneartion implements Strategie {
       ArmeDistance armeDistance = new ArmeDistance(armeDistanceType);
       Personnage.Builder builder = new Personnage.Builder("za3im");
       Pnj pnj = new Pnj(builder);
+      pnj.setPv(1);
       if (cpt % 2 == 0) {
         Agreesifstrategy agreesifstrategy = new Agreesifstrategy(pnj, armeContact);
         pnj.setStrategy(agreesifstrategy);
@@ -335,6 +336,8 @@ public class DonjonGeneartion implements Strategie {
       cpt++;
     }
   }
+
+
 
   public PersonnageDonjon getPjDonjon() {
     return pjDonjon;

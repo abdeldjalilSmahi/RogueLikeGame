@@ -19,4 +19,6 @@ public interface Strategie {
   List<MagasinDonjon> getMagasinsDonjon();
 
   DonjonObject[][] getMap();
+
+  List<RoomDonjon> getRoomsDonjon();
 }
