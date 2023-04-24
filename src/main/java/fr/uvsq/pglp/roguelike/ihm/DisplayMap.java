@@ -24,7 +24,7 @@ public class DisplayMap {
     } else {
       System.out.println(
           "Your current weapon is "
-              + donjon.getPersonnageDonjon().getPersonnage().getCurrentArme());
+              + donjon.getPersonnageDonjon().getPersonnage().getCurrentArme().armeName());
     }
     System.out.println(
         ansi()

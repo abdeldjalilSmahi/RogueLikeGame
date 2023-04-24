@@ -60,4 +60,9 @@ public class ArmeDistance extends Arme {
     }
     return dm;
   }
+
+  @Override
+  public String armeName() {
+    return armeDistanceType.name();
+  }
 }

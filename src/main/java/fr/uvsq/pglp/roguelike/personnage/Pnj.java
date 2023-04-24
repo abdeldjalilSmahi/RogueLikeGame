@@ -66,5 +66,23 @@ public class Pnj {
     strategy.execute();
   }
 
+  public void setPv(int pv) {
+    this.pv = pv;
+  }
 
+  public void setInit(int init) {
+    this.init = init;
+  }
+
+  public void setDefense(int defense) {
+    this.defense = defense;
+  }
+
+  public void setScoreDeCaracteristiqueMap(Map<Caracteristique, ScoreDeCaracteristique> scoreDeCaracteristiqueMap) {
+    this.scoreDeCaracteristiqueMap = scoreDeCaracteristiqueMap;
+  }
+
+  public void setTypeDattaque(Map<TypeDattaque, Integer> typeDattaque) {
+    this.typeDattaque = typeDattaque;
+  }
 }

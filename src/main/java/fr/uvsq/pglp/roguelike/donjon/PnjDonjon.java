@@ -33,6 +33,10 @@ public class PnjDonjon extends Creature {
     return true;
   }
 
+  public Pnj getPnj() {
+    return pnj;
+  }
+
   /**
    * Déplace l'instance à la position donnée sur la carte.
    *

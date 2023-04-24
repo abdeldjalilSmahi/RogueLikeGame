@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /** La classe Donjon représente le donjon où se déroule le jeu. */
 public class Donjon {
@@ -103,5 +104,13 @@ public class Donjon {
 
   public List<PnjDonjon> getPnjDonjonList() {
     return pnjDonjonList;
+  }
+
+  public static boolean testAttaque(Random random, int scoreAttaque, int defenseAdv){
+    int de = random.nextInt(20)+1;
+    if(de+ scoreAttaque >= defenseAdv){
+      return true;
+    }
+    return false;
   }
 }

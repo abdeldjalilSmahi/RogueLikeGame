@@ -59,4 +59,9 @@ public class ArmeContact extends Arme {
     }
     return dm;
   }
+
+  @Override
+  public String armeName() {
+    return armeContactType.name();
+  }
 }

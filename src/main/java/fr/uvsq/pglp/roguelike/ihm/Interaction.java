@@ -63,6 +63,8 @@ public class Interaction {
         return new Changearme(donjon);
       case "franchir":
         return new Franchirporte(donjon);
+      case "attack":
+        return new AttackContactCommand(donjon);
       default:
         return new ErrorCmd();
     }
