@@ -48,13 +48,15 @@ public enum Roguelike {
     String c;
     Command cmd;
     Interaction interaction;
+    DisplayMap.dispaly(donjon);
     while (true) {
-      new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-      DisplayMap.dispaly(donjon);
       c = sc.nextLine();
       interaction = new Interaction(c, donjon);
       cmd = interaction.getCommande();
+      new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
       interaction.executecmd(cmd);
+      DisplayMap.dispaly(donjon);
+
     }
   }
 }
