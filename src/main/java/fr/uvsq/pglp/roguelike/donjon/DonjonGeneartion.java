@@ -217,7 +217,10 @@ public class DonjonGeneartion implements Strategie {
                 + (int) roomDonjon.getHautGauche().getY();
         point2D = new Double(x, y);
       } while (!validateposition(point2D));
+
       PnjDonjon pnjDonjon = new PnjDonjon(pnj, " A ", point2D);
+      pnjDonjonList.add(pnjDonjon);
+
       this.ajoutMap(pnjDonjon);
       this.addToHashMap(point2D, pnjDonjon);
       cpt++;
@@ -238,12 +241,15 @@ public class DonjonGeneartion implements Strategie {
                 + (int) roomDonjon.getHautGauche().getY();
         point2D = new Double(x, y);
       } while (!validateposition(point2D));
-      Personnage.Builder builder = new Personnage.Builder("za3im");
+      Personnage.Builder builder = new Personnage.Builder("OUSSAMA");
       Pnj pnj = new Pnj(builder);
       Amicalstategie amicalstategie =
           new Amicalstategie(this.map, this.roomSize, this.roomsDonjon, point2D);
       pnj.setStrategy(amicalstategie);
+
       PnjDonjon pnjDonjon = new PnjDonjon(pnj, " T ", point2D);
+      pnjDonjonList.add(pnjDonjon);
+
       this.ajoutMap(pnjDonjon);
       this.addToHashMap(point2D, pnjDonjon);
     }

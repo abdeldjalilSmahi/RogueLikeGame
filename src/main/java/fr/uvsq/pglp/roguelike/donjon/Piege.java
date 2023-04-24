@@ -4,6 +4,9 @@ import java.awt.geom.Point2D;
 import java.util.Random;
 import org.fusesource.jansi.Ansi.Color;
 
+/**
+ * La classe Piege représente un objet qui peut causer des dégâts au joueur s'il y marche dessus.
+ */
 public class Piege extends DonjonObject {
 
   private int damage;

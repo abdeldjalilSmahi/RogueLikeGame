@@ -18,13 +18,17 @@ public class Interaction {
         Command cmd = null;
         switch (input.toLowerCase()) {
             case "d":
-               cmd= new Move(donjon, new Point2D.Double(personnageDonjon.getPosition().getX()+0, personnageDonjon.getPosition().getY() + 1));
+               return new Move(donjon, new Point2D.Double(personnageDonjon.getPosition().getX()+0, personnageDonjon.getPosition().getY() + 1));
             case "q":
-                cmd= new Move(donjon, new Point2D.Double(personnageDonjon.getPosition().getX()+0, personnageDonjon.getPosition().getY() - 1));
+                return new Move(donjon, new Point2D.Double(personnageDonjon.getPosition().getX()+0, personnageDonjon.getPosition().getY() - 1));
             case "z":
-                cmd= new Move(donjon, new Point2D.Double(personnageDonjon.getPosition().getX() + 1, personnageDonjon.getPosition().getY()+0));
+                return new Move(donjon, new Point2D.Double(personnageDonjon.getPosition().getX() - 1, personnageDonjon.getPosition().getY()+0));
             case "w":
-                cmd= new Move(donjon, new Point2D.Double(personnageDonjon.getPosition().getX() - 1, personnageDonjon.getPosition().getY()+0));
+                return new Move(donjon, new Point2D.Double(personnageDonjon.getPosition().getX() + 1, personnageDonjon.getPosition().getY()+0));
+            case "acheter":
+                return new Achatarme(donjon);
+            case "ramasserpiece":
+                return new RamasserPiece(donjon);
         }
        return cmd;
         }

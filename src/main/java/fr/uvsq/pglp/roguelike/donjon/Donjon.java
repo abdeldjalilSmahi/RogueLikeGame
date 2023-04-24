@@ -17,9 +17,7 @@ public class Donjon {
   private List<MagasinDonjon> magasinsDonjon;
   private DonjonObject[][] map;
 
-  /**
-   * Constructeur de la classe Donjon.
-   */
+  /** Constructeur de la classe Donjon. */
   public Donjon() {
     this.allElements = new HashMap<>();
     this.rooms = new ArrayList<>();
@@ -30,15 +28,13 @@ public class Donjon {
   /**
    * Modifie la stratégie utilisée pour la génération du donjon.
    *
-   * @param strategie  la nouvelle stratégie à utiliser.
+   * @param strategie la nouvelle stratégie à utiliser.
    */
   public void setStrategie(Strategie strategie) {
     this.strategie = strategie;
   }
 
-  /**
-   * Génère le donjon en utilisant la stratégie définie.
-   */
+  /** Génère le donjon en utilisant la stratégie définie. */
   public void genererDonjon() {
     strategie.makedonjon();
     this.map = this.strategie.getMap();
@@ -56,8 +52,10 @@ public class Donjon {
    */
   public void swapObjects(DonjonObject obj1, DonjonObject obj2) {
     Point2D temp = obj1.getPosition();
-    this.addObject(temp, obj2);
-    this.addObject(obj2.getPosition(), obj1);
+    obj1.setPosition(obj2.getPosition());
+    obj2.setPosition(temp);
+    addObject(obj1.getPosition(), obj1);
+    addObject(obj2.getPosition(), obj2);
     updateMap();
   }
 
@@ -78,9 +76,7 @@ public class Donjon {
     this.allElements.remove(donjonObject.getPosition());
   }
 
-  /**
-   * Metre à jour la carte du donjon en fonction des objets présents.
-   */
+  /** Metre à jour la carte du donjon en fonction des objets présents. */
   public void updateMap() {
     for (Point2D key : allElements.keySet()) {
       int x = (int) key.getX();
@@ -103,5 +99,9 @@ public class Donjon {
 
   public DonjonObject[][] getMap() {
     return map;
+  }
+
+  public List<PnjDonjon> getPnjDonjonList() {
+    return pnjDonjonList;
   }
 }

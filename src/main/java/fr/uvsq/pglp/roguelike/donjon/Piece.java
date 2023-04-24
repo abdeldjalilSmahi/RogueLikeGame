@@ -4,8 +4,11 @@ import java.awt.geom.Point2D;
 import java.util.Random;
 import org.fusesource.jansi.Ansi.Color;
 
+/**
+ * Classe représentant une pièce dans un donjon.
+ */
 public class Piece extends DonjonObject {
-  private int value;
+  public int value;
 
   public Piece(Point2D position) {
     super(position, " € ", Color.RED);

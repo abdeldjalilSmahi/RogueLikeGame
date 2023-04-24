@@ -5,9 +5,7 @@ import java.awt.geom.Point2D;
 import java.util.Map;
 import org.fusesource.jansi.Ansi;
 
-/**
- * La classe personnage dans le donjon.
- */
+/** La classe personnage dans le donjon. */
 public class PersonnageDonjon extends Creature {
 
   /** Personnage a enrichir par une position. */

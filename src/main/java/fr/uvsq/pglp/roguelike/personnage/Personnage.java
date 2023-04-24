@@ -39,6 +39,10 @@ public class Personnage {
   /** Les pieces de monnaies de joueur. */
   private int pieces;
 
+  public void setPieces(int pieces) {
+    this.pieces = pieces;
+  }
+
   /**
    * Constructeur de la classe {@link Personnage}.
    *
@@ -408,5 +412,6 @@ public class Personnage {
     public int getDefense() {
       return defense;
     }
+
   }
 }

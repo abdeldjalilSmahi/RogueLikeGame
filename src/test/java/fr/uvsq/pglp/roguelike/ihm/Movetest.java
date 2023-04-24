@@ -28,6 +28,9 @@ public class Movetest {
             System.out.println();
         }
         Command cmd=new Move(donjon,new Point2D.Double(personnageDonjon.getPosition().getX(),personnageDonjon.getPosition().getY()+1));
+
+        cmd.execut();
+        cmd=new Move(donjon,new Point2D.Double(personnageDonjon.getPosition().getX(),personnageDonjon.getPosition().getY()+1));
         cmd.execut();
         for (int i = 0; i < donjon.getMap().length; i++) {
             for (int j = 0; j < donjon.getMap()[0].length; j++) {
