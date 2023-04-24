@@ -28,16 +28,18 @@ public class DisplayMap {
               + donjon.getPersonnageDonjon().getPersonnage().getCurrentArme().armeName());
     }
 
-    if(donjon.getPersonnageDonjon().getPersonnage().getArmes().size()>=1){
+    if (donjon.getPersonnageDonjon().getPersonnage().getArmes().size() >= 1) {
       System.out.println("Other weapon in your disposition click changearme : ");
-      for (Arme arme :donjon.getPersonnageDonjon().getPersonnage().getArmes())
-        if (arme!=null)
+      for (Arme arme : donjon.getPersonnageDonjon().getPersonnage().getArmes()) {
+        if (arme != null) {
           System.out.println(arme.armeName());
+        }
+      }
     }
     System.out.println(
         ansi()
             .fg(Ansi.Color.MAGENTA)
-            .a("******************************************************************d" + "")
+            .a("******************************************************************" + "")
             .reset());
     for (int i = 0; i < donjon.getMap().length; i++) {
       for (int j = 0; j < donjon.getMap()[0].length; j++) {
