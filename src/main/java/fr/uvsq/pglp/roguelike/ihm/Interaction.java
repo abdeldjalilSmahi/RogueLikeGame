@@ -29,6 +29,8 @@ public class Interaction {
                 return new Achatarme(donjon);
             case "ramasserpiece":
                 return new RamasserPiece(donjon);
+            case "changearme":
+               return new Changearme(donjon);
         }
        return cmd;
         }

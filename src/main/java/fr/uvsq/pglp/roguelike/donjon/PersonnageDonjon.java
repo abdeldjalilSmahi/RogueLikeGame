@@ -28,12 +28,6 @@ public class PersonnageDonjon extends Creature {
   }
 
 
-  @Override
-  public boolean canMoveTo(Point2D newPosition, Map<Point2D, DonjonObject> map) {
-    if (map.get(newPosition).getAsciiChar() != DonjonComponentType.SOL.getAsciiChar()) {
-      System.out.println("yeah");
-      return false;
-
     @Override
     public boolean canMoveTo(Point2D newPosition, Map<Point2D, DonjonObject> map,Donjon donjon) {
         if (map.get(newPosition).getAsciiChar() != DonjonComponentType.SOL.getAsciiChar()) {
@@ -44,8 +38,6 @@ public class PersonnageDonjon extends Creature {
         return true;
 
     }
-    return true;
-  }
 
 
   /**
@@ -54,16 +46,7 @@ public class PersonnageDonjon extends Creature {
    * @param newPosition la nvl position.
    * @param donjon le donjon courant.
    */
-  public void moveTo(Point2D newPosition, Donjon donjon) {
-    if (canMoveTo(newPosition, donjon.getAllElements())) {
-      donjon.swapObjects(this, donjon.getObject(newPosition));
 
-    /**
-     * Méthode permet de bouger le joueur.
-     *
-     * @param newPosition la nvl position.
-     * @param donjon le donjon courant.
-     */
     public void moveTo(Point2D newPosition, Donjon donjon) {
         if (canMoveTo(newPosition, donjon.getAllElements(),donjon)) {
             donjon.swapObjects(this, donjon.getObject(newPosition));
@@ -71,4 +54,3 @@ public class PersonnageDonjon extends Creature {
 
     }
   }
-}
