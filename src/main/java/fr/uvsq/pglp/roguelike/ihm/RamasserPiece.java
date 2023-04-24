@@ -26,7 +26,7 @@ public class RamasserPiece implements Command{
                 Piece piece = (Piece)  donjon.getAllElements().get(adjacentPosition);
                 donjon.getAllElements().put(adjacentPosition,
                         new ComponentDonjon(new Point2D.Double(adjacentPosition.getX(), adjacentPosition.getY()), Ansi.Color.CYAN, DonjonComponentType.SOL));
-                personnageDonjon.getPersonnage().setPieces(personnageDonjon.getPersonnage().getPieces()-piece.getValue());
+                personnageDonjon.getPersonnage().setPieces(personnageDonjon.getPersonnage().getPieces()+piece.getValue());
                 donjon.updateMap();
             }
         }

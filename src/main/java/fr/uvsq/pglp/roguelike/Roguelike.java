@@ -9,6 +9,7 @@
     import org.slf4j.Logger;
     import org.slf4j.LoggerFactory;
 
+    import java.io.IOException;
     import java.util.Scanner;
 
     /**
@@ -38,7 +39,7 @@
        *
        * @param args command line arguments
        */
-      public static void main(String[] args) {
+      public static void main(String[] args) throws IOException, InterruptedException {
           Personnage pj = new Personnage.Builder("abdjalil").setPieces(15).build();
           Strategie strategie = new DonjonGeneartion(pj);
           Donjon donjon = new Donjon();
@@ -46,10 +47,11 @@
           donjon.genererDonjon();
           Scanner sc = new Scanner(System.in);
           String c;
-          DisplayMap.dispaly(donjon);
           Command cmd;
           Interaction interaction;
           while(true){
+              new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+              DisplayMap.dispaly(donjon);
               c= sc.nextLine();
               interaction = new Interaction(c,donjon);
               cmd=interaction.getCommande();

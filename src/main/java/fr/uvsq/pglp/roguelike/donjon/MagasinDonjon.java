@@ -130,6 +130,13 @@ public class MagasinDonjon extends DonjonObject {
       if (this.getPj().getPieces() >= prixObjet) {
         this.getPj().setPieces(this.getPj().getPieces() - prixObjet);
         System.out.println("L'objet " + nomObjet + " a été acheté avec succès.");
+        if (armeContact != null) {
+          getPj().getArmes().add(armeContact.armeContact);
+        } else if (armeDistance != null) {
+          getPj().getArmes().add(armeDistance.armeDistance);
+        } else {
+          getPj().getArmures().add(armure.getArmure());
+        }
       } else {
         System.out.println("Vous n'avez pas assez d'or pour acheter l'objet " + nomObjet + ".");
       }

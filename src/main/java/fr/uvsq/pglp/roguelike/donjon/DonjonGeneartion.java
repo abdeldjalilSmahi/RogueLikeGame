@@ -124,7 +124,7 @@ public class DonjonGeneartion implements Strategie {
         ComponentDonjon componentDonjon =
             new ComponentDonjon(
                 new Point2D.Double((roomSize + 1) * level, random),
-                Color.CYAN,
+                Color.YELLOW,
                 DonjonComponentType.PORTE);
         map[(roomSize + 1) * level][random] = componentDonjon;
         this.addToHashMap(point2D, componentDonjon);
@@ -140,7 +140,7 @@ public class DonjonGeneartion implements Strategie {
         ComponentDonjon componentDonjon =
             new ComponentDonjon(
                 new Point2D.Double(random, (roomSize + 1) * room),
-                Color.CYAN,
+                Color.YELLOW,
                 DonjonComponentType.PORTE);
         map[random][(roomSize + 1) * room] = componentDonjon;
         this.addToHashMap(point2D, componentDonjon);

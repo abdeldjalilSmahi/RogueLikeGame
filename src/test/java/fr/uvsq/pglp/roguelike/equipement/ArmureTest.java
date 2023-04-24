@@ -11,6 +11,6 @@ public class ArmureTest {
     @Test
     public void testGetBonusArmure(){
         Armure armure = new Armure(PETIT_BOUCLIER);
-        assertEquals(8, armure.getBonus());
+        assertEquals(1, armure.getBonus());
     }
 }

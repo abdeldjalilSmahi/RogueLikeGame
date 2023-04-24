@@ -138,6 +138,10 @@ public class Personnage {
     }
   }
 
+  public Arme getCurrentArme() {
+    return currentArme;
+  }
+
   /**
    * Ramasser une arme.
    *
