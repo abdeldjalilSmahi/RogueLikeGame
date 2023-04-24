@@ -28,7 +28,6 @@ public class Interaction {
    *
    * @return La commande correspondant à l'entrée du joueur.
    */
-
   public Command getCommande() {
     switch (input.toLowerCase()) {
       case "d":
@@ -65,6 +64,8 @@ public class Interaction {
         return new Franchirporte(donjon);
       case "attack":
         return new AttackContactCommand(donjon);
+      case "discuss":
+        return new DiscussCommand(donjon);
       default:
         return new ErrorCmd();
     }

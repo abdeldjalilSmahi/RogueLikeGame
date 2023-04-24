@@ -47,7 +47,10 @@ public class Amicalstategie implements Strategy {
           j <= roomsDonjon.get(numberroom).getHautGauche().getY();
           j++) {
         if (map[i][j] instanceof PnjDonjon) {
-          System.out.println("Y a un pnj à la position" + "(" + i + " " + j + ")");
+          if(map[i][j].getAsciiChar().equals(" A ")){
+            System.out.println("Y a un pnj à la position" + "(" + i + " " + j + ")");
+          }
+
         }
       }
     }

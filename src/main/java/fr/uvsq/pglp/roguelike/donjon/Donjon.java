@@ -98,6 +98,10 @@ public class Donjon {
     return personnageDonjon;
   }
 
+  public List<RoomDonjon> getRooms() {
+    return rooms;
+  }
+
   public DonjonObject[][] getMap() {
     return map;
   }
