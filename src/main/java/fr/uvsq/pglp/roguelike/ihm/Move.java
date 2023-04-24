@@ -25,7 +25,6 @@ public class Move implements Command {
     @Override
     public void execut() {
         this.personnageDonjon.moveTo(this.point2D,donjon);
-        System.out.println(donjon.getPnjDonjonList().size());
         for(PnjDonjon pnjDonjon : donjon.getPnjDonjonList()){
             int i = rand.nextInt(4);
             switch (i){

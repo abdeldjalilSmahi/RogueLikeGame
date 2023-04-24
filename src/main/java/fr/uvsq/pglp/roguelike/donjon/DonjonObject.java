@@ -37,4 +37,6 @@ public class DonjonObject {
   public void setColor(Color color) {
     this.color = color;
   }
+
+
 }

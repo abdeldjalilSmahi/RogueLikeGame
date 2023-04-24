@@ -51,7 +51,6 @@
           Interaction interaction;
           while(true){
               c= sc.nextLine();
-              System.out.println(c);
               interaction = new Interaction(c,donjon);
               cmd=interaction.getCommande();
               if(cmd==null) {
