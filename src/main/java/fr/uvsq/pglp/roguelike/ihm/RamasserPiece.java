@@ -8,9 +8,7 @@ import fr.uvsq.pglp.roguelike.donjon.Piece;
 import java.awt.geom.Point2D;
 import org.fusesource.jansi.Ansi;
 
-/**
- *une Classe permet de ramasser une pièce à partir d'une position donnée dans le donjon.
- */
+/** une Classe permet de ramasser une pièce à partir d'une position donnée dans le donjon. */
 public class RamasserPiece implements Command {
   Donjon donjon;
   private PersonnageDonjon personnageDonjon;

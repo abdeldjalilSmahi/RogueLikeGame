@@ -1,5 +1,6 @@
 package fr.uvsq.pglp.roguelike.donjon;
 
+import fr.uvsq.pglp.roguelike.equipement.Arme;
 import fr.uvsq.pglp.roguelike.ihm.PiegeIncident;
 import fr.uvsq.pglp.roguelike.personnage.Personnage;
 import java.awt.geom.Point2D;
@@ -12,6 +13,8 @@ public class PersonnageDonjon extends Creature {
   /** Personnage a enrichir par une position. */
   private Personnage personnage;
 
+  private Arme arme;
+
   /**
    * Constructeur de personnageDonjon.
    *
@@ -19,8 +22,9 @@ public class PersonnageDonjon extends Creature {
    * @param position la position du personnage.
    */
   public PersonnageDonjon(Personnage personnage, Point2D position) {
-    super(position, " @ ", Ansi.Color.CYAN);
+    super(position, " @ ", Ansi.Color.GREEN);
     this.personnage = personnage;
+    this.arme = personnage.getCurrentArme();
   }
 
   public Personnage getPersonnage() {
@@ -36,8 +40,6 @@ public class PersonnageDonjon extends Creature {
     }
     return true;
   }
-
-
 
   /**
    * Méthode permet de bouger le joueur.

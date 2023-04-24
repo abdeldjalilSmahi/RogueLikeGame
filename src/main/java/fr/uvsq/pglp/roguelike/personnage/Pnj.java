@@ -66,5 +66,5 @@ public class Pnj {
     strategy.execute();
   }
 
-  /** Classe interne permettant de construire un objet Pnj. */
+
 }

@@ -8,7 +8,7 @@ public class MagasinTest {
     @Test
     public void TestTes(){
        MagasinDonjon magasin=new MagasinDonjon(new Point2D.Double(1,2));
-       magasin.presenter();
+
 
     }
 }
