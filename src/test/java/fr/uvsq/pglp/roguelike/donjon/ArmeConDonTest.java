@@ -13,7 +13,7 @@ public class ArmeConDonTest {
   public void armeConDonjonTest(){
     ArmeConDonjon armeConDonjon = new ArmeConDonjon(new Point2D.Double(1,1), Color.CYAN, ArmeConDonjType.BATON_FEREE);
     ArmeContact armeContact = new ArmeContact(ArmeContactType.BATON_FEREE);
-    assertEquals()
+    assertEquals(armeContact.getArmeContactType(), ArmeContactType.BATON_FEREE);
 
   }
 
