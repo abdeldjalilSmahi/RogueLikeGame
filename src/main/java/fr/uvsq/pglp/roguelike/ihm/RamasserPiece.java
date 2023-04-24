@@ -43,7 +43,7 @@ public class RamasserPiece implements Command {
                     DonjonComponentType.SOL));
         personnageDonjon
             .getPersonnage()
-            .setPieces(personnageDonjon.getPersonnage().getPieces() - piece.getValue());
+            .ramasserPieces(piece.getValue());
         donjon.updateMap();
       }
     }
