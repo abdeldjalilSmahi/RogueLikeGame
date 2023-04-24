@@ -62,6 +62,12 @@ public class Move implements Command {
                 donjon);
           break;
         }
+        default:
+          pnjDonjon.moveTo(
+              new Point2D.Double(
+                  pnjDonjon.getPosition().getX(), pnjDonjon.getPosition().getY() - 1),
+              donjon);
+          break;
       }
     }
   }

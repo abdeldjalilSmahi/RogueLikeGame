@@ -54,13 +54,7 @@ public enum Roguelike {
       c = sc.nextLine();
       interaction = new Interaction(c, donjon);
       cmd = interaction.getCommande();
-      if (cmd == null) {
-        DisplayMap.dispaly(donjon);
-        System.out.println("Veuillez entrer une commande valide");
-      } else {
-        interaction.executecmd(cmd);
-        DisplayMap.dispaly(donjon);
-      }
+      interaction.executecmd(cmd);
     }
   }
 }

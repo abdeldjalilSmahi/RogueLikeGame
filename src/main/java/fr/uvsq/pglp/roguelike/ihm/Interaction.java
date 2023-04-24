@@ -22,6 +22,7 @@ public class Interaction {
     this.donjon = donjon;
     this.personnageDonjon = this.donjon.getPersonnageDonjon();
   }
+
   /**
    * Convertit l'entrée du joueur en commande exécutable par le jeu.
    *
@@ -29,7 +30,6 @@ public class Interaction {
    */
 
   public Command getCommande() {
-    Command cmd = null;
     switch (input.toLowerCase()) {
       case "d":
         return new Move(
@@ -49,7 +49,7 @@ public class Interaction {
             new Point2D.Double(
                 personnageDonjon.getPosition().getX() - 1,
                 personnageDonjon.getPosition().getY() + 0));
-      case "w":
+      case "s":
         return new Move(
             donjon,
             new Point2D.Double(
@@ -63,8 +63,10 @@ public class Interaction {
         return new Changearme(donjon);
       case "franchir":
         return new Franchirporte(donjon);
+      default:
+        return new ErrorCmd();
     }
-    return cmd;
+    //    return cmd;
   }
 
   public void executecmd(Command cmd) {

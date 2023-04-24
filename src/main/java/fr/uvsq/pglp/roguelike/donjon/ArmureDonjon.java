@@ -6,7 +6,7 @@ import org.fusesource.jansi.Ansi;
 
 /** la classe des armures dans le donjon. */
 public class ArmureDonjon extends DonjonObject {
-  /** armure a enrichir par une position */
+  /** armure a enrichir par une position. */
   private ArmureDonjType armureDonjType;
 
   private Armure armure;
