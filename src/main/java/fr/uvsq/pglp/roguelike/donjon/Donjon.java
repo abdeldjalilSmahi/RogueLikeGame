@@ -110,9 +110,17 @@ public class Donjon {
     return pnjDonjonList;
   }
 
-  public static boolean testAttaque(Random random, int scoreAttaque, int defenseAdv){
-    int de = random.nextInt(20)+1;
-    if(de+ scoreAttaque >= defenseAdv){
+  /**
+   * Méthode qui fait le test d'attaque.
+   *
+   * @param random pouyr faire de l'aléa Dé20.
+   * @param scoreAttaque du pj ou pnj.
+   * @param defenseAdv de l'adversaire.
+   * @return un boolean pour voir si l'attaque est autorisé ou pas .
+   */
+  public static boolean testAttaque(Random random, int scoreAttaque, int defenseAdv) {
+    int de = random.nextInt(20) + 1;
+    if (de + scoreAttaque >= defenseAdv) {
       return true;
     }
     return false;
